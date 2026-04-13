@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ACM CTF 2.0 official event site: countdown, categories, event details, and registration info.">
+  <title>ACM CTF 2.0 | Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <noscript>
+    <p class="no-script">This site uses JavaScript for shared navigation, countdown, and resources rendering.</p>
+  </noscript>
+
+  <div id="site-header"></div>
+
+  <main>
+    <section class="section section-tight">
+      <div class="container">
+        <div class="card announcement" role="status" aria-live="polite">
+          <span class="chip">Latest</span>
+          <p>Registration is open now. Limited seats are available for external participants.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero" aria-labelledby="event-hero-title">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1 id="event-hero-title">ACM CTF <span>2.0</span></h1>
+          <p>Hack the challenge. Capture the flag. Join PSU cybersecurity enthusiasts for a focused and competitive CTF event.</p>
+
+          <div class="countdown" data-countdown aria-label="Event countdown">
+            <div class="card countdown-item">
+              <p class="countdown-value" data-days>00</p>
+              <p class="countdown-label">Days</p>
+            </div>
+            <div class="card countdown-item">
+              <p class="countdown-value" data-hours>00</p>
+              <p class="countdown-label">Hours</p>
+            </div>
+            <div class="card countdown-item">
+              <p class="countdown-value" data-minutes>00</p>
+              <p class="countdown-label">Mins</p>
+            </div>
+            <div class="card countdown-item">
+              <p class="countdown-value" data-seconds>00</p>
+              <p class="countdown-label">Secs</p>
+            </div>
+          </div>
+
+          <div class="hero-meta" aria-label="Event details">
+            <div class="meta-item"><strong>Date:</strong> April 25, 2026</div>
+            <div class="meta-item"><strong>Time:</strong> 10:00 AM - 1:00 PM</div>
+            <div class="meta-item"><strong>Location:</strong> Auditorium B105, 2nd Floor</div>
+          </div>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="https://forms.gle/fH7Jjg73kT6W6YRK7" target="_blank" rel="noopener noreferrer">Register Now</a>
+            <a class="btn btn-outline" href="schedule.html">View Schedule</a>
+          </div>
+        </div>
+
+        <div class="two-col" aria-label="Event overview">
+          <article class="card panel">
+            <h3>Event Brief</h3>
+            <p>ACM CTF 2.0 is a practical, university-level cybersecurity event designed to strengthen offensive and defensive problem-solving skills.</p>
+          </article>
+          <article class="card panel">
+            <h3>Bring Your Laptop</h3>
+            <p>Participants should bring a charged laptop with a modern browser and stable Wi-Fi setup for the full challenge period.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="category-title">
+      <div class="container">
+        <div class="page-intro">
+          <h2 class="section-title" id="category-title">Challenge Categories</h2>
+          <p class="section-lead">Preview the competition tracks to prepare your team strategy before event day.</p>
+        </div>
+
+        <div class="categories">
+          <article class="card category-card">
+            <span class="chip">CAT_CRYPTO</span>
+            <h3>Cryptography</h3>
+            <p>Decode messages, analyze ciphers, and break weak cryptographic implementations.</p>
+          </article>
+          <article class="card category-card">
+            <span class="chip">CAT_WEB</span>
+            <h3>Web Security</h3>
+            <p>Identify and exploit real-world web vulnerabilities in controlled challenge environments.</p>
+          </article>
+          <article class="card category-card">
+            <span class="chip">CAT_FORENSICS</span>
+            <h3>Digital Forensics</h3>
+            <p>Recover evidence from network captures, memory dumps, and suspicious files.</p>
+          </article>
+          <article class="card category-card">
+            <span class="chip">CAT_OSINT</span>
+            <h3>OSINT</h3>
+            <p>Gather, validate, and connect open-source data to solve intelligence-based tasks.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

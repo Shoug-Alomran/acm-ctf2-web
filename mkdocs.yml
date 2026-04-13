@@ -1,0 +1,57 @@
+site_name: ACM CTF 2.0
+site_description: Official website for ACM CTF 2.0 cybersecurity competition
+site_url: https://acmctf.psu.edu.sa/
+repo_url: https://github.com/Shoug-Alomran/acm-ctf2-web
+repo_name: acm-ctf2-web
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  favicon: image/index/acm.png
+  palette:
+    scheme: slate
+    primary: cyan
+    accent: blue
+  font:
+    text: Barlow
+    code: Share Tech Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - content.code.copy
+    - content.tooltips
+
+nav:
+  - Home: index.md
+  - Schedule: schedule.md
+  - Workshop: workshop.md
+  - Resources: resources.md
+  - Challenges: challenges.md
+  - Rules: rules.md
+  - FAQ: faq.md
+  - About: about.md
+  - Tutorial: tutorial.md
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - attr_list
+  - md_in_html
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Shoug-Alomran/acm-ctf2-web
+  event:
+    date: "April 25, 2026"
+    time: "10:00 AM - 1:00 PM"
+    location: "Auditorium B105, 2nd Floor"
+
+plugins:
+  - search
+
+copyright: "&copy; 2026 ACM CTF 2.0 · ACM Student Chapter · Prince Sultan University"

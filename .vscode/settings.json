@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^perl -0pi -e 's\\|\\\\Q<div class=\"footer-contact\">Event inquiries: <a href=\"mailto:acm\\.edu\\.sa\">acm\\.edu\\.sa</a></div>\\\\E\\|<div class=\"footer-contact\" data-en=\"Event inquiries: acm@psu\\.edu\\.sa\" data-ar=\"استفسارات الفعالية: acm@psu\\.edu\\.sa\">Event inquiries: <a href=\"mailto:acm@psu\\.edu\\.sa\">acm@psu\\.edu\\.sa</a></div>\\|g; s\\|\\\\Qonclick=\"showPage\\('home'\\)\"\\\\E\\|onclick=\"showPage\\(\\\\x27home\\\\x27\\); return false;\"\\|g; s\\|\\\\Qonclick=\"showPage\\('schedule'\\)\"\\\\E\\|onclick=\"showPage\\(\\\\x27schedule\\\\x27\\); return false;\"\\|g; s\\|\\\\Qonclick=\"showPage\\('workshops'\\)\"\\\\E\\|onclick=\"showPage\\(\\\\x27workshops\\\\x27\\); return false;\"\\|g; s\\|\\\\Qonclick=\"showPage\\('resources'\\)\"\\\\E\\|onclick=\"showPage\\(\\\\x27resources\\\\x27\\); return false;\"\\|g; s\\|\\\\Qonclick=\"showPage\\('challenges'\\)\"\\\\E\\|onclick=\"showPage\\(\\\\x27challenges\\\\x27\\); return false;\"\\|g; s\\|\\\\Qonclick=\"showPage\\('rules'\\)\"\\\\E\\|onclick=\"showPage\\(\\\\x27rules\\\\x27\\); return false;\"\\|g; s\\|\\\\Qonclick=\"showPage\\('faq'\\)\"\\\\E\\|onclick=\"showPage\\(\\\\x27faq\\\\x27\\); return false;\"\\|g' /Users/shougalomran/Desktop/acm-ctf2-web/docs/index\\.md$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

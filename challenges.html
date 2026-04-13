@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Challenge category preview and recommended practice platforms for ACM CTF 2.0.">
+  <title>ACM CTF 2.0 | Challenges</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="section" aria-labelledby="challenges-title">
+    <div class="container">
+      <div class="page-intro">
+        <h1 class="section-title" id="challenges-title">Challenge Preview</h1>
+        <p class="section-lead">This page shares challenge tracks and practice recommendations only. No event solutions or flags are published here.</p>
+      </div>
+
+      <section aria-labelledby="challenge-cats-title">
+        <h2 class="section-title" id="challenge-cats-title">Competition Tracks</h2>
+        <div class="categories">
+          <article class="card category-card">
+            <span class="chip">CAT_CRYPTO</span>
+            <h3>Cryptography</h3>
+            <p>Classical and modern cipher analysis, key recovery, and secure design pitfalls.</p>
+          </article>
+          <article class="card category-card">
+            <span class="chip">CAT_WEB</span>
+            <h3>Web Security</h3>
+            <p>Input handling flaws, auth bypasses, and logic vulnerabilities in web apps.</p>
+          </article>
+          <article class="card category-card">
+            <span class="chip">CAT_FORENSICS</span>
+            <h3>Forensics</h3>
+            <p>Packet, disk, and memory investigations to extract evidence and hidden artifacts.</p>
+          </article>
+          <article class="card category-card">
+            <span class="chip">CAT_OSINT</span>
+            <h3>OSINT</h3>
+            <p>Public-source data gathering, verification, and timeline reconstruction tasks.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="practice-title">
+        <h2 class="section-title" id="practice-title">Recommended Practice Platforms</h2>
+        <div class="practice-grid">
+          <article class="card practice-item">
+            <div>
+              <strong>picoCTF</strong>
+              <p>Great for beginner to intermediate challenge-solving fundamentals.</p>
+            </div>
+            <a class="resource-link" href="https://picoctf.org/" target="_blank" rel="noopener noreferrer">Visit</a>
+          </article>
+
+          <article class="card practice-item">
+            <div>
+              <strong>TryHackMe</strong>
+              <p>Structured learning paths for web, network, and defensive security.</p>
+            </div>
+            <a class="resource-link" href="https://tryhackme.com/" target="_blank" rel="noopener noreferrer">Visit</a>
+          </article>
+
+          <article class="card practice-item">
+            <div>
+              <strong>Hack The Box</strong>
+              <p>Advanced labs and CTF-style machines for deeper practical experience.</p>
+            </div>
+            <a class="resource-link" href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer">Visit</a>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="script.js"></script>
+</body>
+</html>
