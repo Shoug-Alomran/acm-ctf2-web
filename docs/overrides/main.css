@@ -965,6 +965,119 @@ html[data-theme="light"] .about-box {
   margin-top: 1rem;
 }
 
+.club-collab {
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.club-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
+}
+
+.club-logo-card {
+  min-width: 180px;
+  padding: 1rem 1.1rem 0.9rem;
+  border: 1px solid var(--border-bright);
+  background: linear-gradient(180deg, rgba(15, 26, 46, 0.72), rgba(13, 21, 38, 0.92));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.club-logo-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.club-logo-label {
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.club-collab-plus {
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.club-work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.club-work-card {
+  border: 1px solid var(--border);
+  background: rgba(10, 15, 26, 0.55);
+  padding: 1.25rem;
+}
+
+.club-work-title {
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+  font-size: 0.86rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.club-work-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+}
+
+.club-work-list li + li {
+  margin-top: 0.6rem;
+}
+
+.club-collab-note {
+  margin-top: 1rem;
+  color: var(--text-primary);
+}
+
+html[dir="rtl"] .club-work-list {
+  padding-left: 0;
+  padding-right: 1.15rem;
+}
+
+html[dir="rtl"] .club-work-card,
+html[dir="rtl"] .club-collab-note {
+  text-align: right;
+}
+
+html[data-theme="light"] .club-logo-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 246, 252, 0.98));
+}
+
+html[data-theme="light"] .club-work-card {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+@media (max-width: 820px) {
+  .club-work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .club-logo-card {
+    width: min(100%, 260px);
+  }
+}
+
 .tutorial-shell {
   width: min(100%, 1100px);
   margin: 0 auto;

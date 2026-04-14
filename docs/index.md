@@ -463,7 +463,39 @@
     <div class="about-box">
       <p data-en="ACM CTF 2.0 is the premier cybersecurity competition hosted jointly by the ACM Student Chapter and the Cyber-Tech Club at Prince Sultan University's College of Computer and Information Sciences (CCIS)." data-ar="ACM CTF 2.0 هي المسابقة الرائدة في مجال الأمن السيبراني، وينظمها كل من فصيلة ACM الطلابية ونادي Cyber-Tech في كلية علوم الحاسب والمعلومات (CCIS) بجامعة الأمير سلطان.">ACM CTF 2.0 is the premier cybersecurity competition hosted jointly by the ACM Student Chapter and the Cyber-Tech Club at Prince Sultan University's College of Computer and Information Sciences (CCIS).</p>
       <p data-en="Designed to challenge students in practical offensive and defensive security scenarios, the event aims to foster a community of passionate cybersecurity enthusiasts in Riyadh and beyond." data-ar="صُممت لتحدي الطلاب في سيناريوهات أمنية هجومية ودفاعية عملية، وتهدف إلى بناء مجتمع من المتحمسين للأمن السيبراني في الرياض وما حولها.">Designed to challenge students in practical offensive and defensive security scenarios, the event aims to foster a community of passionate cybersecurity enthusiasts in Riyadh and beyond.</p>
-      <p data-en="ACM CTF 2.0 is organized through a joint effort between the ACM Club and the Cyber-Tech Club." data-ar="يُنظم ACM CTF 2.0 من خلال تعاون مشترك بين نادي ACM ونادي Cyber-Tech.">ACM CTF 2.0 is organized through a joint effort between the ACM Club and the Cyber-Tech Club.</p>
+      <p data-en="This event was built through a close collaboration between the ACM Club and the Cyber-Tech Club, with each team contributing a distinct part of the experience." data-ar="أُقيمت هذه الفعالية من خلال تعاون وثيق بين نادي ACM ونادي Cyber-Tech، حيث ساهم كل فريق بجانب أساسي من التجربة.">This event was built through a close collaboration between the ACM Club and the Cyber-Tech Club, with each team contributing a distinct part of the experience.</p>
+      <div class="club-collab">
+        <div class="club-logo-row" aria-label="ACM and Cyber-Tech collaboration">
+          <div class="club-logo-card">
+            <img src="image/index/acm.png" alt="ACM Club logo">
+            <div class="club-logo-label" data-en="ACM Club" data-ar="نادي ACM">ACM Club</div>
+          </div>
+          <div class="club-collab-plus" data-en="Together" data-ar="معًا">Together</div>
+          <div class="club-logo-card">
+            <img src="image/index/CyberTech-Logo.png" alt="Cyber-Tech Club logo">
+            <div class="club-logo-label" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
+          </div>
+        </div>
+        <div class="club-work-grid">
+          <div class="club-work-card">
+            <div class="club-work-title" data-en="ACM Club" data-ar="نادي ACM">ACM Club</div>
+            <ul class="club-work-list">
+              <li data-en="Organized the event from end to end and created the cryptography challenges." data-ar="تولى تنظيم الفعالية بالكامل وأنشأ تحديات التشفير.">Organized the event from end to end and created the cryptography challenges.</li>
+              <li data-en="Funded the prizes for the competition." data-ar="تكفل بتمويل جوائز المسابقة.">Funded the prizes for the competition.</li>
+              <li data-en="Handled approvals, professor coordination, and the event website." data-ar="تولى الموافقات الرسمية، والتنسيق مع الأساتذة المشاركين، وإنشاء موقع الفعالية.">Handled approvals, professor coordination, and the event website.</li>
+            </ul>
+          </div>
+          <div class="club-work-card">
+            <div class="club-work-title" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
+            <ul class="club-work-list">
+              <li data-en="Designed the challenges." data-ar="صمم التحديات.">Designed the challenges.</li>
+              <li data-en="Wrote the workshop content." data-ar="كتب محتوى الورش.">Wrote the workshop content.</li>
+              <li data-en="Facilitated the workshops." data-ar="أدار الورش وقدمها.">Facilitated the workshops.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="club-collab-note" data-en="The presidents of both clubs also played a shared role in facilitating communication and keeping coordination smooth between the two teams." data-ar="كما لعب رئيسا الناديين دورًا مشتركًا في تسهيل التواصل والحفاظ على سلاسة التنسيق بين الفريقين.">The presidents of both clubs also played a shared role in facilitating communication and keeping coordination smooth between the two teams.</p>
+      </div>
     </div>
     <h2 class="section-title" data-en="ORGANIZING TEAM" data-ar="فريق التنظيم">ORGANIZING TEAM</h2>
     <div class="team-grid">
