@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-  <link rel="icon" type="image/png" href="{{ 'image/index/acm.png' | url }}">
-  <link rel="shortcut icon" type="image/png" href="{{ 'image/index/acm.png' | url }}">
-  <link rel="apple-touch-icon" href="{{ 'image/index/acm.png' | url }}">
+  <link rel="icon" type="image/png" href="{{ 'image/index/ctf_logo.png' | url }}">
+  <link rel="shortcut icon" type="image/png" href="{{ 'image/index/ctf_logo.png' | url }}">
+  <link rel="apple-touch-icon" href="{{ 'image/index/ctf_logo.png' | url }}">
+  <meta property="og:image" content="{{ config.site_url }}image/index/ctf_logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="ACM/Cyber-Tech CTF 2.0 logo">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="{{ config.site_url }}image/index/ctf_logo.png">
+  <meta name="twitter:image:alt" content="ACM/Cyber-Tech CTF 2.0 logo">
+  <meta itemprop="image" content="{{ config.site_url }}image/index/ctf_logo.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ACM/Cyber-Tech CTF 2.0",
+      "url": "{{ config.site_url }}",
+      "logo": "{{ config.site_url }}image/index/ctf_logo.png"
+    }
+  </script>
   <link rel="stylesheet" href="{{ 'assets/custom/main.css' | url }}?v=6">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
