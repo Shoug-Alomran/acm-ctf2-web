@@ -1041,6 +1041,10 @@ html[data-theme="light"] .about-box {
   color: var(--text-secondary);
 }
 
+.club-work-list li {
+  line-height: 1.9;
+}
+
 .club-work-list li + li {
   margin-top: 0.6rem;
 }
@@ -1053,11 +1057,24 @@ html[data-theme="light"] .about-box {
 html[dir="rtl"] .club-work-list {
   padding-left: 0;
   padding-right: 1.15rem;
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .club-logo-label,
+html[dir="rtl"] .club-work-title,
+html[dir="rtl"] .club-collab-plus {
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 html[dir="rtl"] .club-work-card,
 html[dir="rtl"] .club-collab-note {
   text-align: right;
+}
+
+html[dir="rtl"] .club-work-list li::marker {
+  color: var(--text-secondary);
 }
 
 html[data-theme="light"] .club-logo-card {

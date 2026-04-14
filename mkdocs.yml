@@ -9,7 +9,7 @@ hooks:
 theme:
   name: material
   custom_dir: docs/overrides
-  favicon: image/index/acm.png
+  favicon: image/index/ctf_logo.png
   palette:
     scheme: slate
     primary: cyan

@@ -1,5 +1,5 @@
 <nav id="nav">
-  <a class="nav-logo" onclick="showPage('home'); return false;"><img class="site-logo" src="image/index/acm.png" alt="ACM and Cyber-Tech logo"><span>ACM/Cyber-Tech</span> CTF <sup style="font-size:0.6rem;color:var(--text-muted)">2.0</sup></a>
+  <a class="nav-logo" onclick="showPage('home'); return false;"><img class="site-logo" src="image/index/ctf_logo.png" alt="ACM and Cyber-Tech CTF logo"><span>ACM/Cyber-Tech</span> CTF <sup style="font-size:0.6rem;color:var(--text-muted)">2.0</sup></a>
   <div class="nav-links" id="navLinks">
     <a class="active" onclick="showPage('home'); return false;" data-en="HOME" data-ar="الرئيسية">HOME</a>
     <a onclick="showPage('schedule'); return false;" data-en="SCHEDULE" data-ar="الجدول">SCHEDULE</a>
@@ -473,28 +473,28 @@
           <div class="club-collab-plus" data-en="Together" data-ar="معًا">Together</div>
           <div class="club-logo-card">
             <img src="image/index/CyberTech-Logo.png" alt="Cyber-Tech Club logo">
-            <div class="club-logo-label" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
+            <div class="club-logo-label" data-en="Cyber-Tech Club" data-ar="نادي سايبر-تك">Cyber-Tech Club</div>
           </div>
         </div>
         <div class="club-work-grid">
           <div class="club-work-card">
             <div class="club-work-title" data-en="ACM Club" data-ar="نادي ACM">ACM Club</div>
             <ul class="club-work-list">
-              <li data-en="Organized the event from end to end and created the cryptography challenges." data-ar="تولى تنظيم الفعالية بالكامل وأنشأ تحديات التشفير.">Organized the event from end to end and created the cryptography challenges.</li>
+              <li data-en="Organized the event from end to end and created the cryptography challenges." data-ar="تولى تنظيم الفعالية بالكامل، وأنشأ تحديات التشفير.">Organized the event from end to end and created the cryptography challenges.</li>
               <li data-en="Funded the prizes for the competition." data-ar="تكفل بتمويل جوائز المسابقة.">Funded the prizes for the competition.</li>
-              <li data-en="Handled approvals, professor coordination, and the event website." data-ar="تولى الموافقات الرسمية، والتنسيق مع الأساتذة المشاركين، وإنشاء موقع الفعالية.">Handled approvals, professor coordination, and the event website.</li>
+              <li data-en="Handled approvals, professor coordination, and the event website." data-ar="أنجز الموافقات الرسمية، ونسق مع الأساتذة المشاركين، وطوّر موقع الفعالية.">Handled approvals, professor coordination, and the event website.</li>
             </ul>
           </div>
           <div class="club-work-card">
-            <div class="club-work-title" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
+            <div class="club-work-title" data-en="Cyber-Tech Club" data-ar="نادي سايبر-تك">Cyber-Tech Club</div>
             <ul class="club-work-list">
-              <li data-en="Designed the challenges." data-ar="صمم التحديات.">Designed the challenges.</li>
-              <li data-en="Wrote the workshop content." data-ar="كتب محتوى الورش.">Wrote the workshop content.</li>
-              <li data-en="Facilitated the workshops." data-ar="أدار الورش وقدمها.">Facilitated the workshops.</li>
+              <li data-en="Designed the challenges." data-ar="صمّم التحديات.">Designed the challenges.</li>
+              <li data-en="Wrote the workshop content." data-ar="أعدّ محتوى الورش.">Wrote the workshop content.</li>
+              <li data-en="Facilitated the workshops." data-ar="قدّم الورش وسهّل تنفيذها.">Facilitated the workshops.</li>
             </ul>
           </div>
         </div>
-        <p class="club-collab-note" data-en="The presidents of both clubs also played a shared role in facilitating communication and keeping coordination smooth between the two teams." data-ar="كما لعب رئيسا الناديين دورًا مشتركًا في تسهيل التواصل والحفاظ على سلاسة التنسيق بين الفريقين.">The presidents of both clubs also played a shared role in facilitating communication and keeping coordination smooth between the two teams.</p>
+        <p class="club-collab-note" data-en="The presidents of both clubs also played a shared role in facilitating communication and keeping coordination smooth between the two teams." data-ar="كما لعب رئيسا الناديين دورًا مهمًا في تسهيل التواصل وضمان سلاسة التنسيق بين الفريقين.">The presidents of both clubs also played a shared role in facilitating communication and keeping coordination smooth between the two teams.</p>
       </div>
     </div>
     <h2 class="section-title" data-en="ORGANIZING TEAM" data-ar="فريق التنظيم">ORGANIZING TEAM</h2>
