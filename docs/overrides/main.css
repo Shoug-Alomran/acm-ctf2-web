@@ -97,21 +97,23 @@ nav#nav {
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 2vw, 2rem);
   height: 56px;
   gap: 0;
   backdrop-filter: blur(10px);
+  overflow: hidden;
 }
 
 .nav-logo {
-  font-size: 1.1rem;
+  font-size: clamp(0.98rem, 0.88rem + 0.24vw, 1.1rem);
   font-weight: 900;
   letter-spacing: -0.5px;
   color: var(--text-primary) !important;
   text-decoration: none;
-  margin-right: 2rem;
+  margin-right: clamp(0.9rem, 1.8vw, 2rem);
   white-space: nowrap;
   cursor: pointer;
+  flex: 0 0 auto;
 }
 
 .nav-logo span {
@@ -122,21 +124,31 @@ nav#nav {
   display: flex;
   gap: 0;
   flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-links a {
   color: var(--text-secondary) !important;
   text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
+  font-size: clamp(0.68rem, 0.62rem + 0.14vw, 0.75rem);
+  letter-spacing: clamp(0.08em, 0.04em + 0.12vw, 0.16em);
   text-transform: uppercase;
-  padding: 0 1rem;
+  padding: 0 clamp(0.55rem, 0.7vw, 1rem);
   height: 56px;
   display: flex;
   align-items: center;
   border: 1px solid transparent;
   cursor: pointer;
   transition: color 0.2s;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .nav-links a:hover,
@@ -151,8 +163,9 @@ nav#nav {
 .nav-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 1vw, 1rem);
   margin-left: auto;
+  flex: 0 0 auto;
 }
 
 .lang-btn,

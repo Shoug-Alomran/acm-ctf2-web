@@ -1,5 +1,5 @@
 <nav id="nav">
-  <a class="nav-logo" onclick="showPage('home'); return false;"><img class="site-logo" src="image/index/acm.png" alt="ACM logo"><span>ACM</span>CTF <sup style="font-size:0.6rem;color:var(--text-muted)">2.0</sup></a>
+  <a class="nav-logo" onclick="showPage('home'); return false;"><img class="site-logo" src="image/index/acm.png" alt="ACM and Cyber-Tech logo"><span>ACM/Cyber-Tech</span> CTF <sup style="font-size:0.6rem;color:var(--text-muted)">2.0</sup></a>
   <div class="nav-links" id="navLinks">
     <a class="active" onclick="showPage('home'); return false;" data-en="HOME" data-ar="الرئيسية">HOME</a>
     <a onclick="showPage('schedule'); return false;" data-en="SCHEDULE" data-ar="الجدول">SCHEDULE</a>
@@ -23,7 +23,7 @@
   </div>
   <div class="hero">
     <h1 class="hero-title">
-      <span class="glitch" data-text="ACM CTF ">ACM CTF </span><span class="accent glitch" data-text="2.0">2.0</span>
+      <span class="glitch" data-text="ACM/Cyber-Tech CTF ">ACM/Cyber-Tech CTF </span><span class="accent glitch" data-text="2.0">2.0</span>
     </h1>
     <p class="hero-tagline" data-en="HACK THE CHALLENGE. CAPTURE THE FLAG." data-ar="اختر التحدي. التقط العلم.">HACK THE CHALLENGE. CAPTURE THE FLAG.</p>
     <div class="countdown">
@@ -52,8 +52,8 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>
@@ -87,7 +87,7 @@
         <div class="timeline-meta">
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
-          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM &amp; Cyber-Tech Team" data-ar="فريق ACM وCyber-Tech">ACM &amp; Cyber-Tech Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
@@ -99,7 +99,7 @@
         <div class="timeline-meta">
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
-          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM &amp; Cyber-Tech Team" data-ar="فريق ACM وCyber-Tech">ACM &amp; Cyber-Tech Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
@@ -111,7 +111,7 @@
         <div class="timeline-meta">
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
-          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM &amp; Cyber-Tech Team" data-ar="فريق ACM وCyber-Tech">ACM &amp; Cyber-Tech Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
@@ -123,7 +123,7 @@
         <div class="timeline-meta">
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
-          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM &amp; Cyber-Tech Team" data-ar="فريق ACM وCyber-Tech">ACM &amp; Cyber-Tech Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
@@ -135,26 +135,26 @@
         <div class="timeline-meta">
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
-          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM &amp; Cyber-Tech Team" data-ar="فريق ACM وCyber-Tech">ACM &amp; Cyber-Tech Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot active"></div>
         <div>
           <div class="timeline-date">APR 25</div>
-          <div class="timeline-name" data-en="ACM CTF 2.0 Main Event" data-ar="الحدث الرئيسي – ACM CTF 2.0">ACM CTF 2.0 Main Event</div>
+          <div class="timeline-name" data-en="ACM/Cyber-Tech CTF 2.0 Main Event" data-ar="الحدث الرئيسي – ACM/Cyber-Tech CTF 2.0">ACM/Cyber-Tech CTF 2.0 Main Event</div>
         </div>
         <div class="timeline-meta">
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="10:00 AM – 1:00 PM" data-ar="10:00 ص – 1:00 م">10:00 AM – 1:00 PM</span></span>
           <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Auditorium B105" data-ar="المدرج B105">Auditorium B105</span></span>
-          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4"></path><circle cx="9" cy="9" r="3"></circle><circle cx="15" cy="9" r="3"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4"></path><circle cx="9" cy="9" r="3"></circle><circle cx="15" cy="9" r="3"></circle></svg></span> <span data-en="ACM &amp; Cyber-Tech Team" data-ar="فريق ACM وCyber-Tech">ACM &amp; Cyber-Tech Team</span></span>
         </div>
       </div>
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>
@@ -257,8 +257,8 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>
@@ -301,8 +301,8 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>
@@ -340,8 +340,8 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>
@@ -374,8 +374,8 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>
@@ -435,8 +435,8 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>
@@ -461,7 +461,7 @@
   <div class="section">
     <h2 class="section-title" data-en="ABOUT THE EVENT" data-ar="عن الفعالية">ABOUT THE EVENT</h2>
     <div class="about-box">
-      <p data-en="ACM CTF 2.0 is the premier cybersecurity competition hosted by the ACM Student Chapter at Prince Sultan University's College of Computer and Information Sciences (CCIS)." data-ar="ACM CTF 2.0 هي المسابقة الرائدة في مجال الأمن السيبراني، تنظمها فصيلة ACM الطلابية في كلية علوم الحاسب والمعلومات (CCIS) بجامعة الأمير سلطان.">ACM CTF 2.0 is the premier cybersecurity competition hosted by the ACM Student Chapter at Prince Sultan University's College of Computer and Information Sciences (CCIS).</p>
+      <p data-en="ACM CTF 2.0 is the premier cybersecurity competition hosted jointly by the ACM Student Chapter and the Cyber-Tech Club at Prince Sultan University's College of Computer and Information Sciences (CCIS)." data-ar="ACM CTF 2.0 هي المسابقة الرائدة في مجال الأمن السيبراني، وينظمها كل من فصيلة ACM الطلابية ونادي Cyber-Tech في كلية علوم الحاسب والمعلومات (CCIS) بجامعة الأمير سلطان.">ACM CTF 2.0 is the premier cybersecurity competition hosted jointly by the ACM Student Chapter and the Cyber-Tech Club at Prince Sultan University's College of Computer and Information Sciences (CCIS).</p>
       <p data-en="Designed to challenge students in practical offensive and defensive security scenarios, the event aims to foster a community of passionate cybersecurity enthusiasts in Riyadh and beyond." data-ar="صُممت لتحدي الطلاب في سيناريوهات أمنية هجومية ودفاعية عملية، وتهدف إلى بناء مجتمع من المتحمسين للأمن السيبراني في الرياض وما حولها.">Designed to challenge students in practical offensive and defensive security scenarios, the event aims to foster a community of passionate cybersecurity enthusiasts in Riyadh and beyond.</p>
       <p data-en="ACM CTF 2.0 is organized through a joint effort between the ACM Club and the Cyber-Tech Club." data-ar="يُنظم ACM CTF 2.0 من خلال تعاون مشترك بين نادي ACM ونادي Cyber-Tech.">ACM CTF 2.0 is organized through a joint effort between the ACM Club and the Cyber-Tech Club.</p>
     </div>
@@ -500,8 +500,8 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACM CTF <span>2.0</span></div>
-    <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
+    <div class="footer-logo">ACM/Cyber-Tech CTF <span>2.0</span></div>
+    <div class="footer-meta" data-en="ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM/Cyber-Tech CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM/Cyber-Tech CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
       <span class="footer-sep">•</span>

@@ -1,5 +1,5 @@
-site_name: ACM CTF 2.0
-site_description: Official website for ACM CTF 2.0 cybersecurity competition
+site_name: ACM/Cyber-Tech CTF 2.0
+site_description: Official website for ACM/Cyber-Tech CTF 2.0, a cybersecurity collaboration between ACM and Cyber-Tech
 site_url: https://psu-acm.shoug-tech.com/
 repo_url: https://github.com/Shoug-Alomran/acm-ctf2-web
 repo_name: acm-ctf2-web
@@ -55,4 +55,4 @@ extra:
 plugins:
   - search
 
-copyright: "&copy; 2026 ACM CTF 2.0 · ACM Student Chapter · Prince Sultan University"
+copyright: "&copy; 2026 ACM/Cyber-Tech CTF 2.0 · ACM Student Chapter & Cyber-Tech Club · Prince Sultan University"

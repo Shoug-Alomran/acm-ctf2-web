@@ -14,11 +14,11 @@ Preparation sessions build up to the ACM CTF 2.0 main event. Workshop times will
 
 ### Recon & Web Proxies
 
-Time TBD · Lab · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM & Cyber-Tech Team
 
 <div dir="rtl" lang="ar">
 الاستطلاع ووكلاء الويب<br>
-الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM وCyber-Tech
 </div>
 </div>
 
@@ -28,11 +28,11 @@ Time TBD · Lab · Instructor: ACM Team
 
 ### Access Control
 
-Time TBD · Lab · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM & Cyber-Tech Team
 
 <div dir="rtl" lang="ar">
 التحكم في الوصول<br>
-الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM وCyber-Tech
 </div>
 </div>
 
@@ -42,11 +42,11 @@ Time TBD · Lab · Instructor: ACM Team
 
 ### Injection Attacks
 
-Time TBD · Lab · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM & Cyber-Tech Team
 
 <div dir="rtl" lang="ar">
 هجمات الحقن<br>
-الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM وCyber-Tech
 </div>
 </div>
 
@@ -56,11 +56,11 @@ Time TBD · Lab · Instructor: ACM Team
 
 ### Broken Authentication
 
-Time TBD · Lab · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM & Cyber-Tech Team
 
 <div dir="rtl" lang="ar">
 المصادقة المكسورة<br>
-الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM وCyber-Tech
 </div>
 </div>
 
@@ -70,11 +70,11 @@ Time TBD · Lab · Instructor: ACM Team
 
 ### API Exploitation & File Attacks
 
-Time TBD · Lab · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM & Cyber-Tech Team
 
 <div dir="rtl" lang="ar">
 استغلال الواجهات البرمجية وهجمات الملفات<br>
-الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM وCyber-Tech
 </div>
 </div>
 
@@ -84,10 +84,10 @@ Time TBD · Lab · Instructor: ACM Team
 
 ### ACM CTF 2.0 Competition
 
-10:00 AM - 1:00 PM · Auditorium B105 · Hosted by ACM Team
+10:00 AM - 1:00 PM · Auditorium B105 · Hosted by ACM & Cyber-Tech Team
 
 <div dir="rtl" lang="ar">
 مسابقة ACM CTF 2.0 الرئيسية<br>
-10:00 صباحًا - 1:00 مساءً · مدرج B105 · بتنظيم فريق ACM
+10:00 صباحًا - 1:00 مساءً · مدرج B105 · بتنظيم فريق ACM وCyber-Tech
 </div>
 </div>
