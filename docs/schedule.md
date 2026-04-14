@@ -1,52 +1,80 @@
 # Schedule / الجدول
 
-Preparation sessions build up to the ACM CTF 2.0 main event. All times are local (Riyadh).
+Preparation sessions build up to the ACM CTF 2.0 main event. Workshop times will be updated later.
 
 <div dir="rtl" lang="ar">
-تسبق الحدث الرئيسي مجموعة من الجلسات التحضيرية، وجميع الأوقات المعروضة بتوقيت الرياض.
+تسبق الحدث الرئيسي مجموعة من الجلسات التحضيرية، وسيتم تحديث أوقات الورش لاحقًا.
 </div>
 
 ## Event Timeline / التسلسل الزمني للفعالية
 
 <div class="timeline-item">
 <span class="chip">WORKSHOP</span>
-<strong>Apr 04</strong>
+<strong>Apr 19</strong>
 
-### Intro to CTFs & OSINT
+### Recon & Web Proxies
 
-12:00 PM - 1:30 PM · Lab C201 · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM Team
 
 <div dir="rtl" lang="ar">
-مقدمة إلى مسابقات CTF والاستخبارات مفتوحة المصدر<br>
-12:00 ظهرًا - 1:30 مساءً · معمل C201 · التقديم بواسطة فريق ACM
+الاستطلاع ووكلاء الويب<br>
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
 </div>
 </div>
 
 <div class="timeline-item">
 <span class="chip">WORKSHOP</span>
-<strong>Apr 11</strong>
+<strong>Apr 20</strong>
 
-### Web Exploitation Basics
+### Access Control
 
-12:00 PM - 1:30 PM · Lab C201 · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM Team
 
 <div dir="rtl" lang="ar">
-أساسيات استغلال ثغرات الويب<br>
-12:00 ظهرًا - 1:30 مساءً · معمل C201 · التقديم بواسطة فريق ACM
+التحكم في الوصول<br>
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
 </div>
 </div>
 
 <div class="timeline-item">
 <span class="chip">WORKSHOP</span>
-<strong>Apr 18</strong>
+<strong>Apr 21</strong>
 
-### Cryptography & Forensics Lab
+### Injection Attacks
 
-12:00 PM - 1:30 PM · Lab C201 · Instructor: ACM Team
+Time TBD · Lab · Instructor: ACM Team
 
 <div dir="rtl" lang="ar">
-مختبر التشفير والتحليل الجنائي الرقمي<br>
-12:00 ظهرًا - 1:30 مساءً · معمل C201 · التقديم بواسطة فريق ACM
+هجمات الحقن<br>
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
+</div>
+</div>
+
+<div class="timeline-item">
+<span class="chip">WORKSHOP</span>
+<strong>Apr 22</strong>
+
+### Broken Authentication
+
+Time TBD · Lab · Instructor: ACM Team
+
+<div dir="rtl" lang="ar">
+المصادقة المكسورة<br>
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
+</div>
+</div>
+
+<div class="timeline-item">
+<span class="chip">WORKSHOP</span>
+<strong>Apr 23</strong>
+
+### API Exploitation & File Attacks
+
+Time TBD · Lab · Instructor: ACM Team
+
+<div dir="rtl" lang="ar">
+استغلال الواجهات البرمجية وهجمات الملفات<br>
+الوقت يحدد لاحقًا · المختبر · التقديم بواسطة فريق ACM
 </div>
 </div>
 

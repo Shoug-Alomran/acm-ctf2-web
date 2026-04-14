@@ -36,9 +36,9 @@
       <div class="countdown-unit"><span id="cd-secs">41</span><span class="countdown-label" data-en="SECS" data-ar="ثواني">SECS</span></div>
     </div>
     <div class="event-meta">
-      <span><span class="meta-icon">📅</span> <span data-en="April 25, 2026" data-ar="25 أبريل 2026">April 25, 2026</span></span>
-      <span><span class="meta-icon">🕙</span> <span data-en="10:00 AM – 1:00 PM" data-ar="10:00 صباحاً – 1:00 مساءً">10:00 AM – 1:00 PM</span></span>
-      <span><span class="meta-icon">📍</span> <span data-en="Auditorium B105, 2nd Floor" data-ar="المدرج B105، الدور الثاني">Auditorium B105, 2nd Floor</span></span>
+      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2.5" x2="16" y2="6"></line><line x1="8" y1="2.5" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span> <span data-en="April 25, 2026" data-ar="25 أبريل 2026">April 25, 2026</span></span>
+      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="10:00 AM – 1:00 PM" data-ar="10:00 صباحاً – 1:00 مساءً">10:00 AM – 1:00 PM</span></span>
+      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Auditorium B105, 2nd Floor" data-ar="المدرج B105، الدور الثاني">Auditorium B105, 2nd Floor</span></span>
     </div>
     <a class="register-btn" href="https://forms.gle/fH7Jjg73kT6W6YRK7" target="_blank" rel="noopener noreferrer" data-en="REGISTER NOW →" data-ar="سجل الآن ←">REGISTER NOW →</a>
   </div>
@@ -81,37 +81,61 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div>
-          <div class="timeline-date">APR 04</div>
-          <div class="timeline-name" data-en="Intro to CTFs &amp; OSINT" data-ar="مقدمة إلى CTF والـ OSINT">Intro to CTFs &amp; OSINT</div>
+          <div class="timeline-date">APR 19</div>
+          <div class="timeline-name" data-en="Recon &amp; Web Proxies" data-ar="الاستطلاع ووكلاء الويب">Recon &amp; Web Proxies</div>
         </div>
         <div class="timeline-meta">
-          <span>🕛 <span data-en="12:00 PM – 1:30 PM" data-ar="12:00 – 1:30 م">12:00 PM – 1:30 PM</span></span>
-          <span>📍 Lab C201</span>
-          <span>👤 ACM Team</span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div>
-          <div class="timeline-date">APR 11</div>
-          <div class="timeline-name" data-en="Web Exploitation Basics" data-ar="أساسيات اختراق الويب">Web Exploitation Basics</div>
+          <div class="timeline-date">APR 20</div>
+          <div class="timeline-name" data-en="Access Control" data-ar="التحكم في الوصول">Access Control</div>
         </div>
         <div class="timeline-meta">
-          <span>🕛 <span data-en="12:00 PM – 1:30 PM" data-ar="12:00 – 1:30 م">12:00 PM – 1:30 PM</span></span>
-          <span>📍 Lab C201</span>
-          <span>👤 ACM Team</span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div>
-          <div class="timeline-date">APR 18</div>
-          <div class="timeline-name" data-en="Cryptography &amp; Forensics" data-ar="التشفير والتحقيق الجنائي">Cryptography &amp; Forensics</div>
+          <div class="timeline-date">APR 21</div>
+          <div class="timeline-name" data-en="Injection Attacks" data-ar="هجمات الحقن">Injection Attacks</div>
         </div>
         <div class="timeline-meta">
-          <span>🕛 <span data-en="12:00 PM – 1:30 PM" data-ar="12:00 – 1:30 م">12:00 PM – 1:30 PM</span></span>
-          <span>📍 Lab C201</span>
-          <span>👤 ACM Team</span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">APR 22</div>
+          <div class="timeline-name" data-en="Broken Authentication" data-ar="المصادقة المكسورة">Broken Authentication</div>
+        </div>
+        <div class="timeline-meta">
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">APR 23</div>
+          <div class="timeline-name" data-en="API Exploitation &amp; File Attacks" data-ar="استغلال الواجهات البرمجية وهجمات الملفات">API Exploitation &amp; File Attacks</div>
+        </div>
+        <div class="timeline-meta">
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="Time TBD" data-ar="الوقت يحدد لاحقًا">Time TBD</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Lab" data-ar="المختبر">Lab</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"></path><circle cx="12" cy="8" r="4"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
         </div>
       </div>
       <div class="timeline-item">
@@ -121,9 +145,9 @@
           <div class="timeline-name" data-en="ACM CTF 2.0 Main Event" data-ar="الحدث الرئيسي – ACM CTF 2.0">ACM CTF 2.0 Main Event</div>
         </div>
         <div class="timeline-meta">
-          <span>🕙 <span data-en="10:00 AM – 1:00 PM" data-ar="10:00 ص – 1:00 م">10:00 AM – 1:00 PM</span></span>
-          <span>📍 Auditorium B105</span>
-          <span>👥 ACM Team</span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="10:00 AM – 1:00 PM" data-ar="10:00 ص – 1:00 م">10:00 AM – 1:00 PM</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Auditorium B105" data-ar="المدرج B105">Auditorium B105</span></span>
+          <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4"></path><circle cx="9" cy="9" r="3"></circle><circle cx="15" cy="9" r="3"></circle></svg></span> <span data-en="ACM Team" data-ar="فريق ACM">ACM Team</span></span>
         </div>
       </div>
     </div>
@@ -157,59 +181,78 @@
     <div class="workshop-grid">
       <div class="workshop-card">
         <div class="workshop-header">
-          <span class="workshop-badge">OSINT</span>
+          <span class="workshop-badge">DAY 1</span>
           <label class="workshop-check"><span data-en="Mark as Complete" data-ar="وضع علامة كمكتمل">Mark as Complete</span> <input type="checkbox"></label>
         </div>
-        <div class="workshop-name" data-en="Information Gathering 101" data-ar="جمع المعلومات 101">Information Gathering 101</div>
+        <div class="workshop-name" data-en="Recon &amp; Web Proxies" data-ar="الاستطلاع ووكلاء الويب">Recon &amp; Web Proxies</div>
         <div class="workshop-details">
-          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 04</span></div>
-          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span>12:00 PM</span></div>
-          <div class="detail-group"><label data-en="ROOM" data-ar="القاعة">ROOM</label><span>C201</span></div>
-          <div class="detail-group"><label data-en="INSTRUCTOR" data-ar="المدرب">INSTRUCTOR</label><span>Mohammed A.</span></div>
+          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 19</span></div>
+          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span data-en="TBD" data-ar="يحدد لاحقًا">TBD</span></div>
+          <div class="detail-group"><label data-en="THEME" data-ar="المحور">THEME</label><span data-en="Laying the ground" data-ar="بناء الأساس">Laying the ground</span></div>
+          <div class="detail-group"><label data-en="TOPICS" data-ar="الموضوعات">TOPICS</label><span data-en="Recon, proxies, disclosure, discovery" data-ar="الاستطلاع، البروكسي، كشف المعلومات، الاكتشاف">Recon, proxies, disclosure, discovery</span></div>
+          <div class="detail-group"><label data-en="LAB" data-ar="التطبيق">LAB</label><span data-en="Capture traffic and uncover hidden endpoints" data-ar="التقاط الحركة واكتشاف نقاط النهاية المخفية">Capture traffic and uncover hidden endpoints</span></div>
         </div>
         <a class="view-btn" href="tutorial-osint/" data-en="VIEW TUTORIAL ↗" data-ar="عرض الشرح ↗">VIEW TUTORIAL ↗</a>
       </div>
       <div class="workshop-card">
         <div class="workshop-header">
-          <span class="workshop-badge">WEB</span>
+          <span class="workshop-badge">DAY 2</span>
           <label class="workshop-check"><span data-en="Mark as Complete" data-ar="وضع علامة كمكتمل">Mark as Complete</span> <input type="checkbox"></label>
         </div>
-        <div class="workshop-name" data-en="SQLi &amp; XSS Fundamentals" data-ar="أساسيات SQLi وXSS">SQLi &amp; XSS Fundamentals</div>
+        <div class="workshop-name" data-en="Access Control" data-ar="التحكم في الوصول">Access Control</div>
         <div class="workshop-details">
-          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 11</span></div>
-          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span>12:00 PM</span></div>
-          <div class="detail-group"><label data-en="ROOM" data-ar="القاعة">ROOM</label><span>C201</span></div>
-          <div class="detail-group"><label data-en="INSTRUCTOR" data-ar="المدرب">INSTRUCTOR</label><span>Sarah K.</span></div>
+          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 20</span></div>
+          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span data-en="TBD" data-ar="يحدد لاحقًا">TBD</span></div>
+          <div class="detail-group"><label data-en="THEME" data-ar="المحور">THEME</label><span data-en="Weak authentication and authorization" data-ar="ضعف المصادقة والتفويض">Weak authentication and authorization</span></div>
+          <div class="detail-group"><label data-en="TOPICS" data-ar="الموضوعات">TOPICS</label><span data-en="Sessions, access control, privilege bypasses" data-ar="الجلسات، التحكم في الوصول، تجاوز الصلاحيات">Sessions, access control, privilege bypasses</span></div>
+          <div class="detail-group"><label data-en="LAB" data-ar="التطبيق">LAB</label><span data-en="IDOR and parameter tampering challenge" data-ar="تحدي IDOR والعبث بالمعاملات">IDOR and parameter tampering challenge</span></div>
         </div>
         <a class="view-btn" href="tutorial-web/" data-en="VIEW TUTORIAL ↗" data-ar="عرض الشرح ↗">VIEW TUTORIAL ↗</a>
       </div>
       <div class="workshop-card">
         <div class="workshop-header">
-          <span class="workshop-badge">CRYPTO</span>
+          <span class="workshop-badge">DAY 3</span>
           <label class="workshop-check"><span data-en="Mark as Complete" data-ar="وضع علامة كمكتمل">Mark as Complete</span> <input type="checkbox"></label>
         </div>
-        <div class="workshop-name" data-en="Modern Ciphers &amp; Hashing" data-ar="الشفرات الحديثة والتجزئة">Modern Ciphers &amp; Hashing</div>
+        <div class="workshop-name" data-en="Injection Attacks" data-ar="هجمات الحقن">Injection Attacks</div>
         <div class="workshop-details">
-          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 18</span></div>
-          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span>12:00 PM</span></div>
-          <div class="detail-group"><label data-en="ROOM" data-ar="القاعة">ROOM</label><span>C201</span></div>
-          <div class="detail-group"><label data-en="INSTRUCTOR" data-ar="المدرب">INSTRUCTOR</label><span>Dr. Youssef</span></div>
+          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 21</span></div>
+          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span data-en="TBD" data-ar="يحدد لاحقًا">TBD</span></div>
+          <div class="detail-group"><label data-en="THEME" data-ar="المحور">THEME</label><span data-en="Exploiting vulnerable input handling" data-ar="استغلال معالجة الإدخال الضعيفة">Exploiting vulnerable input handling</span></div>
+          <div class="detail-group"><label data-en="TOPICS" data-ar="الموضوعات">TOPICS</label><span data-en="SQLi, command injection, SSTI" data-ar="حقن SQL، حقن الأوامر، SSTI">SQLi, command injection, SSTI</span></div>
+          <div class="detail-group"><label data-en="LAB" data-ar="التطبيق">LAB</label><span data-en="Exploit SQLi to extract lab data" data-ar="استغلال SQLi لاستخراج بيانات المختبر">Exploit SQLi to extract lab data</span></div>
         </div>
         <a class="view-btn" href="tutorial-crypto/" data-en="VIEW TUTORIAL ↗" data-ar="عرض الشرح ↗">VIEW TUTORIAL ↗</a>
       </div>
       <div class="workshop-card">
         <div class="workshop-header">
-          <span class="workshop-badge">FORENSICS</span>
+          <span class="workshop-badge">DAY 4</span>
           <label class="workshop-check"><span data-en="Mark as Complete" data-ar="وضع علامة كمكتمل">Mark as Complete</span> <input type="checkbox"></label>
         </div>
-        <div class="workshop-name" data-en="Steganography &amp; Traffic Analysis" data-ar="الإخفاء وتحليل الشبكات">Steganography &amp; Traffic Analysis</div>
+        <div class="workshop-name" data-en="Broken Authentication" data-ar="المصادقة المكسورة">Broken Authentication</div>
         <div class="workshop-details">
-          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 18</span></div>
-          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span>1:00 PM</span></div>
-          <div class="detail-group"><label data-en="ROOM" data-ar="القاعة">ROOM</label><span>C201</span></div>
-          <div class="detail-group"><label data-en="INSTRUCTOR" data-ar="المدرب">INSTRUCTOR</label><span>Dr. Youssef</span></div>
+          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 22</span></div>
+          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span data-en="TBD" data-ar="يحدد لاحقًا">TBD</span></div>
+          <div class="detail-group"><label data-en="THEME" data-ar="المحور">THEME</label><span data-en="Attacking the user through the browser" data-ar="مهاجمة المستخدم عبر المتصفح">Attacking the user through the browser</span></div>
+          <div class="detail-group"><label data-en="TOPICS" data-ar="الموضوعات">TOPICS</label><span data-en="Brute force, reset tokens, session handling" data-ar="القوة الغاشمة، رموز إعادة التعيين، إدارة الجلسات">Brute force, reset tokens, session handling</span></div>
+          <div class="detail-group"><label data-en="LAB" data-ar="التطبيق">LAB</label><span data-en="Reset-token brute force and session proof" data-ar="تخمين رمز إعادة التعيين وإثبات استغلال الجلسة">Reset-token brute force and session proof</span></div>
         </div>
         <a class="view-btn" href="tutorial-forensics/" data-en="VIEW TUTORIAL ↗" data-ar="عرض الشرح ↗">VIEW TUTORIAL ↗</a>
+      </div>
+      <div class="workshop-card">
+        <div class="workshop-header">
+          <span class="workshop-badge">DAY 5</span>
+          <label class="workshop-check"><span data-en="Mark as Complete" data-ar="وضع علامة كمكتمل">Mark as Complete</span> <input type="checkbox"></label>
+        </div>
+        <div class="workshop-name" data-en="API Exploitation &amp; File Attacks" data-ar="استغلال الواجهات البرمجية وهجمات الملفات">API Exploitation &amp; File Attacks</div>
+        <div class="workshop-details">
+          <div class="detail-group"><label data-en="DATE" data-ar="التاريخ">DATE</label><span>Apr 23</span></div>
+          <div class="detail-group"><label data-en="TIME" data-ar="الوقت">TIME</label><span data-en="TBD" data-ar="يحدد لاحقًا">TBD</span></div>
+          <div class="detail-group"><label data-en="THEME" data-ar="المحور">THEME</label><span data-en="Going deeper with APIs and server-side flaws" data-ar="التعمق في الواجهات البرمجية والثغرات من جهة الخادم">Going deeper with APIs and server-side flaws</span></div>
+          <div class="detail-group"><label data-en="TOPICS" data-ar="الموضوعات">TOPICS</label><span data-en="API exploitation, file upload, LFI/RFI" data-ar="استغلال API، رفع الملفات، LFI/RFI">API exploitation, file upload, LFI/RFI</span></div>
+          <div class="detail-group"><label data-en="LAB" data-ar="التطبيق">LAB</label><span data-en="API challenge and local-file read exploit" data-ar="تحدي API واستغلال قراءة ملف محلي">API challenge and local-file read exploit</span></div>
+        </div>
+        <a class="view-btn" href="tutorial/" data-en="VIEW TUTORIAL ↗" data-ar="عرض الشرح ↗">VIEW TUTORIAL ↗</a>
       </div>
     </div>
   </div>
