@@ -1645,6 +1645,7 @@ html[dir="rtl"] .nav-controls {
     order: 3;
     flex: 1 0 100%;
     gap: 0.45rem;
+    flex-wrap: nowrap;
     overflow-x: auto;
     padding: 0.15rem 0 0.2rem;
     scrollbar-width: none;
@@ -1656,15 +1657,22 @@ html[dir="rtl"] .nav-controls {
 
   .nav-links a {
     flex: 0 0 auto;
+    flex-shrink: 0;
+    min-width: max-content;
     height: auto;
-    min-height: 38px;
-    padding: 0.55rem 0.8rem;
+    min-height: 40px;
+    padding: 0.6rem 1rem;
     border: 1px solid var(--border);
     border-radius: 999px;
     background: rgba(15, 26, 46, 0.82);
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
     white-space: nowrap;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    writing-mode: horizontal-tb;
+    line-height: 1;
+    justify-content: center;
   }
 
   .nav-links a.active {
@@ -1765,10 +1773,16 @@ html[dir="rtl"] .nav-controls {
   }
 
   .nav-links a {
-    min-height: 36px;
-    padding: 0.5rem 0.72rem;
+    min-height: 38px;
+    padding: 0.55rem 0.82rem;
     font-size: 0.66rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
+    min-width: max-content;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    writing-mode: horizontal-tb;
+    line-height: 1;
+    justify-content: center;
   }
 
   .page {
@@ -1790,11 +1804,19 @@ html[dir="rtl"] .nav-controls {
 
   .hero {
     padding: 2.2rem 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .hero-title {
     font-size: clamp(2.4rem, 12vw, 3.4rem);
     line-height: 0.96;
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-tagline {
@@ -1802,6 +1824,10 @@ html[dir="rtl"] .nav-controls {
     letter-spacing: 0.28em;
     line-height: 1.7;
     margin-bottom: 1.8rem;
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .countdown {
@@ -1809,7 +1835,7 @@ html[dir="rtl"] .nav-controls {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem 0.6rem;
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
     margin: 0 auto 1.6rem;
     font-size: clamp(2.2rem, 12vw, 3.3rem);
   }
@@ -1834,9 +1860,9 @@ html[dir="rtl"] .nav-controls {
     align-items: center;
     gap: 0.65rem;
     width: 100%;
-    max-width: 100%;
+    max-width: 340px;
     font-size: 0.72rem;
-    margin-bottom: 1.8rem;
+    margin: 0 auto 1.8rem;
   }
 
   .event-meta span {
@@ -1857,8 +1883,10 @@ html[dir="rtl"] .nav-controls {
 
   .register-btn {
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
     justify-content: center;
     padding: 0.95rem 1.4rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
