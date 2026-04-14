@@ -29,4 +29,5 @@ ACM CTF 2.0 is a collaborative effort between two student communities: the ACM C
 | **SA** | Shoug Alomran `ACM Club` | Liaison and Website Developer / مسؤول الاتصال ومطور الموقع |
 | **SA** | Sultan Alharbi `Cyber-Tech Club` | Cyber Tech President / رئيس نادي Cyber-Tech |
 | **YH** | Yawar Hayat `ACM Club` | ACM President / رئيس نادي ACM |
-| **T** | Turki `Cyber-Tech Club` | Team Lead / قائد الفريق |
+| **TA** | Turki Alhussain `Cyber-Tech Club` | Challenge Designer / مصمم التحديات |
+| **FA** | Faisal Aldabesh `Cyber-Tech Club` | Workshop Writer / كاتب محتوى الورش |

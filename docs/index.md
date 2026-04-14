@@ -52,7 +52,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -153,7 +153,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -257,7 +257,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -301,7 +301,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -340,7 +340,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -374,7 +374,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -435,7 +435,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
@@ -486,15 +486,21 @@
         <div class="team-role" data-en="ACM President" data-ar="رئيس نادي ACM">ACM President</div>
       </div>
       <div class="team-member">
-        <div class="team-avatar">T</div>
-        <div class="team-name">Turki</div>
+        <div class="team-avatar">TA</div>
+        <div class="team-name">Turki Alhussain</div>
         <div class="team-tag" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
-        <div class="team-role" data-en="Team Lead" data-ar="قائد الفريق">Team Lead</div>
+        <div class="team-role" data-en="Challenge Designer" data-ar="مصمم التحديات">Challenge Designer</div>
+      </div>
+      <div class="team-member">
+        <div class="team-avatar">FA</div>
+        <div class="team-name">Faisal Aldabesh</div>
+        <div class="team-tag" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
+        <div class="team-role" data-en="Workshop Writer" data-ar="كاتب محتوى الورش">Workshop Writer</div>
       </div>
     </div>
   </div>
   <footer class="site-footer">
-    <div class="footer-logo">ACMCTF <span>2.0</span></div>
+    <div class="footer-logo">ACM CTF <span>2.0</span></div>
     <div class="footer-meta" data-en="ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia" data-ar="ACM CTF 2.0 · كلية علوم الحاسب · جامعة الأمير سلطان · الرياض، المملكة العربية السعودية">ACM CTF 2.0 · CCIS · Prince Sultan University · Riyadh, Saudi Arabia</div>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#" onclick="showPage('home'); return false;" data-en="Home" data-ar="الرئيسية">Home</a>
