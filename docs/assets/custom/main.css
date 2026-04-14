@@ -1453,6 +1453,22 @@ html[data-theme="light"] .tutorial-title {
   margin-bottom: 0.2rem;
 }
 
+.team-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.45rem;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--border-bright);
+  border-radius: 999px;
+  background: rgba(0, 180, 255, 0.08);
+  color: var(--accent);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .team-role {
   font-size: 0.8rem;
   letter-spacing: 1px;

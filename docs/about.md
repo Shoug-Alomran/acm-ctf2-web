@@ -14,13 +14,19 @@ By blending preparation workshops with a timed competition, ACM CTF 2.0 helps pa
 ومن خلال الجمع بين ورش التحضير والمسابقة الزمنية، تساعد ACM CTF 2.0 المشاركين على تطوير مهاراتهم العملية وبناء روابط مع مجتمع الأمن السيبراني المتنامي.
 </div>
 
+ACM CTF 2.0 is a collaborative effort between two student communities: the ACM Club and the Cyber-Tech Club.
+
+<div dir="rtl" lang="ar">
+يُقام ACM CTF 2.0 بتعاون بين مجتمعين طلابيين: نادي ACM ونادي Cyber-Tech.
+</div>
+
 ---
 
 ## Organizing Team / فريق التنظيم
 
 | Role | Name | Title |
 |------|------|-------|
-| **SA** | Shoug Alomran | Liaison and Website Developer / مسؤول الاتصال ومطور الموقع |
-| **SA** | Sultan Alharbi | Organizing Team / فريق التنظيم |
-| **Y** | Yawar | Challenge Development / تطوير التحديات |
-| **NA** | Team Member | Operations Support / الدعم التشغيلي |
+| **SA** | Shoug Alomran `ACM Club` | Liaison and Website Developer / مسؤول الاتصال ومطور الموقع |
+| **SA** | Sultan Alharbi `Cyber-Tech Club` | Cyber Tech President / رئيس نادي Cyber-Tech |
+| **YH** | Yawar Hayat `ACM Club` | ACM President / رئيس نادي ACM |
+| **T** | Turki `Cyber-Tech Club` | Team Lead / قائد الفريق |

@@ -463,13 +463,34 @@
     <div class="about-box">
       <p data-en="ACM CTF 2.0 is the premier cybersecurity competition hosted by the ACM Student Chapter at Prince Sultan University's College of Computer and Information Sciences (CCIS)." data-ar="ACM CTF 2.0 هي المسابقة الرائدة في مجال الأمن السيبراني، تنظمها فصيلة ACM الطلابية في كلية علوم الحاسب والمعلومات (CCIS) بجامعة الأمير سلطان.">ACM CTF 2.0 is the premier cybersecurity competition hosted by the ACM Student Chapter at Prince Sultan University's College of Computer and Information Sciences (CCIS).</p>
       <p data-en="Designed to challenge students in practical offensive and defensive security scenarios, the event aims to foster a community of passionate cybersecurity enthusiasts in Riyadh and beyond." data-ar="صُممت لتحدي الطلاب في سيناريوهات أمنية هجومية ودفاعية عملية، وتهدف إلى بناء مجتمع من المتحمسين للأمن السيبراني في الرياض وما حولها.">Designed to challenge students in practical offensive and defensive security scenarios, the event aims to foster a community of passionate cybersecurity enthusiasts in Riyadh and beyond.</p>
+      <p data-en="ACM CTF 2.0 is organized through a joint effort between the ACM Club and the Cyber-Tech Club." data-ar="يُنظم ACM CTF 2.0 من خلال تعاون مشترك بين نادي ACM ونادي Cyber-Tech.">ACM CTF 2.0 is organized through a joint effort between the ACM Club and the Cyber-Tech Club.</p>
     </div>
     <h2 class="section-title" data-en="ORGANIZING TEAM" data-ar="فريق التنظيم">ORGANIZING TEAM</h2>
     <div class="team-grid">
-      <div class="team-member"><div class="team-avatar">SA</div><div class="team-name">Shoug Alomran</div><div class="team-role" data-en="Liaison and Website Developer" data-ar="مسؤول الاتصال ومطور مواقع الويب">Liaison and Website Developer</div></div>
-      <div class="team-member"><div class="team-avatar">SA</div><div class="team-name">Sultan Alharbi</div><div class="team-role" data-en="T" data-ar="ق">T</div></div>
-      <div class="team-member"><div class="team-avatar">Y</div><div class="team-name">Yawar</div><div class="team-role" data-en="T" data-ar="مطور التحديات">T</div></div>
-      <div class="team-member"><div class="team-avatar">NA</div><div class="team-name">T</div><div class="team-role" data-en="T" data-ar="ا">T</div></div>
+      <div class="team-member">
+        <div class="team-avatar">SA</div>
+        <div class="team-name">Shoug Alomran</div>
+        <div class="team-tag" data-en="ACM Club" data-ar="نادي ACM">ACM Club</div>
+        <div class="team-role" data-en="Liaison and Website Developer" data-ar="مسؤول الاتصال ومطور الموقع">Liaison and Website Developer</div>
+      </div>
+      <div class="team-member">
+        <div class="team-avatar">SA</div>
+        <div class="team-name">Sultan Alharbi</div>
+        <div class="team-tag" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
+        <div class="team-role" data-en="Cyber Tech President" data-ar="رئيس نادي Cyber-Tech">Cyber Tech President</div>
+      </div>
+      <div class="team-member">
+        <div class="team-avatar">YH</div>
+        <div class="team-name">Yawar Hayat</div>
+        <div class="team-tag" data-en="ACM Club" data-ar="نادي ACM">ACM Club</div>
+        <div class="team-role" data-en="ACM President" data-ar="رئيس نادي ACM">ACM President</div>
+      </div>
+      <div class="team-member">
+        <div class="team-avatar">T</div>
+        <div class="team-name">Turki</div>
+        <div class="team-tag" data-en="Cyber-Tech Club" data-ar="نادي Cyber-Tech">Cyber-Tech Club</div>
+        <div class="team-role" data-en="Team Lead" data-ar="قائد الفريق">Team Lead</div>
+      </div>
     </div>
   </div>
   <footer class="site-footer">
