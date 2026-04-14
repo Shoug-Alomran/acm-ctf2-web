@@ -1,6 +1,6 @@
 site_name: ACM/Cyber-Tech CTF 2.0
 site_description: Official website for ACM/Cyber-Tech CTF 2.0, a cybersecurity collaboration between ACM and Cyber-Tech
-site_url: https://psu-acm.shoug-tech.com/
+site_url: https://psu-ctf.shoug-tech.com/
 repo_url: https://github.com/Shoug-Alomran/acm-ctf2-web
 repo_name: acm-ctf2-web
 hooks:
