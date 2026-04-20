@@ -42,7 +42,7 @@ Bring a laptop, charger, and your student ID. Prepare your browser and terminal 
 
 ## Need More Help? / هل تحتاج إلى مساعدة إضافية؟
 
-Email the organizing team at [acm@psu.edu.sa](mailto:acm@psu.edu.sa).
+Email the organizing team at [cybertech@psu.edu.sa](mailto:cybertech@psu.edu.sa).
 
 <div dir="rtl" lang="ar">
 للاستفسارات الإضافية، يمكن التواصل مع فريق التنظيم عبر البريد الإلكتروني.

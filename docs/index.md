@@ -299,7 +299,7 @@
     </div>
     <div class="faq-contact">
       <p data-en="HAVE A QUESTION? EMAIL US" data-ar="هل لديك سؤال؟ راسلنا">HAVE A QUESTION? EMAIL US</p>
-      <a href="mailto:acm@psu.edu.sa">acm@psu.edu.sa</a>
+      <a href="mailto:cybertech@psu.edu.sa">cybertech@psu.edu.sa</a>
     </div>
   </div>
 </div>
@@ -406,6 +406,6 @@
     <span class="footer-sep">•</span>
     <a href="#" onclick="showPage('faq'); return false;" data-en="FAQ" data-ar="الأسئلة الشائعة">FAQ</a>
   </nav>
-  <div class="footer-contact" data-en="Event inquiries: acm@psu.edu.sa" data-ar="استفسارات الفعالية: acm@psu.edu.sa">Event inquiries: <a href="mailto:acm@psu.edu.sa">acm@psu.edu.sa</a></div>
+  <div class="footer-contact" data-en="Event inquiries: cybertech@psu.edu.sa" data-ar="استفسارات الفعالية: cybertech@psu.edu.sa">Event inquiries: <a href="mailto:cybertech@psu.edu.sa">cybertech@psu.edu.sa</a></div>
   <div class="footer-credit">Made by <a href="https://blueprint.shoug-tech.com/" target="_blank" rel="noopener noreferrer">Blueprint</a></div>
 </footer>
