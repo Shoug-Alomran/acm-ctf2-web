@@ -25,7 +25,7 @@
       "logo": "{{ config.site_url }}image/index/ctf_logo.png"
     }
   </script>
-  <link rel="stylesheet" href="{{ 'assets/custom/main.css' | url }}?v=6">
+  <link rel="stylesheet" href="{{ 'assets/custom/main.css' | url }}?v=8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -37,5 +37,8 @@
 
 {% block scripts %}
   {{ super() }}
-  <script src="{{ 'assets/custom/main.js' | url }}?v=2" defer></script>
+  <script>
+    window.ACM_SUBMISSION_ENDPOINT = "https://ctf-email-worker.shoug-alomran.workers.dev";
+  </script>
+  <script src="{{ 'assets/custom/main.js' | url }}?v=4" defer></script>
 {% endblock %}
