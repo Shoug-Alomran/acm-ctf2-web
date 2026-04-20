@@ -466,6 +466,27 @@
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
   .demo-big { font-family: var(--head); font-weight: 800; font-size: clamp(4rem, 12vw, 8rem); color: var(--text); letter-spacing: -0.03em; line-height: 1; margin-bottom: 16px; }
   .demo-sub { font-size: 1rem; color: var(--text2); margin-bottom: 36px; }
+  .demo-video-wrap {
+    margin-top: 28px;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.24);
+  }
+  .demo-video-wrap video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    background: #050b14;
+  }
+  .demo-video-caption {
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
   .prereq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; }
   @media(max-width:600px){.prereq-grid{grid-template-columns:1fr}}
   .prereq-item { background: var(--bg3); border-radius: 10px; padding: 16px 18px; }
@@ -834,7 +855,12 @@
           <div class="prereq-val">http://example.com</div>
         </div>
       </div>
-      <p style="margin-top:28px; font-size:0.88rem; color:var(--text3); font-style:italic;">Follow along on your laptop. We will run through this together.</p>
+      <div class="demo-video-wrap">
+        <video controls preload="metadata" poster="recon-demo-poster.svg">
+          <source src="https://pub-1ae2691df7364eea93afb4e67996d97c.r2.dev/recon-and-web-proxies-demo.mov" type="video/quicktime">
+        </video>
+        <div class="demo-video-caption">Follow along on your laptop. We will run through this together.</div>
+      </div>
     </div>
   </section>
 

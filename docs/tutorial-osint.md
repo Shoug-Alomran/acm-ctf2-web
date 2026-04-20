@@ -75,6 +75,21 @@
   </section>
 
   <section class="tutorial-open-card">
+    <h2><span class="locale-en">Workshop Demo Video</span><span class="locale-ar" lang="ar">فيديو العرض العملي</span></h2>
+    <p class="locale-en">Open the demo video or watch it below.</p>
+    <p class="locale-ar" lang="ar">يمكنك فتح فيديو العرض العملي أو مشاهدته بالأسفل.</p>
+    <a href="https://pub-1ae2691df7364eea93afb4e67996d97c.r2.dev/recon-and-web-proxies-demo.mov" target="_blank" rel="noopener noreferrer">
+      <span class="locale-en">Open the Day 1 demo video</span>
+      <span class="locale-ar" lang="ar">فتح فيديو اليوم الأول</span>
+    </a>
+    <div class="tutorial-video-preview">
+      <video controls preload="metadata" poster="../assets/tutorials/recon-demo-poster.svg">
+        <source src="https://pub-1ae2691df7364eea93afb4e67996d97c.r2.dev/recon-and-web-proxies-demo.mov" type="video/quicktime">
+      </video>
+    </div>
+  </section>
+
+  <section class="tutorial-open-card">
     <h2><span class="locale-en">Workshop HTML Content</span><span class="locale-ar" lang="ar">محتوى الورشة HTML</span></h2>
     <p class="locale-en">Open the HTML workshop content or preview it below.</p>
     <p class="locale-ar" lang="ar">يمكنك فتح محتوى الورشة بصيغة HTML أو معاينته بالأسفل.</p>

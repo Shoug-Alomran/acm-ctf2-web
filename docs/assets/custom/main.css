@@ -1363,6 +1363,23 @@ html[data-theme="light"] .club-work-card {
   background: #0b1120;
 }
 
+.tutorial-video-preview {
+  margin-top: clamp(0.8rem, 1.2vw, 1rem);
+  border: 1px solid var(--border);
+  border-radius: clamp(14px, 1.5vw, 18px);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(15, 26, 46, 0.96), rgba(13, 21, 38, 0.98));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.tutorial-video-preview video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  background: #0b1120;
+}
+
 html[lang="ar"] .tutorial-hero-card,
 html[lang="ar"] .tutorial-open-card {
   text-align: right;
