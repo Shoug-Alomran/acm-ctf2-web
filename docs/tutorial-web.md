@@ -35,8 +35,19 @@
   </section>
 
   <section class="tutorial-open-card">
-    <h2><span class="locale-en">Workshop Content</span><span class="locale-ar" lang="ar">محتوى الورشة</span></h2>
-    <p class="locale-en">The full Day 2 workshop content will be posted soon.</p>
-    <p class="locale-ar" lang="ar">سيتم نشر محتوى ورشة اليوم الثاني كاملًا قريبًا.</p>
+    <h2><span class="locale-en">Workshop Handout</span><span class="locale-ar" lang="ar">ملزمة الورشة</span></h2>
+    <p class="locale-en">Use the Day 2 handout as the quick reference for access control concepts, authorization checks, and common bypass patterns.</p>
+    <p class="locale-ar" lang="ar">استخدم ملزمة اليوم الثاني كمرجع سريع لمفاهيم التحكم في الوصول، فحص الصلاحيات، وأنماط التجاوز الشائعة.</p>
+    <a href="../assets/pdf-tutorials/access-control-handout.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="locale-en">Open the Day 2 handout</span>
+      <span class="locale-ar" lang="ar">فتح ملزمة اليوم الثاني</span>
+    </a>
+    <div class="tutorial-pdf-preview">
+      <iframe
+        src="../assets/pdf-tutorials/access-control-handout.pdf"
+        title="Access Control handout PDF"
+        loading="lazy"
+      ></iframe>
+    </div>
   </section>
 </div>

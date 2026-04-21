@@ -111,6 +111,23 @@
 
 <div class="tutorial-shell">
   <section class="tutorial-open-card">
+    <h2><span class="locale-en">Workshop Handout</span><span class="locale-ar" lang="ar">ملزمة الورشة</span></h2>
+    <p class="locale-en">Use the Day 1 handout as the quick reference for recon steps, proxy setup, and discovery workflow.</p>
+    <p class="locale-ar" lang="ar">استخدم ملزمة اليوم الأول كمرجع سريع لخطوات الاستطلاع، إعداد الـ Proxy، وسير عمل الاكتشاف.</p>
+    <a href="../assets/pdf-tutorials/recon-and-web-proxies-handout.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="locale-en">Open the Day 1 handout</span>
+      <span class="locale-ar" lang="ar">فتح ملزمة اليوم الأول</span>
+    </a>
+    <div class="tutorial-pdf-preview">
+      <iframe
+        src="../assets/pdf-tutorials/recon-and-web-proxies-handout.pdf"
+        title="Recon and Web Proxies handout PDF"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
+
+  <section class="tutorial-open-card">
     <h2><span class="locale-en">Workshop Slides</span><span class="locale-ar" lang="ar">شرائح الورشة</span></h2>
     <p class="locale-en">Open the presentation deck or preview it below.</p>
     <p class="locale-ar" lang="ar">يمكنك فتح عرض الشرائح أو معاينته بالأسفل.</p>
