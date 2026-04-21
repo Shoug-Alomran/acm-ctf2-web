@@ -84,6 +84,7 @@
       </video>
     </div>
   </section>
+
 </div>
 
 <div class="tutorial-shell">
@@ -105,4 +106,23 @@
     loading="lazy"
     referrerpolicy="no-referrer"
   ></iframe>
+</div>
+
+<div class="tutorial-shell">
+  <section class="tutorial-open-card">
+    <h2><span class="locale-en">Workshop Handout</span><span class="locale-ar" lang="ar">ملزمة الورشة</span></h2>
+    <p class="locale-en">Use the Day 4 handout as the quick reference for authentication attacks, username enumeration, and session weaknesses.</p>
+    <p class="locale-ar" lang="ar">استخدم ملزمة اليوم الرابع كمرجع سريع لهجمات المصادقة وتعداد أسماء المستخدمين ونقاط ضعف الجلسات.</p>
+    <a href="../assets/pdf-tutorials/Broken_Authentication_Handout.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="locale-en">Open the Day 4 handout</span>
+      <span class="locale-ar" lang="ar">فتح ملزمة اليوم الرابع</span>
+    </a>
+    <div class="tutorial-pdf-preview">
+      <iframe
+        src="../assets/pdf-tutorials/Broken_Authentication_Handout.pdf"
+        title="Broken Authentication handout PDF"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
 </div>
