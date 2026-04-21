@@ -292,7 +292,10 @@
 
     form?.addEventListener("submit", submitTutorialSolution);
     fileField?.addEventListener("change", () => syncSelectedFilesLabel(form));
-    heroCard.insertAdjacentElement("afterend", section);
+    const workshopInfoCard = heroCard.nextElementSibling?.classList.contains("tutorial-open-card")
+      ? heroCard.nextElementSibling
+      : null;
+    (workshopInfoCard || heroCard).insertAdjacentElement("afterend", section);
   };
 
   window.showPage = (id) => {

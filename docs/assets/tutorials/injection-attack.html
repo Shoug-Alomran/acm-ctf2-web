@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACM/CyberTech | Injection Attacks · CTF Workshop</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --- identical core style (dark/light, orbs, nav, cards, etc) – kept as original --- */
+        :root[data-theme="dark"] {
+            --bg: #070d1a;
+            --bg2: #0c1526;
+            --bg3: #111e35;
+            --card: #0f1c30;
+            --card2: #142034;
+            --border: rgba(0, 200, 255, 0.12);
+            --border2: rgba(0, 200, 255, 0.25);
+            --accent: #00c8ff;
+            --accent2: #00e5c0;
+            --accent3: #3d7fff;
+            --text: #e8f4ff;
+            --text2: #8ab0cc;
+            --text3: #4a6a85;
+            --danger: #ff4466;
+            --success: #00e5c0;
+            --warn: #ffb830;
+            --glow: 0 0 30px rgba(0, 200, 255, 0.15);
+            --glow2: 0 0 60px rgba(0, 200, 255, 0.08);
+            --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+            --mono: 'JetBrains Mono', monospace;
+            --head: 'Syne', sans-serif;
+            --body: 'Inter', sans-serif;
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f0f4fb;
+            --bg2: #e4ecf7;
+            --bg3: #dce6f5;
+            --card: #ffffff;
+            --card2: #f5f9ff;
+            --border: rgba(0, 100, 200, 0.12);
+            --border2: rgba(0, 100, 200, 0.3);
+            --accent: #0077cc;
+            --accent2: #009e8c;
+            --accent3: #2255cc;
+            --text: #0d1f35;
+            --text2: #3a5a7a;
+            --text3: #7a9ab5;
+            --danger: #cc2244;
+            --success: #009e8c;
+            --warn: #cc8800;
+            --glow: 0 0 30px rgba(0, 100, 200, 0.1);
+            --glow2: 0 0 60px rgba(0, 100, 200, 0.05);
+            --shadow: 0 8px 40px rgba(0, 50, 120, 0.12);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            transition: background 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            animation: drift 20s infinite ease-in-out alternate;
+            opacity: 0.18;
+        }
+
+        [data-theme="light"] .orb {
+            opacity: 0.08;
+        }
+
+        .orb1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent3);
+            top: -200px;
+            left: -200px;
+        }
+
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            bottom: 20%;
+            right: -100px;
+            animation-delay: -7s;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent2);
+            top: 60%;
+            left: 20%;
+            animation-delay: -14s;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0) scale(1)
+            }
+
+            100% {
+                transform: translate(40px, 30px) scale(1.1)
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            height: 64px;
+            background: rgba(7, 13, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(240, 244, 251, 0.85);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-logo span {
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-badge {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border2);
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            background: var(--border);
+            box-shadow: var(--glow);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            height: 3px;
+            background: var(--bg3);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
+            width: 0%;
+            transition: width 0.3s;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 32px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 100px 32px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            padding: 6px 14px;
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            margin-bottom: 32px;
+            animation: fadeDown 0.8s 0.2s both;
+        }
+
+        .hero h1 {
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 24px;
+            animation: fadeDown 0.8s 0.4s both;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--text2);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+            animation: fadeDown 0.8s 0.6s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeDown 0.8s 0.8s both;
+        }
+
+        .btn {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            padding: 14px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #070d1a;
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px var(--accent), 0 0 60px rgba(0, 200, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border2);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--border);
+        }
+
+        .hero-scroll {
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: fadeDown 0.8s 1s both;
+        }
+
+        .scroll-line {
+            width: 40px;
+            height: 1px;
+            background: var(--text3);
+        }
+
+        .scroll-text {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text3);
+            letter-spacing: 0.15em;
+        }
+
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sec-label::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .sec-title {
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .sec-sub {
+            color: var(--text2);
+            font-size: 1rem;
+            max-width: 680px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        .obj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .obj-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .obj-card:hover {
+            border-color: var(--border2);
+            box-shadow: var(--glow), var(--shadow);
+            transform: translateY(-4px);
+        }
+
+        .obj-num {
+            font-family: var(--head);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .obj-title {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .obj-desc {
+            font-size: 0.88rem;
+            color: var(--text2);
+            line-height: 1.6;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media(max-width: 700px) {
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .concept-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .concept-card:hover {
+            border-color: var(--border2);
+            box-shadow: var(--glow), var(--shadow);
+        }
+
+        .concept-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+        }
+
+        .concept-title {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .concept-body {
+            font-size: 0.9rem;
+            color: var(--text2);
+            line-height: 1.75;
+        }
+
+        .deep-dive {
+            margin-top: 20px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .deep-dive-toggle {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(0, 200, 255, 0.06);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+        }
+
+        .deep-dive-toggle:hover {
+            background: rgba(0, 200, 255, 0.12);
+        }
+
+        .deep-dive-toggle .arrow {
+            transition: transform 0.3s;
+        }
+
+        .deep-dive-toggle.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .deep-dive-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s;
+            background: var(--card2);
+        }
+
+        .deep-dive-content.open {
+            max-height: 800px;
+        }
+
+        .deep-dive-inner {
+            padding: 20px;
+            font-size: 0.87rem;
+            color: var(--text2);
+            line-height: 1.8;
+        }
+
+        .deep-dive-inner h4 {
+            font-family: var(--head);
+            color: var(--text);
+            font-size: 0.95rem;
+            margin: 16px 0 10px;
+        }
+
+        .deep-dive-inner h4:first-child {
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--bg3);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .code-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .code-dot.r {
+            background: #ff5f57;
+        }
+
+        .code-dot.y {
+            background: #ffbd2e;
+        }
+
+        .code-dot.g {
+            background: #28c840;
+        }
+
+        .code-title {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text3);
+            margin-left: 6px;
+        }
+
+        .code-body {
+            padding: 20px;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            line-height: 1.9;
+        }
+
+        .code-line {
+            display: flex;
+            gap: 16px;
+        }
+
+        .code-ln {
+            color: var(--text3);
+            min-width: 20px;
+            user-select: none;
+        }
+
+        .kw {
+            color: #ff79c6;
+        }
+
+        .prop {
+            color: var(--accent);
+        }
+
+        .val {
+            color: var(--accent2);
+        }
+
+        .cm {
+            color: var(--text3);
+            font-style: italic;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .step-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0 32px;
+            position: relative;
+        }
+
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 39px;
+            top: 80px;
+            bottom: -20px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--border2), var(--border));
+        }
+
+        .step-num-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 16px;
+        }
+
+        .step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 2px solid var(--border2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--accent);
+            z-index: 1;
+        }
+
+        .step-item:hover .step-num {
+            background: var(--accent);
+            color: #070d1a;
+            border-color: var(--accent);
+            box-shadow: var(--glow);
+        }
+
+        .step-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+        }
+
+        .step-item:hover .step-content {
+            border-color: var(--border2);
+            box-shadow: var(--shadow);
+        }
+
+        .step-title {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .step-tagline {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent2);
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .step-list {
+            list-style: none;
+        }
+
+        .step-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text2);
+            padding: 6px 0;
+        }
+
+        .step-list li::before {
+            content: '▸';
+            color: var(--accent);
+        }
+
+        .pitfall-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .pitfall-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 3px solid var(--danger);
+        }
+
+        .pitfall-card:hover {
+            box-shadow: 0 0 20px rgba(255, 68, 102, 0.1), var(--shadow);
+        }
+
+        .pitfall-symptom {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--danger);
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .pitfall-title {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .pitfall-row {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .pitfall-row span:first-child {
+            color: var(--text3);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .pitfall-row.fix span:first-child {
+            color: var(--success);
+        }
+
+        .quiz-score-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .score-label {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--text2);
+        }
+
+        .score-val {
+            font-family: var(--head);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .score-track {
+            flex: 1;
+            height: 6px;
+            background: var(--bg3);
+            border-radius: 3px;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent3), var(--accent2));
+            border-radius: 3px;
+            width: 0%;
+        }
+
+        .quiz-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-num {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            margin-bottom: 12px;
+        }
+
+        .quiz-q {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+
+        .quiz-opts {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-opt {
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg3);
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .quiz-opt:hover:not(.disabled) {
+            border-color: var(--border2);
+            color: var(--text);
+            background: var(--card2);
+        }
+
+        .quiz-opt.correct {
+            border-color: var(--success);
+            background: rgba(0, 229, 192, 0.08);
+        }
+
+        .quiz-opt.wrong {
+            border-color: var(--danger);
+            background: rgba(255, 68, 102, 0.08);
+        }
+
+        .quiz-feedback {
+            margin-top: 16px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(0, 229, 192, 0.08);
+            border: 1px solid var(--success);
+            color: var(--accent2);
+        }
+
+        .quiz-feedback.wrong {
+            background: rgba(255, 68, 102, 0.08);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        .challenge-card {
+            background: var(--card);
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
+        }
+
+        .badge {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.1em;
+        }
+
+        .badge-time {
+            background: rgba(0, 200, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--border2);
+        }
+
+        .badge-level {
+            background: rgba(0, 229, 192, 0.1);
+            color: var(--accent2);
+            border: 1px solid rgba(0, 229, 192, 0.3);
+        }
+
+        .challenge-task-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text3);
+            letter-spacing: 0.15em;
+            margin-bottom: 10px;
+        }
+
+        .challenge-task {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--text);
+            margin-bottom: 28px;
+        }
+
+        .success-box {
+            background: rgba(0, 229, 192, 0.06);
+            border: 1px solid rgba(0, 229, 192, 0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+
+        .success-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--accent2);
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .hints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .hint-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .hint-num {
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .hint-text {
+            font-size: 0.87rem;
+            color: var(--text2);
+            line-height: 1.6;
+        }
+
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .resource-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .resource-item:hover {
+            border-color: var(--border2);
+            box-shadow: var(--shadow);
+            transform: translateX(4px);
+        }
+
+        .resource-num {
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0.25;
+            min-width: 48px;
+        }
+
+        .resource-info h4 {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .resource-info p {
+            font-size: 0.85rem;
+            color: var(--text2);
+            line-height: 1.5;
+        }
+
+        .section-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        @media(max-width:600px) {
+            .section-nav {
+                display: none
+            }
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border2);
+            border: 1px solid var(--border2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            width: 8px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        .demo-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .demo-big {
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: clamp(4rem, 12vw, 8rem);
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .demo-sub {
+            font-size: 1rem;
+            color: var(--text2);
+            margin-bottom: 36px;
+        }
+
+        .prereq-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            text-align: left;
+            margin-bottom: 28px;
+        }
+
+        @media(max-width:600px) {
+            .prereq-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .prereq-item {
+            background: var(--bg3);
+            border-radius: 10px;
+            padding: 16px 18px;
+        }
+
+        .prereq-key {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text3);
+            letter-spacing: 0.15em;
+            margin-bottom: 6px;
+        }
+
+        .prereq-val {
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .demo-script {
+            background: var(--bg3);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .demo-script pre {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text2);
+            white-space: pre-wrap;
+        }
+
+        .fallback-note {
+            margin-top: 16px;
+            color: var(--warn);
+            font-size: 0.85rem;
+        }
+
+        .cheatsheet-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+        }
+
+        .cheatsheet-table th {
+            text-align: left;
+            color: var(--accent);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cheatsheet-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text2);
+        }
+
+        .cheatsheet-table code {
+            background: var(--bg3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <nav>
+        <div class="nav-logo">
+            <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="var(--accent)" stroke-width="1.5" />
+                <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" stroke="var(--accent)" stroke-width="1" />
+                <circle cx="16" cy="15" r="2.5" fill="var(--accent)" />
+            </svg>
+            <span>ACM/CYBERTECH</span>
+        </div>
+        <div class="nav-right">
+            <span class="nav-badge">MODULE 03 · INJECTION ATTACKS</span>
+            <button class="theme-btn" id="themeBtn" title="Toggle theme">☀️</button>
+        </div>
+    </nav>
+
+    <div class="section-nav" id="sectionNav">
+        <div class="nav-dot active" data-target="hero"></div>
+        <div class="nav-dot" data-target="objectives"></div>
+        <div class="nav-dot" data-target="concepts"></div>
+        <div class="nav-dot" data-target="howitworks"></div>
+        <div class="nav-dot" data-target="demo"></div>
+        <div class="nav-dot" data-target="pitfalls"></div>
+        <div class="nav-dot" data-target="quiz"></div>
+        <div class="nav-dot" data-target="challenge"></div>
+        <div class="nav-dot" data-target="resources"></div>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <section id="hero">
+            <div class="scan-line"
+                style="position:absolute; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--accent),transparent); animation:scan 4s linear infinite; opacity:0.4; pointer-events:none;">
+            </div>
+            <div class="hero">
+                <div class="hero-tag">SPRING 2026 · CTF WORKSHOP SERIES · PSU</div>
+                <h1>Injection<br><span>Attacks</span></h1>
+                <p class="hero-sub">If a website builds its database commands from what users type, an attacker can turn
+                    a simple login box into a way to read or change every record. Today we'll use that trick to log in
+                    without a password.</p>
+                <div class="hero-cta">
+                    <a href="#objectives" class="btn btn-primary">▶ Start Workshop</a>
+                    <a href="#challenge" class="btn btn-ghost">Skip to Challenge →</a>
+                </div>
+                <div class="hero-scroll">
+                    <div class="scroll-line"></div><span class="scroll-text">SCROLL TO BEGIN</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OBJECTIVES -->
+        <section id="objectives" class="section">
+            <div class="sec-label">SECTION 01 · LEARNING OBJECTIVES</div>
+            <h2 class="sec-title">What You'll Learn</h2>
+            <p class="sec-sub">By the end of this topic, you'll be able to spot, exploit, and prevent one of the most
+                critical web vulnerabilities.</p>
+            <div class="obj-grid">
+                <div class="obj-card">
+                    <div class="obj-num">01</div>
+                    <div class="obj-title">Identify</div>
+                    <div class="obj-desc">Locate injection points in web application input fields (login, search,
+                        filters).</div>
+                </div>
+                <div class="obj-card">
+                    <div class="obj-num">02</div>
+                    <div class="obj-title">Exploit</div>
+                    <div class="obj-desc">Perform a basic SQL injection to bypass authentication and gain unauthorized
+                        access.</div>
+                </div>
+                <div class="obj-card">
+                    <div class="obj-num">03</div>
+                    <div class="obj-title">Prevent</div>
+                    <div class="obj-desc">Apply input validation and parameterized queries to stop injection attacks.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- CORE CONCEPTS -->
+        <section id="concepts" class="section">
+            <div class="sec-label">SECTION 02 · CORE CONCEPTS</div>
+            <h2 class="sec-title">SQL Injection</h2>
+            <p class="sec-sub">When user input is dropped directly into a database query, attackers can change the
+                structure of that query—turning data into code.</p>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-label">THE MECHANISM</div>
+                    <div class="concept-title">Why it works</div>
+                    <div class="concept-body">A single quote (<code>'</code>) ends a string, and two hyphens
+                        (<code>--</code>) start a SQL comment. Combine them, and the rest of the query—including the
+                        password check—becomes a note the database ignores.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-label">THE RULE</div>
+                    <div class="concept-title">Data vs. Code</div>
+                    <div class="concept-body">The system fails whenever it cannot tell data apart from code.
+                        Parameterized queries keep that line sharp; string concatenation erases it.</div>
+                </div>
+            </div>
+
+            <!-- SQL Injection visual explanation (like figure 1) -->
+            <div class="code-block" style="margin-top:32px;">
+                <div class="code-header">
+                    <div class="code-dot r"></div>
+                    <div class="code-dot y"></div>
+                    <div class="code-dot g"></div><span class="code-title">Turning the password check into a
+                        comment</span>
+                </div>
+                <div class="code-body">
+                    <div class="code-line"><span class="code-ln">A</span><span class="cm">// What the server
+                            expects</span></div>
+                    <div class="code-line"><span class="code-ln"></span><span><span class="kw">SELECT</span> * <span
+                                class="kw">FROM</span> users <span class="kw">WHERE</span> username = <span
+                                class="val">'input'</span> <span class="kw">AND</span> password = <span
+                                class="val">'input'</span>;</span></div>
+                    <div class="code-line" style="margin-top:16px;"><span class="code-ln">B</span><span class="cm">//
+                            What the attacker types into the login form</span></div>
+                    <div class="code-line"><span class="code-ln"></span><span>username: <span
+                                class="val">administrator'--</span> password: <span class="val">anything</span></span>
+                    </div>
+                    <div class="code-line" style="margin-top:16px;"><span class="code-ln">C</span><span class="cm">//
+                            What the database actually runs</span></div>
+                    <div class="code-line"><span class="code-ln"></span><span><span class="kw">SELECT</span> * <span
+                                class="kw">FROM</span> users <span class="kw">WHERE</span> username = <span
+                                class="val">'administrator'</span><span class="cm">-- ' AND password =
+                                'anything';</span></span></div>
+                    <div class="code-line" style="margin-top:12px;"><span class="code-ln"></span><span
+                            class="cm">everything after -- is treated as a comment and ignored</span></div>
+                </div>
+            </div>
+            <p style="margin-top:16px; color:var(--text2); font-size:0.9rem;">The attacker closes the username string
+                with a quote, then uses <code>--</code> to comment out the password check. The database returns the
+                first matching user—often administrator.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- HOW IT WORKS -->
+        <section id="howitworks" class="section">
+            <div class="sec-label">SECTION 03 · HOW IT WORKS</div>
+            <h2 class="sec-title">The 5‑Step Injection</h2>
+            <p class="sec-sub">From normal input to unauthorized access: how a tester probes for SQL injection.</p>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-num-wrap">
+                        <div class="step-num">01</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Capture User Input</div>
+                        <div class="step-tagline">FIND EVERY FIELD THAT TOUCHES THE DATABASE</div>
+                        <ul class="step-list">
+                            <li>App accepts input from a form (username, password, search)</li>
+                            <li>Input is concatenated directly into a database query on the server</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap">
+                        <div class="step-num">02</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Inject Malicious Input</div>
+                        <div class="step-tagline">BREAK OUT OF THE EXPECTED STRING</div>
+                        <ul class="step-list">
+                            <li>Attacker enters <code>administrator'--</code> to terminate the quoted field</li>
+                            <li>Payload changes query structure, not just values</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap">
+                        <div class="step-num">03</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Alter Query Logic</div>
+                        <div class="step-tagline">PROMOTE PAYLOAD FROM DATA TO CODE</div>
+                        <ul class="step-list">
+                            <li>Injected input is parsed as SQL, not stored as literal</li>
+                            <li>Comment markers (<code>--</code> or <code>#</code>) remove the rest of the query</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap">
+                        <div class="step-num">04</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Execute Modified Query</div>
+                        <div class="step-tagline">LET THE DATABASE DO THE WORK</div>
+                        <ul class="step-list">
+                            <li>Database runs altered statement without complaint</li>
+                            <li>Password verification skipped (commented out)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num-wrap">
+                        <div class="step-num">05</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Gain Unauthorized Access</div>
+                        <div class="step-tagline">CONFIRM BYPASS END‑TO‑END</div>
+                        <ul class="step-list">
+                            <li>Attacker logged in as first matching user (administrator)</li>
+                            <li>System treats all subsequent requests as that privileged account</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- DEMO -->
+        <section id="demo" class="section">
+            <div class="sec-label">SECTION 04 · DEMO WALKTHROUGH</div>
+            <div class="demo-card">
+                <div class="demo-big">DEMO.</div>
+                <div class="demo-sub">PortSwigger Lab: SQL injection login bypass</div>
+                <div class="prereq-grid">
+                    <div class="prereq-item">
+                        <div class="prereq-key">LAB</div>
+                        <div class="prereq-val">SQL injection: login bypass</div>
+                    </div>
+                    <div class="prereq-item">
+                        <div class="prereq-key">BROWSER</div>
+                        <div class="prereq-val">Chrome / Safari</div>
+                    </div>
+                    <div class="prereq-item">
+                        <div class="prereq-key">STATE</div>
+                        <div class="prereq-val">Lab opened, login visible</div>
+                    </div>
+                </div>
+                <div class="demo-script">
+                    <div style="font-family:var(--mono); color:var(--accent); margin-bottom:16px;">▶ SCRIPT</div>
+                    <pre># Step 1: Try a normal login
+Username: admin   Password: 1234 (any wrong password)
+→ Expected: Login fails ("invalid credentials")
+
+# Step 2: Inject the payload
+Username: administrator'--   Password: anything
+(Note: single quote, two hyphens, then a space)
+→ Expected: You are logged in as administrator. Lab solved.
+
+# The payload, anatomized
+administrator'-- 
+→ Closes the username string, comments out password check</pre>
+                </div>
+                <div class="fallback-note">
+                    ⚠️ Fallback: If live lab fails, presenter shows screenshots of the successful login bypass.
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- PITFALLS -->
+        <section id="pitfalls" class="section">
+            <div class="sec-label">SECTION 05 · COMMON PITFALLS</div>
+            <h2 class="sec-title">Troubleshooting</h2>
+            <div class="pitfall-grid">
+                <div class="pitfall-card">
+                    <div class="pitfall-symptom">SYMPTOM</div>
+                    <div class="pitfall-title">Payload looks correct but login fails</div>
+                    <div class="pitfall-row"><span>CAUSE</span><span class="val">Modified wrong request (not the lab's
+                            login request)</span></div>
+                    <div class="pitfall-row fix"><span>FIX</span><span class="val">Ensure POST goes to lab host, not
+                            main PortSwigger site</span></div>
+                </div>
+                <div class="pitfall-card">
+                    <div class="pitfall-symptom">SYMPTOM</div>
+                    <div class="pitfall-title">Injection has no effect</div>
+                    <div class="pitfall-row"><span>CAUSE</span><span class="val">Missing space after --</span></div>
+                    <div class="pitfall-row fix"><span>FIX</span><span class="val">Always use -- with a trailing
+                            space</span></div>
+                </div>
+                <div class="pitfall-card">
+                    <div class="pitfall-symptom">SYMPTOM</div>
+                    <div class="pitfall-title">Changes don't affect result</div>
+                    <div class="pitfall-row"><span>CAUSE</span><span class="val">Edited response or replayed
+                            already‑sent request</span></div>
+                    <div class="pitfall-row fix"><span>FIX</span><span class="val">Intercept before sending, or use
+                            Repeater</span></div>
+                </div>
+                <div class="pitfall-card">
+                    <div class="pitfall-symptom">SYMPTOM</div>
+                    <div class="pitfall-title">Server rejects quote character</div>
+                    <div class="pitfall-row"><span>CAUSE</span><span class="val">Basic input sanitization stripping
+                            single quote</span></div>
+                    <div class="pitfall-row fix"><span>FIX</span><span class="val">Try alternate payload: ' OR
+                            1=1--</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- QUIZ -->
+        <section id="quiz" class="section">
+            <div class="sec-label">SECTION 06 · POP QUIZ</div>
+            <h2 class="sec-title">Test Your Knowledge</h2>
+            <div class="quiz-score-bar">
+                <div>
+                    <div class="score-label">YOUR SCORE</div>
+                    <div class="score-val" id="scoreVal">0 / 5</div>
+                </div>
+                <div class="score-track">
+                    <div class="score-fill" id="scoreFill"></div>
+                </div>
+            </div>
+            <div id="quizContainer">
+                <div class="quiz-card" id="q1">
+                    <div class="quiz-num">QUESTION 01 / 05</div>
+                    <div class="quiz-q">What is the primary cause of SQL injection vulnerabilities?</div>
+                    <div class="quiz-opts">
+                        <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">A</span>
+                            Weak database passwords</button>
+                        <button class="quiz-opt" onclick="answer(this,'q1',true)"><span class="opt-letter">B</span> User
+                            input concatenated directly into SQL queries</button>
+                        <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">C</span>
+                            Outdated database software</button>
+                        <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">D</span>
+                            Missing HTTPS encryption</button>
+                    </div>
+                    <div class="quiz-feedback" id="q1-fb"></div>
+                </div>
+                <div class="quiz-card" id="q2">
+                    <div class="quiz-num">QUESTION 02 / 05</div>
+                    <div class="quiz-q">In the payload <code>administrator'--</code>, what is the purpose of the two
+                        hyphens?</div>
+                    <div class="quiz-opts">
+                        <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">A</span>
+                            Escape the single quote</button>
+                        <button class="quiz-opt" onclick="answer(this,'q2',true)"><span class="opt-letter">B</span>
+                            Start a SQL comment, ignoring the rest of the query</button>
+                        <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">C</span> End
+                            the SQL statement</button>
+                        <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">D</span>
+                            Indicate a new line</button>
+                    </div>
+                    <div class="quiz-feedback" id="q2-fb"></div>
+                </div>
+                <div class="quiz-card" id="q3">
+                    <div class="quiz-num">QUESTION 03 / 05</div>
+                    <div class="quiz-q">Which of the following is the most effective defense against SQL injection?
+                    </div>
+                    <div class="quiz-opts">
+                        <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">A</span>
+                            Blacklisting special characters like '</button>
+                        <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">B</span>
+                            Using a Web Application Firewall (WAF)</button>
+                        <button class="quiz-opt" onclick="answer(this,'q3',true)"><span class="opt-letter">C</span>
+                            Parameterized queries (prepared statements)</button>
+                        <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">D</span>
+                            Hiding database error messages</button>
+                    </div>
+                    <div class="quiz-feedback" id="q3-fb"></div>
+                </div>
+                <div class="quiz-card" id="q4">
+                    <div class="quiz-num">QUESTION 04 / 05</div>
+                    <div class="quiz-q">You try <code>admin'--</code> but nothing happens. What is the most likely
+                        mistake?</div>
+                    <div class="quiz-opts">
+                        <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">A</span> The
+                            username 'admin' doesn't exist</button>
+                        <button class="quiz-opt" onclick="answer(this,'q4',true)"><span class="opt-letter">B</span> You
+                            forgot the trailing space after --</button>
+                        <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">C</span> The
+                            password field must be empty</button>
+                        <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">D</span> The
+                            database is MySQL not PostgreSQL</button>
+                    </div>
+                    <div class="quiz-feedback" id="q4-fb"></div>
+                </div>
+                <div class="quiz-card" id="q5">
+                    <div class="quiz-num">QUESTION 05 / 05</div>
+                    <div class="quiz-q">What is the key principle that parameterized queries enforce?</div>
+                    <div class="quiz-opts">
+                        <button class="quiz-opt" onclick="answer(this,'q5',true)"><span class="opt-letter">A</span>
+                            Separation of code (SQL structure) from data (user input)</button>
+                        <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">B</span>
+                            Encryption of all database traffic</button>
+                        <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">C</span>
+                            Rate limiting login attempts</button>
+                        <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">D</span>
+                            Input length restrictions</button>
+                    </div>
+                    <div class="quiz-feedback" id="q5-fb"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- CHALLENGE + CHEATSHEET -->
+        <section id="challenge" class="section">
+            <div class="sec-label">SECTION 07 · YOUR CHALLENGE</div>
+            <h2 class="sec-title">Now Do It Yourself</h2>
+            <div class="challenge-card">
+                <div class="challenge-badges"><span class="badge badge-time">⏱ 5-10 MIN</span><span
+                        class="badge badge-level">◉ BEGINNER</span></div>
+                <div class="challenge-task-label">THE TASK</div>
+                <div class="challenge-task">Use the provided lab to bypass the login form and gain access to the
+                    administrator account by modifying the login request.</div>
+                <div class="success-box">
+                    <div class="success-label">SUCCESS CRITERION</div>
+                    <div class="success-text">Screenshot showing you are logged in as administrator (account page or
+                        admin dashboard visible).</div>
+                </div>
+                <div
+                    style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:16px">
+                    HINTS</div>
+                <div class="hints-grid">
+                    <div class="hint-card">
+                        <div class="hint-num">01</div>
+                        <div class="hint-text">Look closely at how your input is used inside the login request.</div>
+                    </div>
+                    <div class="hint-card">
+                        <div class="hint-num">02</div>
+                        <div class="hint-text">Try breaking the query so the password check is ignored.</div>
+                    </div>
+                    <div class="hint-card">
+                        <div class="hint-num">03</div>
+                        <div class="hint-text">Use a payload like <code>administrator'--</code> (with a space after
+                            hyphens).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cheatsheet integrated -->
+            <div style="margin-top:40px;">
+                <div class="sec-label" style="margin-bottom:24px;">CHEATSHEET · PAYLOADS & PATTERNS</div>
+                <div style="background:var(--card); border:1px solid var(--border); border-radius:20px; padding:28px;">
+                    <table class="cheatsheet-table">
+                        <thead>
+                            <tr>
+                                <th>COMMAND / PAYLOAD</th>
+                                <th>WHAT IT DOES</th>
+                                <th>WHEN TO USE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>administrator'--</code></td>
+                                <td>Comments out password check</td>
+                                <td>Login bypass when username known</td>
+                            </tr>
+                            <tr>
+                                <td><code>' OR 1=1--</code></td>
+                                <td>Makes WHERE condition always true</td>
+                                <td>Login bypass when username unknown</td>
+                            </tr>
+                            <tr>
+                                <td><code>' OR '1'='1--</code></td>
+                                <td>Boolean-based always‑true variant</td>
+                                <td>Basic auth bypass, alternate syntax</td>
+                            </tr>
+                            <tr>
+                                <td><code>'--</code></td>
+                                <td>Truncates query early</td>
+                                <td>Probing if field is injectable</td>
+                            </tr>
+                            <tr>
+                                <td><code>' OR 1=1#</code></td>
+                                <td>MySQL comment alternative</td>
+                                <td>When -- is stripped or fails</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top:32px;">
+                        <div style="font-family:var(--mono); color:var(--accent); margin-bottom:12px;">▶ INTERCEPTED
+                            REQUEST (Burp)</div>
+                        <div class="code-block" style="margin-top:0;">
+                            <div class="code-body">
+                                <div class="code-line"><span class="code-ln">1</span><span><span class="kw">POST</span>
+                                        /login <span class="val">HTTP/1.1</span></span></div>
+                                <div class="code-line"><span class="code-ln">2</span><span><span
+                                            class="prop">Host:</span> <span
+                                            class="val">lab-portswigger.net</span></span></div>
+                                <div class="code-line"><span class="code-ln">3</span><span>...</span></div>
+                                <div class="code-line"><span class="code-ln">4</span><span>username=<span
+                                            class="val">administrator'--</span>&password=<span
+                                            class="val">anything</span></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- RESOURCES -->
+        <section id="resources" class="section">
+            <div class="sec-label">SECTION 08 · FURTHER READING</div>
+            <h2 class="sec-title">Go Deeper</h2>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <div class="resource-num">01</div>
+                    <div class="resource-info">
+                        <h4>PortSwigger: SQL Injection</h4>
+                        <p>Interactive labs and real attack scenarios to practice and deepen understanding.</p>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-num">02</div>
+                    <div class="resource-info">
+                        <h4>OWASP SQL Injection Prevention Cheat Sheet</h4>
+                        <p>Industry‑standard defensive techniques and secure coding practices.</p>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-num">03</div>
+                    <div class="resource-info">
+                        <h4>OWASP Top 10: Injection</h4>
+                        <p>High‑level overview of why injection remains critical and how it impacts real systems.</p>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-num">📎</div>
+                    <div class="resource-info">
+                        <h4>Injection Attacks Handout (PDF)</h4>
+                        <p>Full workshop packet with all slides and cheatsheet. (Available in workshop materials)</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="margin-top:60px; text-align:center; padding:40px; background:var(--card); border:1px solid var(--border); border-radius:20px;">
+                <div style="font-family:var(--head);font-weight:800;font-size:2rem;color:var(--text);margin-bottom:8px">
+                    Questions?</div>
+                <div style="font-size:0.9rem;color:var(--text2);margin-bottom:24px">Bring them to the CTF WhatsApp
+                    Group.</div>
+                <span
+                    style="font-family:var(--mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.15em;padding:8px 20px;border:1px solid var(--border2);border-radius:20px">CyberTech
+                    Club @ PSU · Spring 2026</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const html = document.documentElement;
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const isDark = html.dataset.theme === 'dark';
+            html.dataset.theme = isDark ? 'light' : 'dark';
+            themeBtn.textContent = isDark ? '🌙' : '☀️';
+        });
+
+        const progressFill = document.getElementById('progressFill');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const total = document.body.scrollHeight - window.innerHeight;
+            progressFill.style.width = (scrolled / total * 100) + '%';
+            updateNavDots();
+        });
+
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        sections.forEach(s => observer.observe(s));
+
+        const allSections = ['hero', 'objectives', 'concepts', 'howitworks', 'demo', 'pitfalls', 'quiz', 'challenge', 'resources'];
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function updateNavDots() {
+            let current = 'hero';
+            allSections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top < window.innerHeight * 0.5) current = id;
+            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', allSections[i] === current));
+        }
+        dots.forEach((dot, i) => dot.addEventListener('click', () => document.getElementById(allSections[i])?.scrollIntoView({ behavior: 'smooth' })));
+
+        function toggleDive(btn) {
+            btn.classList.toggle('open');
+            btn.nextElementSibling.classList.toggle('open');
+        }
+
+        const feedbacks = {
+            q1: { correct: "✓ Correct! SQL injection happens when user input is concatenated directly into queries.", wrong: "✗ The root cause is concatenating user input into SQL statements without proper handling." },
+            q2: { correct: "✓ Exactly! -- starts a comment, so everything after is ignored by the database.", wrong: "✗ In SQL, two hyphens (--) begin a single-line comment." },
+            q3: { correct: "✓ Yes. Parameterized queries separate code from data, making injection impossible.", wrong: "✗ While some options help, parameterized queries (prepared statements) are the definitive fix." },
+            q4: { correct: "✓ Correct! Most SQL dialects require a space after -- for it to be recognized as a comment.", wrong: "✗ Missing the trailing space is a classic mistake—always include a space after --." },
+            q5: { correct: "✓ Exactly. The database knows which parts are code and which are just data.", wrong: "✗ Parameterized queries enforce separation of SQL logic from user-supplied values." }
+        };
+        let scores = {};
+        function answer(btn, qId, isCorrect) {
+            const card = document.getElementById(qId);
+            if (card.dataset.answered) return;
+            card.dataset.answered = '1';
+            const opts = card.querySelectorAll('.quiz-opt');
+            opts.forEach(o => { o.classList.add('disabled'); o.style.pointerEvents = 'none'; });
+            btn.classList.add(isCorrect ? 'correct' : 'wrong');
+            if (!isCorrect) opts.forEach(o => { if (o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+            const fb = document.getElementById(qId + '-fb');
+            fb.textContent = isCorrect ? feedbacks[qId].correct : feedbacks[qId].wrong;
+            fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+            if (isCorrect) scores[qId] = 1;
+            updateScore();
+        }
+        function updateScore() {
+            const total = Object.values(scores).reduce((a, b) => a + b, 0);
+            document.getElementById('scoreVal').textContent = total + ' / 5';
+            document.getElementById('scoreFill').style.width = (total / 5 * 100) + '%';
+        }
+
+        const objCards = document.querySelectorAll('.obj-card, .concept-card, .pitfall-card, .resource-item');
+        const cardObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.transitionDelay = (Array.from(e.target.parentNode.children).indexOf(e.target) * 0.1) + 's';
+                    e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.15 });
+        objCards.forEach(c => {
+            c.style.opacity = '0'; c.style.transform = 'translateY(24px)'; c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            cardObs.observe(c);
+        });
+    </script>
+</body>
+
+</html>

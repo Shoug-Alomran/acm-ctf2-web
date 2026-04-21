@@ -1,1166 +1,2138 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACM/CyberTech | Recon &amp; Web Proxies - CTF Workshop</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root[data-theme="dark"] {
-    --bg: #070d1a;
-    --bg2: #0c1526;
-    --bg3: #111e35;
-    --card: #0f1c30;
-    --card2: #142034;
-    --border: rgba(0,200,255,0.12);
-    --border2: rgba(0,200,255,0.25);
-    --accent: #00c8ff;
-    --accent2: #00e5c0;
-    --accent3: #3d7fff;
-    --text: #e8f4ff;
-    --text2: #8ab0cc;
-    --text3: #4a6a85;
-    --danger: #ff4466;
-    --success: #00e5c0;
-    --warn: #ffb830;
-    --glow: 0 0 30px rgba(0,200,255,0.15);
-    --glow2: 0 0 60px rgba(0,200,255,0.08);
-    --shadow: 0 8px 40px rgba(0,0,0,0.6);
-    --mono: 'JetBrains Mono', monospace;
-    --head: 'Syne', sans-serif;
-    --body: 'Inter', sans-serif;
-  }
-  :root[data-theme="light"] {
-    --bg: #f0f4fb;
-    --bg2: #e4ecf7;
-    --bg3: #dce6f5;
-    --card: #ffffff;
-    --card2: #f5f9ff;
-    --border: rgba(0,100,200,0.12);
-    --border2: rgba(0,100,200,0.3);
-    --accent: #0077cc;
-    --accent2: #009e8c;
-    --accent3: #2255cc;
-    --text: #0d1f35;
-    --text2: #3a5a7a;
-    --text3: #7a9ab5;
-    --danger: #cc2244;
-    --success: #009e8c;
-    --warn: #cc8800;
-    --glow: 0 0 30px rgba(0,100,200,0.1);
-    --glow2: 0 0 60px rgba(0,100,200,0.05);
-    --shadow: 0 8px 40px rgba(0,50,120,0.12);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACM/CyberTech | Recon &amp; Web Proxies - CTF Workshop</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root[data-theme="dark"] {
+      --bg: #070d1a;
+      --bg2: #0c1526;
+      --bg3: #111e35;
+      --card: #0f1c30;
+      --card2: #142034;
+      --border: rgba(0, 200, 255, 0.12);
+      --border2: rgba(0, 200, 255, 0.25);
+      --accent: #00c8ff;
+      --accent2: #00e5c0;
+      --accent3: #3d7fff;
+      --text: #e8f4ff;
+      --text2: #8ab0cc;
+      --text3: #4a6a85;
+      --danger: #ff4466;
+      --success: #00e5c0;
+      --warn: #ffb830;
+      --glow: 0 0 30px rgba(0, 200, 255, 0.15);
+      --glow2: 0 0 60px rgba(0, 200, 255, 0.08);
+      --shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+      --mono: 'JetBrains Mono', monospace;
+      --head: 'Syne', sans-serif;
+      --body: 'Inter', sans-serif;
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+    :root[data-theme="light"] {
+      --bg: #f0f4fb;
+      --bg2: #e4ecf7;
+      --bg3: #dce6f5;
+      --card: #ffffff;
+      --card2: #f5f9ff;
+      --border: rgba(0, 100, 200, 0.12);
+      --border2: rgba(0, 100, 200, 0.3);
+      --accent: #0077cc;
+      --accent2: #009e8c;
+      --accent3: #2255cc;
+      --text: #0d1f35;
+      --text2: #3a5a7a;
+      --text3: #7a9ab5;
+      --danger: #cc2244;
+      --success: #009e8c;
+      --warn: #cc8800;
+      --glow: 0 0 30px rgba(0, 100, 200, 0.1);
+      --glow2: 0 0 60px rgba(0, 100, 200, 0.05);
+      --shadow: 0 8px 40px rgba(0, 50, 120, 0.12);
+    }
 
-  body {
-    font-family: var(--body);
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    transition: background 0.4s, color 0.4s;
-    overflow-x: hidden;
-  }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-    transition: opacity 0.4s;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    z-index: 0;
-    animation: drift 20s infinite ease-in-out alternate;
-    opacity: 0.18;
-    transition: opacity 0.4s;
-  }
-  [data-theme="light"] .orb { opacity: 0.08; }
-  .orb1 { width: 600px; height: 600px; background: var(--accent3); top: -200px; left: -200px; animation-delay: 0s; }
-  .orb2 { width: 400px; height: 400px; background: var(--accent); bottom: 20%; right: -100px; animation-delay: -7s; }
-  .orb3 { width: 300px; height: 300px; background: var(--accent2); top: 60%; left: 20%; animation-delay: -14s; }
-  @keyframes drift { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(40px,30px) scale(1.1)} }
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
+      overflow-x: hidden;
+    }
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 32px; height: 64px;
-    background: rgba(7,13,26,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    transition: background 0.4s, border-color 0.4s;
-  }
-  [data-theme="light"] nav { background: rgba(240,244,251,0.85); }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+      transition: opacity 0.4s;
+    }
 
-  .nav-logo { display: flex; align-items: center; gap: 12px; }
-  .nav-logo svg { width: 32px; height: 32px; }
-  .nav-logo span { font-family: var(--head); font-weight: 800; font-size: 1rem; letter-spacing: 0.12em; color: var(--accent); }
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 20s infinite ease-in-out alternate;
+      opacity: 0.18;
+      transition: opacity 0.4s;
+    }
 
-  .nav-right { display: flex; align-items: center; gap: 16px; }
-  .nav-badge { font-family: var(--mono); font-size: 0.65rem; padding: 4px 10px; border: 1px solid var(--border2); border-radius: 20px; color: var(--accent); letter-spacing: 0.1em; }
+    [data-theme="light"] .orb {
+      opacity: 0.08;
+    }
 
-  .theme-btn {
-    width: 40px; height: 40px; border-radius: 50%;
-    border: 1px solid var(--border2);
-    background: transparent; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--accent); font-size: 1.1rem;
-    transition: all 0.3s; outline: none;
-  }
-  .theme-btn:hover { background: var(--border); box-shadow: var(--glow); }
+    .orb1 {
+      width: 600px;
+      height: 600px;
+      background: var(--accent3);
+      top: -200px;
+      left: -200px;
+      animation-delay: 0s;
+    }
 
-  .progress-bar {
-    position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
-    height: 3px; background: var(--bg3);
-    transition: background 0.4s;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
-    width: 0%;
-    transition: width 0.3s ease;
-    box-shadow: 0 0 10px var(--accent);
-  }
+    .orb2 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      bottom: 20%;
+      right: -100px;
+      animation-delay: -7s;
+    }
 
-  main { position: relative; z-index: 1; }
+    .orb3 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent2);
+      top: 60%;
+      left: 20%;
+      animation-delay: -14s;
+    }
 
-  .section {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 100px 32px 80px;
-    max-width: 1100px; margin: 0 auto;
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .section.visible { opacity: 1; transform: translateY(0); }
+    @keyframes drift {
+      0% {
+        transform: translate(0, 0) scale(1)
+      }
 
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    align-items: flex-start;
-    padding: 100px 32px 80px;
-    max-width: 1100px; margin: 0 auto;
-    position: relative; z-index: 1;
-  }
+      100% {
+        transform: translate(40px, 30px) scale(1.1)
+      }
+    }
 
-  .hero-tag {
-    font-family: var(--mono); font-size: 0.7rem;
-    color: var(--accent); letter-spacing: 0.2em;
-    padding: 6px 14px; border: 1px solid var(--border2);
-    border-radius: 20px; margin-bottom: 32px;
-    animation: fadeDown 0.8s 0.2s both;
-  }
-  .hero h1 {
-    font-family: var(--head); font-weight: 800;
-    font-size: clamp(3rem, 8vw, 7rem);
-    line-height: 0.95; letter-spacing: -0.02em;
-    color: var(--text); margin-bottom: 24px;
-    animation: fadeDown 0.8s 0.4s both;
-  }
-  .hero h1 span { color: var(--accent); }
-  .hero-sub {
-    font-size: 1.05rem; color: var(--text2); max-width: 560px;
-    line-height: 1.7; margin-bottom: 48px;
-    animation: fadeDown 0.8s 0.6s both;
-  }
-  .hero-cta {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    animation: fadeDown 0.8s 0.8s both;
-  }
-  .btn {
-    font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em;
-    padding: 14px 28px; border-radius: 8px; cursor: pointer;
-    border: none; transition: all 0.3s; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary {
-    background: var(--accent); color: #070d1a; font-weight: 700;
-  }
-  .btn-primary:hover { box-shadow: 0 0 30px var(--accent), 0 0 60px rgba(0,200,255,0.3); transform: translateY(-2px); }
-  .btn-ghost {
-    background: transparent; color: var(--text); border: 1px solid var(--border2);
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--border); }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 64px;
+      background: rgba(7, 13, 26, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.4s, border-color 0.4s;
+    }
 
-  .hero-scroll { margin-top: 80px; display: flex; align-items: center; gap: 12px; animation: fadeDown 0.8s 1s both; }
-  .scroll-line { width: 40px; height: 1px; background: var(--text3); }
-  .scroll-text { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.15em; }
+    [data-theme="light"] nav {
+      background: rgba(240, 244, 251, 0.85);
+    }
 
-  .sec-label {
-    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em;
-    color: var(--accent); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .sec-label::before { content:''; display: block; width: 24px; height: 1px; background: var(--accent); }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-  .sec-title {
-    font-family: var(--head); font-weight: 800;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.05; letter-spacing: -0.02em;
-    margin-bottom: 16px; color: var(--text);
-  }
-  .sec-sub { color: var(--text2); font-size: 1rem; max-width: 680px; line-height: 1.7; margin-bottom: 48px; }
+    .nav-logo svg {
+      width: 32px;
+      height: 32px;
+    }
 
-  .obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-  .obj-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 28px;
-    position: relative; overflow: hidden;
-    transition: all 0.3s; cursor: default;
-  }
-  .obj-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--accent3) 0%, transparent 60%);
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .obj-card:hover { border-color: var(--border2); box-shadow: var(--glow), var(--shadow); transform: translateY(-4px); }
-  .obj-card:hover::before { opacity: 0.05; }
-  .obj-num { font-family: var(--head); font-size: 3rem; font-weight: 800; color: var(--accent); opacity: 0.3; line-height: 1; margin-bottom: 12px; }
-  .obj-title { font-family: var(--head); font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 8px; }
-  .obj-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.6; }
+    .nav-logo span {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
 
-  .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media(max-width: 700px) { .concept-grid { grid-template-columns: 1fr; } }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
 
-  .concept-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 32px;
-    transition: all 0.3s;
-  }
-  .concept-card:hover { border-color: var(--border2); box-shadow: var(--glow), var(--shadow); }
-  .concept-label { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; margin-bottom: 12px; }
-  .concept-title { font-family: var(--head); font-weight: 700; font-size: 1.4rem; margin-bottom: 16px; color: var(--text); }
-  .concept-body { font-size: 0.9rem; color: var(--text2); line-height: 1.75; }
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 4px 10px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
 
-  .deep-dive {
-    margin-top: 20px;
-    border: 1px solid rgba(0,200,255,0.2);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .deep-dive-toggle {
-    width: 100%; padding: 14px 20px;
-    background: rgba(0,200,255,0.06);
-    border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
-    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em;
-    color: var(--accent); text-align: left;
-    transition: background 0.2s;
-  }
-  .deep-dive-toggle:hover { background: rgba(0,200,255,0.12); }
-  .deep-dive-toggle .arrow { transition: transform 0.3s; font-size: 0.7rem; }
-  .deep-dive-toggle.open .arrow { transform: rotate(180deg); }
-  .deep-dive-content {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s;
-    background: var(--card2);
-  }
-  .deep-dive-content.open { max-height: 800px; }
-  .deep-dive-inner { padding: 20px; font-size: 0.87rem; color: var(--text2); line-height: 1.8; }
-  .deep-dive-inner h4 { font-family: var(--head); color: var(--text); font-size: 0.95rem; margin-bottom: 10px; margin-top: 16px; }
-  .deep-dive-inner h4:first-child { margin-top: 0; }
-  .deep-dive-inner ul { padding-left: 20px; }
-  .deep-dive-inner li { margin-bottom: 6px; }
-  .deep-dive-inner code { font-family: var(--mono); font-size: 0.8rem; background: var(--bg3); padding: 2px 6px; border-radius: 4px; color: var(--accent2); }
+    .theme-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border2);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      outline: none;
+    }
 
-  .code-block {
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 12px; overflow: hidden; margin-top: 24px;
-    box-shadow: var(--shadow);
-  }
-  .code-header {
-    display: flex; align-items: center; gap: 8px;
-    padding: 12px 16px; background: var(--bg3);
-    border-bottom: 1px solid var(--border);
-  }
-  .code-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .code-dot.r { background: #ff5f57; }
-  .code-dot.y { background: #ffbd2e; }
-  .code-dot.g { background: #28c840; }
-  .code-title { font-family: var(--mono); font-size: 0.7rem; color: var(--text3); margin-left: 6px; }
-  .code-body { padding: 20px; font-family: var(--mono); font-size: 0.82rem; line-height: 1.9; }
-  .code-line { display: flex; gap: 16px; }
-  .code-ln { color: var(--text3); min-width: 20px; user-select: none; }
-  .kw { color: #ff79c6; }
-  .prop { color: var(--accent); }
-  .val { color: var(--accent2); }
-  .cm { color: var(--text3); font-style: italic; }
+    .theme-btn:hover {
+      background: var(--border);
+      box-shadow: var(--glow);
+    }
 
-  .steps-container { display: flex; flex-direction: column; gap: 0; }
-  .step-item {
-    display: grid; grid-template-columns: 80px 1fr;
-    gap: 0 32px; position: relative;
-  }
-  .step-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 39px; top: 80px; bottom: -20px;
-    width: 2px;
-    background: linear-gradient(180deg, var(--border2), var(--border));
-  }
-  .step-num-wrap {
-    display: flex; flex-direction: column; align-items: center; padding-top: 16px;
-  }
-  .step-num {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--card); border: 2px solid var(--border2);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--head); font-weight: 800; font-size: 1.1rem; color: var(--accent);
-    transition: all 0.3s; flex-shrink: 0;
-    z-index: 1; position: relative;
-  }
-  .step-item:hover .step-num { background: var(--accent); color: #070d1a; border-color: var(--accent); box-shadow: var(--glow); }
-  .step-content {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px 28px;
-    margin-bottom: 24px; transition: all 0.3s;
-  }
-  .step-item:hover .step-content { border-color: var(--border2); box-shadow: var(--shadow); }
-  .step-title { font-family: var(--head); font-weight: 700; font-size: 1.25rem; color: var(--text); margin-bottom: 6px; }
-  .step-tagline { font-family: var(--mono); font-size: 0.72rem; color: var(--accent2); letter-spacing: 0.1em; margin-bottom: 16px; }
-  .step-list { list-style: none; }
-  .step-list li {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 0.9rem; color: var(--text2); padding: 6px 0;
-    line-height: 1.5;
-  }
-  .step-list li::before { content: '▸'; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .progress-bar {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      height: 3px;
+      background: var(--bg3);
+      transition: background 0.4s;
+    }
 
-  .pitfall-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .pitfall-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px;
-    border-left: 3px solid var(--danger);
-    transition: all 0.3s;
-  }
-  .pitfall-card:hover { box-shadow: 0 0 20px rgba(255,68,102,0.1), var(--shadow); border-color: rgba(255,68,102,0.3); }
-  .pitfall-symptom { font-family: var(--mono); font-size: 0.62rem; color: var(--danger); letter-spacing: 0.15em; margin-bottom: 8px; }
-  .pitfall-title { font-family: var(--head); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 14px; }
-  .pitfall-row { font-size: 0.85rem; margin-bottom: 8px; line-height: 1.5; }
-  .pitfall-row span:first-child { color: var(--text3); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; display: block; margin-bottom: 2px; }
-  .pitfall-row.fix span:first-child { color: var(--success); }
-  .pitfall-row .val { color: var(--text2); }
-  .pitfall-row.fix .val { color: var(--accent2); }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
+      width: 0%;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px var(--accent);
+    }
 
-  .quiz-section { margin-top: 32px; }
-  .quiz-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 32px; margin-bottom: 20px;
-    transition: all 0.3s;
-  }
-  .quiz-num { font-family: var(--mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 12px; }
-  .quiz-q { font-family: var(--head); font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 24px; line-height: 1.4; }
-  .quiz-opts { display: flex; flex-direction: column; gap: 10px; }
-  .quiz-opt {
-    padding: 14px 18px; border-radius: 10px;
-    border: 1px solid var(--border); background: var(--bg3);
-    cursor: pointer; font-size: 0.9rem; color: var(--text2);
-    transition: all 0.25s; display: flex; align-items: center; gap: 12px;
-    text-align: left;
-  }
-  .quiz-opt:hover:not(.disabled) { border-color: var(--border2); color: var(--text); background: var(--card2); }
-  .quiz-opt .opt-letter { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); min-width: 20px; }
-  .quiz-opt.correct { border-color: var(--success); background: rgba(0,229,192,0.08); color: var(--text); }
-  .quiz-opt.wrong { border-color: var(--danger); background: rgba(255,68,102,0.08); color: var(--text2); }
-  .quiz-opt.disabled { cursor: default; }
-  .quiz-feedback {
-    margin-top: 16px; padding: 14px 18px; border-radius: 10px;
-    font-size: 0.88rem; line-height: 1.6;
-    display: none;
-  }
-  .quiz-feedback.show { display: block; }
-  .quiz-feedback.correct { background: rgba(0,229,192,0.08); border: 1px solid var(--success); color: var(--accent2); }
-  .quiz-feedback.wrong { background: rgba(255,68,102,0.08); border: 1px solid var(--danger); color: var(--danger); }
+    main {
+      position: relative;
+      z-index: 1;
+    }
 
-  .challenge-card {
-    background: var(--card); border: 1px solid var(--border2);
-    border-radius: 20px; padding: 40px; position: relative; overflow: hidden;
-  }
-  .challenge-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
-  }
-  .challenge-badges { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
-  .badge { font-family: var(--mono); font-size: 0.65rem; padding: 5px 12px; border-radius: 20px; letter-spacing: 0.1em; }
-  .badge-time { background: rgba(0,200,255,0.1); color: var(--accent); border: 1px solid var(--border2); }
-  .badge-level { background: rgba(0,229,192,0.1); color: var(--accent2); border: 1px solid rgba(0,229,192,0.3); }
-  .challenge-task-label { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.15em; margin-bottom: 10px; }
-  .challenge-task { font-family: var(--head); font-weight: 700; font-size: 1.4rem; color: var(--text); margin-bottom: 28px; line-height: 1.3; }
-  .success-box {
-    background: rgba(0,229,192,0.06); border: 1px solid rgba(0,229,192,0.2);
-    border-radius: 12px; padding: 20px 24px; margin-bottom: 28px;
-  }
-  .success-label { font-family: var(--mono); font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.15em; margin-bottom: 8px; }
-  .success-text { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
-  .hints-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-  .hint-card {
-    background: var(--bg3); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px; transition: all 0.3s;
-  }
-  .hint-card:hover { border-color: var(--border2); }
-  .hint-num { font-family: var(--head); font-weight: 800; font-size: 1.8rem; color: var(--accent); opacity: 0.3; line-height: 1; margin-bottom: 8px; }
-  .hint-text { font-size: 0.87rem; color: var(--text2); line-height: 1.6; }
+    .section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 32px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
 
-  .resource-list { display: flex; flex-direction: column; gap: 16px; }
-  .resource-item {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 24px 28px;
-    display: flex; align-items: center; gap: 20px;
-    transition: all 0.3s;
-  }
-  .resource-item:hover { border-color: var(--border2); box-shadow: var(--shadow); transform: translateX(4px); }
-  .resource-num { font-family: var(--head); font-weight: 800; font-size: 2rem; color: var(--accent); opacity: 0.25; min-width: 48px; }
-  .resource-info h4 { font-family: var(--head); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 4px; }
-  .resource-info p { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  .quiz-score-bar {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px 28px;
-    display: flex; align-items: center; gap: 20px;
-    margin-bottom: 24px;
-  }
-  .score-label { font-family: var(--mono); font-size: 0.75rem; color: var(--text2); }
-  .score-val { font-family: var(--head); font-size: 1.5rem; font-weight: 800; color: var(--accent); }
-  .score-track { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
-  .score-fill { height: 100%; background: linear-gradient(90deg, var(--accent3), var(--accent2)); border-radius: 3px; width: 0%; transition: width 0.6s ease; }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 100px 32px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-  .section-nav {
-    position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
-    z-index: 50; display: flex; flex-direction: column; gap: 8px;
-  }
-  @media(max-width:600px){.section-nav{display:none}}
-  .nav-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--border2); border: 1px solid var(--border2);
-    cursor: pointer; transition: all 0.3s;
-  }
-  .nav-dot.active { background: var(--accent); box-shadow: 0 0 10px var(--accent); width: 8px; height: 24px; border-radius: 4px; }
-  .nav-dot:hover { background: var(--accent); }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      padding: 6px 14px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      margin-bottom: 32px;
+      animation: fadeDown 0.8s 0.2s both;
+    }
 
-  .demo-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 20px; padding: 40px; text-align: center; position: relative; overflow: hidden;
-  }
-  .demo-card::after {
-    content: 'LIVE';
-    position: absolute; top: 20px; right: 20px;
-    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
-    color: var(--danger); padding: 4px 10px;
-    border: 1px solid var(--danger); border-radius: 4px;
-    animation: blink 1.5s infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .demo-big { font-family: var(--head); font-weight: 800; font-size: clamp(4rem, 12vw, 8rem); color: var(--text); letter-spacing: -0.03em; line-height: 1; margin-bottom: 16px; }
-  .demo-sub { font-size: 1rem; color: var(--text2); margin-bottom: 36px; }
-  .demo-video-wrap {
-    margin-top: 28px;
-    border: 1px solid var(--border2);
-    border-radius: 20px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.24);
-  }
-  .demo-video-wrap video {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 72vh;
-    background: #050b14;
-  }
-  .demo-video-caption {
-    padding: 14px 18px;
-    font-size: 0.9rem;
-    color: var(--text2);
-    border-top: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
-  }
-  .prereq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; }
-  @media(max-width:600px){.prereq-grid{grid-template-columns:1fr}}
-  .prereq-item { background: var(--bg3); border-radius: 10px; padding: 16px 18px; }
-  .prereq-key { font-family: var(--mono); font-size: 0.6rem; color: var(--text3); letter-spacing: 0.15em; margin-bottom: 6px; }
-  .prereq-val { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); font-weight: 700; }
+    .hero h1 {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+      animation: fadeDown 0.8s 0.4s both;
+    }
 
-  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
-  .divider { width: 100%; height: 1px; background: var(--border); margin: 0; }
+    .hero h1 span {
+      color: var(--accent);
+    }
 
-  .scan-line {
-    position: absolute; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    animation: scan 4s linear infinite; opacity: 0.4;
-    pointer-events: none;
-  }
-  @keyframes scan { from{top:100px} to{top:100vh} }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text2);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      animation: fadeDown 0.8s 0.6s both;
+    }
 
-  @media(max-width:700px) {
-    .step-item { grid-template-columns: 48px 1fr; gap: 0 16px; }
-    .section { padding: 100px 20px 60px; }
-    .hero { padding: 100px 20px 60px; }
-    .challenge-card { padding: 28px 20px; }
-  }
-</style>
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeDown 0.8s 0.8s both;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      padding: 14px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #070d1a;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 30px var(--accent), 0 0 60px rgba(0, 200, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--border);
+    }
+
+    .hero-scroll {
+      margin-top: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeDown 0.8s 1s both;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--text3);
+    }
+
+    .scroll-text {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+    }
+
+    .sec-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sec-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .sec-title {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .sec-sub {
+      color: var(--text2);
+      font-size: 1rem;
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .obj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .obj-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .obj-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent3) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .obj-card:hover {
+      border-color: var(--border2);
+      box-shadow: var(--glow), var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .obj-card:hover::before {
+      opacity: 0.05;
+    }
+
+    .obj-num {
+      font-family: var(--head);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .obj-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .obj-desc {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media(max-width: 700px) {
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .concept-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .concept-card:hover {
+      border-color: var(--border2);
+      box-shadow: var(--glow), var(--shadow);
+    }
+
+    .concept-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+
+    .concept-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .concept-body {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.75;
+    }
+
+    .deep-dive {
+      margin-top: 20px;
+      border: 1px solid rgba(0, 200, 255, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .deep-dive-toggle {
+      width: 100%;
+      padding: 14px 20px;
+      background: rgba(0, 200, 255, 0.06);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .deep-dive-toggle:hover {
+      background: rgba(0, 200, 255, 0.12);
+    }
+
+    .deep-dive-toggle .arrow {
+      transition: transform 0.3s;
+      font-size: 0.7rem;
+    }
+
+    .deep-dive-toggle.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .deep-dive-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      background: var(--card2);
+    }
+
+    .deep-dive-content.open {
+      max-height: 800px;
+    }
+
+    .deep-dive-inner {
+      padding: 20px;
+      font-size: 0.87rem;
+      color: var(--text2);
+      line-height: 1.8;
+    }
+
+    .deep-dive-inner h4 {
+      font-family: var(--head);
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      margin-top: 16px;
+    }
+
+    .deep-dive-inner h4:first-child {
+      margin-top: 0;
+    }
+
+    .deep-dive-inner ul {
+      padding-left: 20px;
+    }
+
+    .deep-dive-inner li {
+      margin-bottom: 6px;
+    }
+
+    .deep-dive-inner code {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      background: var(--bg3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent2);
+    }
+
+    .code-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .code-dot.r {
+      background: #ff5f57;
+    }
+
+    .code-dot.y {
+      background: #ffbd2e;
+    }
+
+    .code-dot.g {
+      background: #28c840;
+    }
+
+    .code-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text3);
+      margin-left: 6px;
+    }
+
+    .code-body {
+      padding: 20px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+
+    .code-line {
+      display: flex;
+      gap: 16px;
+    }
+
+    .code-ln {
+      color: var(--text3);
+      min-width: 20px;
+      user-select: none;
+    }
+
+    .kw {
+      color: #ff79c6;
+    }
+
+    .prop {
+      color: var(--accent);
+    }
+
+    .val {
+      color: var(--accent2);
+    }
+
+    .cm {
+      color: var(--text3);
+      font-style: italic;
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 32px;
+      position: relative;
+    }
+
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 80px;
+      bottom: -20px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--border2), var(--border));
+    }
+
+    .step-num-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 16px;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent);
+      transition: all 0.3s;
+      flex-shrink: 0;
+      z-index: 1;
+      position: relative;
+    }
+
+    .step-item:hover .step-num {
+      background: var(--accent);
+      color: #070d1a;
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+
+    .step-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      transition: all 0.3s;
+    }
+
+    .step-item:hover .step-content {
+      border-color: var(--border2);
+      box-shadow: var(--shadow);
+    }
+
+    .step-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .step-tagline {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .step-list {
+      list-style: none;
+    }
+
+    .step-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text2);
+      padding: 6px 0;
+      line-height: 1.5;
+    }
+
+    .step-list li::before {
+      content: '▸';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .pitfall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .pitfall-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      border-left: 3px solid var(--danger);
+      transition: all 0.3s;
+    }
+
+    .pitfall-card:hover {
+      box-shadow: 0 0 20px rgba(255, 68, 102, 0.1), var(--shadow);
+      border-color: rgba(255, 68, 102, 0.3);
+    }
+
+    .pitfall-symptom {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--danger);
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    .pitfall-title {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .pitfall-row {
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .pitfall-row span:first-child {
+      color: var(--text3);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .pitfall-row.fix span:first-child {
+      color: var(--success);
+    }
+
+    .pitfall-row .val {
+      color: var(--text2);
+    }
+
+    .pitfall-row.fix .val {
+      color: var(--accent2);
+    }
+
+    .quiz-section {
+      margin-top: 32px;
+    }
+
+    .quiz-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+
+    .quiz-num {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+
+    .quiz-q {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .quiz-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-opt {
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text2);
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .quiz-opt:hover:not(.disabled) {
+      border-color: var(--border2);
+      color: var(--text);
+      background: var(--card2);
+    }
+
+    .quiz-opt .opt-letter {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      min-width: 20px;
+    }
+
+    .quiz-opt.correct {
+      border-color: var(--success);
+      background: rgba(0, 229, 192, 0.08);
+      color: var(--text);
+    }
+
+    .quiz-opt.wrong {
+      border-color: var(--danger);
+      background: rgba(255, 68, 102, 0.08);
+      color: var(--text2);
+    }
+
+    .quiz-opt.disabled {
+      cursor: default;
+    }
+
+    .quiz-feedback {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.correct {
+      background: rgba(0, 229, 192, 0.08);
+      border: 1px solid var(--success);
+      color: var(--accent2);
+    }
+
+    .quiz-feedback.wrong {
+      background: rgba(255, 68, 102, 0.08);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+
+    .challenge-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .challenge-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
+    }
+
+    .challenge-badges {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+    }
+
+    .badge-time {
+      background: rgba(0, 200, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid var(--border2);
+    }
+
+    .badge-level {
+      background: rgba(0, 229, 192, 0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(0, 229, 192, 0.3);
+    }
+
+    .challenge-task-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+
+    .challenge-task {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--text);
+      margin-bottom: 28px;
+      line-height: 1.3;
+    }
+
+    .success-box {
+      background: rgba(0, 229, 192, 0.06);
+      border: 1px solid rgba(0, 229, 192, 0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+
+    .success-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    .success-text {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .hints-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .hint-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s;
+    }
+
+    .hint-card:hover {
+      border-color: var(--border2);
+    }
+
+    .hint-num {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hint-text {
+      font-size: 0.87rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .resource-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .resource-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s;
+    }
+
+    .resource-item:hover {
+      border-color: var(--border2);
+      box-shadow: var(--shadow);
+      transform: translateX(4px);
+    }
+
+    .resource-num {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--accent);
+      opacity: 0.25;
+      min-width: 48px;
+    }
+
+    .resource-info h4 {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .resource-info p {
+      font-size: 0.85rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .quiz-score-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .score-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text2);
+    }
+
+    .score-val {
+      font-family: var(--head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .score-track {
+      flex: 1;
+      height: 6px;
+      background: var(--bg3);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent3), var(--accent2));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.6s ease;
+    }
+
+    .section-nav {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media(max-width:600px) {
+      .section-nav {
+        display: none
+      }
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border2);
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nav-dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      width: 8px;
+      height: 24px;
+      border-radius: 4px;
+    }
+
+    .nav-dot:hover {
+      background: var(--accent);
+    }
+
+    .demo-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-card::after {
+      content: 'LIVE';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--danger);
+      padding: 4px 10px;
+      border: 1px solid var(--danger);
+      border-radius: 4px;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    .demo-big {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: clamp(4rem, 12vw, 8rem);
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .demo-sub {
+      font-size: 1rem;
+      color: var(--text2);
+      margin-bottom: 36px;
+    }
+
+    .demo-video-wrap {
+      margin-top: 28px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .demo-video-wrap video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 72vh;
+      background: #050b14;
+    }
+
+    .demo-video-caption {
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: var(--text2);
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .prereq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+
+    @media(max-width:600px) {
+      .prereq-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .prereq-item {
+      background: var(--bg3);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .prereq-key {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+    }
+
+    .prereq-val {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    .scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: scan 4s linear infinite;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      from {
+        top: 100px
+      }
+
+      to {
+        top: 100vh
+      }
+    }
+
+    @media(max-width:700px) {
+      .step-item {
+        grid-template-columns: 48px 1fr;
+        gap: 0 16px;
+      }
+
+      .section {
+        padding: 100px 20px 60px;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .challenge-card {
+        padding: 28px 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
 
-<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-
-<nav>
-  <div class="nav-logo">
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="var(--accent)" stroke-width="1.5"/>
-      <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" stroke="var(--accent)" stroke-width="1"/>
-      <circle cx="16" cy="15" r="2.5" fill="var(--accent)"/>
-    </svg>
-    <span>ACM/CYBERTECH</span>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
   </div>
-  <div class="nav-right">
-    <span class="nav-badge">MODULE 01 · CTF SERIES</span>
-    <button class="theme-btn" id="themeBtn" title="Toggle theme">☀️</button>
+
+  <nav>
+    <div class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="var(--accent)" stroke-width="1.5" />
+        <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" stroke="var(--accent)" stroke-width="1" />
+        <circle cx="16" cy="15" r="2.5" fill="var(--accent)" />
+      </svg>
+      <span>ACM/CYBERTECH</span>
+    </div>
+    <div class="nav-right">
+      <span class="nav-badge">MODULE 01 · CTF SERIES</span>
+      <button class="theme-btn" id="themeBtn" title="Toggle theme">☀️</button>
+    </div>
+  </nav>
+
+  <div class="section-nav" id="sectionNav">
+    <div class="nav-dot active" data-target="hero"></div>
+    <div class="nav-dot" data-target="objectives"></div>
+    <div class="nav-dot" data-target="concepts"></div>
+    <div class="nav-dot" data-target="howitworks"></div>
+    <div class="nav-dot" data-target="demo"></div>
+    <div class="nav-dot" data-target="pitfalls"></div>
+    <div class="nav-dot" data-target="quiz"></div>
+    <div class="nav-dot" data-target="challenge"></div>
+    <div class="nav-dot" data-target="resources"></div>
   </div>
-</nav>
 
-<div class="section-nav" id="sectionNav">
-  <div class="nav-dot active" data-target="hero"></div>
-  <div class="nav-dot" data-target="objectives"></div>
-  <div class="nav-dot" data-target="concepts"></div>
-  <div class="nav-dot" data-target="howitworks"></div>
-  <div class="nav-dot" data-target="demo"></div>
-  <div class="nav-dot" data-target="pitfalls"></div>
-  <div class="nav-dot" data-target="quiz"></div>
-  <div class="nav-dot" data-target="challenge"></div>
-  <div class="nav-dot" data-target="resources"></div>
-</div>
-
-<main>
-  <section id="hero" style="position:relative; overflow:hidden;">
-    <div class="scan-line"></div>
-    <div class="hero">
-      <div class="hero-tag">SPRING 2026 · CTF WORKSHOP SERIES · PSU UNIVERSITY</div>
-      <h1>Recon &amp;<br><span>Web Proxies</span></h1>
-      <p class="hero-sub">Before any hacker attacks a system, they first gather information quietly. Using tools like web proxies, they can see and manipulate every request your browser sends without you noticing.</p>
-      <div class="hero-cta">
-        <a href="#objectives" class="btn btn-primary">▶ Start Workshop</a>
-        <a href="#challenge" class="btn btn-ghost">Skip to Challenge →</a>
-      </div>
-      <div class="hero-scroll"><div class="scroll-line"></div><span class="scroll-text">SCROLL TO BEGIN</span></div>
-    </div>
-  </section>
-
-  <section id="objectives" class="section">
-    <div class="sec-label">SECTION 02 · LEARNING OBJECTIVES</div>
-    <h2 class="sec-title">What You'll Learn</h2>
-    <p class="sec-sub">By the end of this workshop, you'll be able to perform reconnaissance, intercept live traffic, and manipulate HTTP requests like a pro.</p>
-    <div class="obj-grid">
-      <div class="obj-card">
-        <div class="obj-num">01</div>
-        <div class="obj-title">Identify</div>
-        <div class="obj-desc">Recognize reconnaissance techniques used in web security and understand how attackers map a target before touching it.</div>
-      </div>
-      <div class="obj-card">
-        <div class="obj-num">02</div>
-        <div class="obj-title">Intercept</div>
-        <div class="obj-desc">Use Burp Suite as a web proxy to capture and analyze live HTTP requests flowing between browser and server.</div>
-      </div>
-      <div class="obj-card">
-        <div class="obj-num">03</div>
-        <div class="obj-title">Modify</div>
-        <div class="obj-desc">Tamper with intercepted requests to test web application behavior and uncover hidden vulnerabilities.</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="concepts" class="section">
-    <div class="sec-label">SECTION 03 · CORE CONCEPTS</div>
-    <h2 class="sec-title">Core Concepts</h2>
-    <p class="sec-sub">Two foundational ideas underpin this entire workshop. Understand these deeply before moving on.</p>
-
-    <div class="concept-grid">
-      <div class="concept-card">
-        <div class="concept-label">CONCEPT A</div>
-        <div class="concept-title">Reconnaissance (Recon)</div>
-        <div class="concept-body">The process of gathering information about a target before launching an attack. In web security, this includes identifying endpoints, parameters, technologies, and hidden functionalities.</div>
-        <div class="deep-dive">
-          <button class="deep-dive-toggle" onclick="toggleDive(this)">
-            <span>⚡ Deeper Explanation</span><span class="arrow">▼</span>
-          </button>
-          <div class="deep-dive-content">
-            <div class="deep-dive-inner">
-              <h4>What exactly are we looking for?</h4>
-              <p>During recon, a security tester tries to build a complete picture of the target without triggering alarms. Think of it like a burglar walking past a house multiple times before deciding how to enter.</p>
-              <ul>
-                <li><strong>Endpoints</strong> - URLs the app responds to (e.g., <code>/api/users</code>, <code>/admin/panel</code>)</li>
-                <li><strong>Parameters</strong> - Query strings or POST fields (<code>?id=42</code>, <code>username=admin</code>)</li>
-                <li><strong>Technologies</strong> - What framework, server, or CMS is running (revealed by headers, cookies, HTML comments)</li>
-                <li><strong>Hidden pages</strong> - Directories not linked publicly, often found via fuzzing tools like <code>gobuster</code> or <code>ffuf</code></li>
-              </ul>
-              <h4>Passive vs Active Recon</h4>
-              <p><strong>Passive recon</strong> involves looking at publicly available info like Google, Shodan, or WHOIS without ever touching the target server.<br><strong>Active recon</strong> means directly probing the target, which generates logs and can be detected.</p>
-            </div>
-          </div>
+  <main>
+    <section id="hero" style="position:relative; overflow:hidden;">
+      <div class="scan-line"></div>
+      <div class="hero">
+        <div class="hero-tag">SPRING 2026 · CTF WORKSHOP SERIES · PSU UNIVERSITY</div>
+        <h1>Recon &amp;<br><span>Web Proxies</span></h1>
+        <p class="hero-sub">Before any hacker attacks a system, they first gather information quietly. Using tools like
+          web proxies, they can see and manipulate every request your browser sends without you noticing.</p>
+        <div class="hero-cta">
+          <a href="#objectives" class="btn btn-primary">▶ Start Workshop</a>
+          <a href="#challenge" class="btn btn-ghost">Skip to Challenge →</a>
+        </div>
+        <div class="hero-scroll">
+          <div class="scroll-line"></div><span class="scroll-text">SCROLL TO BEGIN</span>
         </div>
       </div>
+    </section>
 
-      <div class="concept-card">
-        <div class="concept-label">CONCEPT B</div>
-        <div class="concept-title">Web Proxy</div>
-        <div class="concept-body">A middleman between the browser and the server that lets attackers or testers intercept, inspect, and modify HTTP/HTTPS requests and responses. Burp Suite is the industry-standard tool.</div>
-        <div class="deep-dive">
-          <button class="deep-dive-toggle" onclick="toggleDive(this)">
-            <span>⚡ Deeper Explanation</span><span class="arrow">▼</span>
-          </button>
-          <div class="deep-dive-content">
-            <div class="deep-dive-inner">
-              <h4>How does a proxy sit in the middle?</h4>
-              <p>Normally: <code>Browser → Server</code>. With a proxy: <code>Browser → Burp Suite → Server</code>. The browser is configured to send all traffic through Burp running on <code>127.0.0.1:8080</code>.</p>
-              <h4>What can you actually do with it?</h4>
-              <ul>
-                <li>Read every HTTP request and response in plain text</li>
-                <li>Edit headers, cookies, POST body, URL parameters before forwarding</li>
-                <li>Replay requests as many times as you want</li>
-                <li>Automate fuzzing via the Intruder tool</li>
-                <li>Scan for vulnerabilities with the active scanner (Burp Pro)</li>
-              </ul>
-              <h4>What about HTTPS?</h4>
-              <p>Burp Suite acts as a <strong>SSL/TLS terminator</strong> - it decrypts the traffic, lets you read or edit it, then re-encrypts before forwarding. This requires installing Burp's CA certificate in your browser so it trusts Burp as a valid authority.</p>
-            </div>
-          </div>
+    <section id="objectives" class="section">
+      <div class="sec-label">SECTION 02 · LEARNING OBJECTIVES</div>
+      <h2 class="sec-title">What You'll Learn</h2>
+      <p class="sec-sub">By the end of this workshop, you'll be able to perform reconnaissance, intercept live traffic,
+        and manipulate HTTP requests like a pro.</p>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <div class="obj-num">01</div>
+          <div class="obj-title">Identify</div>
+          <div class="obj-desc">Recognize reconnaissance techniques used in web security and understand how attackers
+            map a target before touching it.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">02</div>
+          <div class="obj-title">Intercept</div>
+          <div class="obj-desc">Use Burp Suite as a web proxy to capture and analyze live HTTP requests flowing between
+            browser and server.</div>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">03</div>
+          <div class="obj-title">Modify</div>
+          <div class="obj-desc">Tamper with intercepted requests to test web application behavior and uncover hidden
+            vulnerabilities.</div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="code-block">
-      <div class="code-header">
-        <div class="code-dot r"></div><div class="code-dot y"></div><div class="code-dot g"></div>
-        <span class="code-title">Burp Suite - Proxy -> Intercept · Captured HTTP Request</span>
-      </div>
-      <div class="code-body">
-        <div class="code-line"><span class="code-ln">1</span><span><span class="kw">GET</span> / <span class="val">HTTP/1.1</span></span></div>
-        <div class="code-line"><span class="code-ln">2</span><span><span class="prop">Host:</span> <span class="val">example.com</span></span></div>
-        <div class="code-line"><span class="code-ln">3</span><span><span class="prop">User-Agent:</span> <span class="val">Mozilla/5.0 (X11; Linux x86_64)</span></span></div>
-        <div class="code-line"><span class="code-ln">4</span><span><span class="prop">Accept:</span> <span class="val">text/html,application/xhtml+xml</span></span></div>
-        <div class="code-line"><span class="code-ln">5</span><span><span class="prop">Accept-Language:</span> <span class="val">en-US,en;q=0.5</span></span></div>
-        <div class="code-line"><span class="code-ln">6</span><span><span class="prop">Accept-Encoding:</span> <span class="val">gzip, deflate, br</span></span></div>
-        <div class="code-line"><span class="code-ln">7</span><span><span class="prop">Connection:</span> <span class="val">keep-alive</span></span></div>
-        <div class="code-line"><span class="code-ln">8</span><span><span class="prop">Upgrade-Insecure-Requests:</span> <span class="val">1</span></span></div>
-        <div class="code-line"><span class="code-ln">9</span><span><span class="cm">← This is what you see and can edit in Burp before forwarding</span></span></div>
-      </div>
-    </div>
-  </section>
+    <div class="divider"></div>
 
-  <div class="divider"></div>
+    <section id="concepts" class="section">
+      <div class="sec-label">SECTION 03 · CORE CONCEPTS</div>
+      <h2 class="sec-title">Core Concepts</h2>
+      <p class="sec-sub">Two foundational ideas underpin this entire workshop. Understand these deeply before moving on.
+      </p>
 
-  <section id="howitworks" class="section">
-    <div class="sec-label">SECTION 04 · HOW IT WORKS</div>
-    <h2 class="sec-title">The 5-Step Process</h2>
-    <p class="sec-sub">Every web proxy engagement follows this repeatable workflow. Master it and you'll apply it to any target.</p>
-
-    <div class="steps-container">
-      <div class="step-item">
-        <div class="step-num-wrap"><div class="step-num">01</div></div>
-        <div class="step-content">
-          <div class="step-title">Perform Reconnaissance</div>
-          <div class="step-tagline">MAP THE TARGET BEFORE YOU TOUCH IT</div>
-          <ul class="step-list">
-            <li>Identify website structure - page hierarchy, navigation, forms</li>
-            <li>Discover endpoints - URLs the app exposes (APIs, admin paths)</li>
-            <li>Collect information - tech stack, server headers, cookies</li>
-          </ul>
-          <div class="deep-dive" style="margin-top:16px">
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="concept-label">CONCEPT A</div>
+          <div class="concept-title">Reconnaissance (Recon)</div>
+          <div class="concept-body">The process of gathering information about a target before launching an attack. In
+            web security, this includes identifying endpoints, parameters, technologies, and hidden functionalities.
+          </div>
+          <div class="deep-dive">
             <button class="deep-dive-toggle" onclick="toggleDive(this)">
-              <span>⚡ Tools for Recon</span><span class="arrow">▼</span>
+              <span>⚡ Deeper Explanation</span><span class="arrow">▼</span>
             </button>
             <div class="deep-dive-content">
               <div class="deep-dive-inner">
-                <h4>Browser DevTools</h4>
-                <p>Press <code>F12</code> -> Network tab. Every request and response is logged here. Look at headers for server software (<code>Server: nginx/1.18</code>), response codes, and cookies.</p>
-                <h4>Gobuster / FFUF</h4>
-                <p>These tools brute-force directories using wordlists. Example: <code>gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt</code></p>
-                <h4>Wappalyzer</h4>
-                <p>A browser extension that fingerprints the tech stack automatically - reveals CMS, frameworks, analytics tools.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num-wrap"><div class="step-num">02</div></div>
-        <div class="step-content">
-          <div class="step-title">Configure Web Proxy</div>
-          <div class="step-tagline">POINT YOUR BROWSER AT BURP</div>
-          <ul class="step-list">
-            <li>Install Burp Suite Community Edition (free) from portswigger.net</li>
-            <li>Set browser proxy to <strong>127.0.0.1:8080</strong> (Manual HTTP proxy)</li>
-            <li>Enable interception - navigate to Proxy -> Intercept -> Intercept is ON</li>
-          </ul>
-          <div class="deep-dive" style="margin-top:16px">
-            <button class="deep-dive-toggle" onclick="toggleDive(this)">
-              <span>⚡ Step-by-step Burp Setup</span><span class="arrow">▼</span>
-            </button>
-            <div class="deep-dive-content">
-              <div class="deep-dive-inner">
-                <h4>In Firefox:</h4>
+                <h4>What exactly are we looking for?</h4>
+                <p>During recon, a security tester tries to build a complete picture of the target without triggering
+                  alarms. Think of it like a burglar walking past a house multiple times before deciding how to enter.
+                </p>
                 <ul>
-                  <li>Settings -> Network Settings -> Manual proxy configuration</li>
-                  <li>HTTP Proxy: <code>127.0.0.1</code>, Port: <code>8080</code></li>
-                  <li>Check "Use this proxy for all protocols"</li>
+                  <li><strong>Endpoints</strong> - URLs the app responds to (e.g., <code>/api/users</code>,
+                    <code>/admin/panel</code>)</li>
+                  <li><strong>Parameters</strong> - Query strings or POST fields (<code>?id=42</code>,
+                    <code>username=admin</code>)</li>
+                  <li><strong>Technologies</strong> - What framework, server, or CMS is running (revealed by headers,
+                    cookies, HTML comments)</li>
+                  <li><strong>Hidden pages</strong> - Directories not linked publicly, often found via fuzzing tools
+                    like <code>gobuster</code> or <code>ffuf</code></li>
                 </ul>
-                <h4>Install Burp CA Certificate (for HTTPS):</h4>
-                <ul>
-                  <li>With Burp running, browse to <code>http://burp</code> in Firefox</li>
-                  <li>Click "CA Certificate" to download it</li>
-                  <li>Firefox -> Settings -> View Certificates -> Import</li>
-                  <li>Check "Trust this CA to identify websites"</li>
-                </ul>
-                <h4>Tip: Use Burp's built-in browser</h4>
-                <p>Burp Pro/Community ships with a Chromium browser that's pre-configured. Go to <code>Proxy -> Open Browser</code> - no manual setup needed.</p>
+                <h4>Passive vs Active Recon</h4>
+                <p><strong>Passive recon</strong> involves looking at publicly available info like Google, Shodan, or
+                  WHOIS without ever touching the target server.<br><strong>Active recon</strong> means directly probing
+                  the target, which generates logs and can be detected.</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="step-item">
-        <div class="step-num-wrap"><div class="step-num">03</div></div>
-        <div class="step-content">
-          <div class="step-title">Intercept Requests</div>
-          <div class="step-tagline">SEE EXACTLY WHAT THE BROWSER SENDS</div>
-          <ul class="step-list">
-            <li>Capture HTTP requests as they leave the browser</li>
-            <li>View all headers - User-Agent, Cookie, Referer, Authorization</li>
-            <li>View parameters - URL query strings and POST body data</li>
-          </ul>
-          <div class="deep-dive" style="margin-top:16px">
+        <div class="concept-card">
+          <div class="concept-label">CONCEPT B</div>
+          <div class="concept-title">Web Proxy</div>
+          <div class="concept-body">A middleman between the browser and the server that lets attackers or testers
+            intercept, inspect, and modify HTTP/HTTPS requests and responses. Burp Suite is the industry-standard tool.
+          </div>
+          <div class="deep-dive">
             <button class="deep-dive-toggle" onclick="toggleDive(this)">
-              <span>⚡ What am I looking at?</span><span class="arrow">▼</span>
+              <span>⚡ Deeper Explanation</span><span class="arrow">▼</span>
             </button>
             <div class="deep-dive-content">
               <div class="deep-dive-inner">
-                <h4>HTTP Request Structure</h4>
+                <h4>How does a proxy sit in the middle?</h4>
+                <p>Normally: <code>Browser → Server</code>. With a proxy: <code>Browser → Burp Suite → Server</code>.
+                  The browser is configured to send all traffic through Burp running on <code>127.0.0.1:8080</code>.</p>
+                <h4>What can you actually do with it?</h4>
                 <ul>
-                  <li><strong>Request line</strong>: <code>POST /login HTTP/1.1</code> - method, path, version</li>
-                  <li><strong>Headers</strong>: Key-value pairs like <code>Cookie: session=abc123</code></li>
-                  <li><strong>Body</strong>: For POST requests, the actual form data: <code>username=admin&amp;password=1234</code></li>
+                  <li>Read every HTTP request and response in plain text</li>
+                  <li>Edit headers, cookies, POST body, URL parameters before forwarding</li>
+                  <li>Replay requests as many times as you want</li>
+                  <li>Automate fuzzing via the Intruder tool</li>
+                  <li>Scan for vulnerabilities with the active scanner (Burp Pro)</li>
                 </ul>
-                <h4>Key headers to watch</h4>
-                <ul>
-                  <li><code>Cookie</code> - session tokens; tampering here can hijack sessions</li>
-                  <li><code>Authorization</code> - Bearer tokens for APIs</li>
-                  <li><code>X-Forwarded-For</code> - sometimes used for IP-based access control</li>
-                  <li><code>Referer</code> - some apps use this to verify you came from a legitimate page</li>
-                </ul>
+                <h4>What about HTTPS?</h4>
+                <p>Burp Suite acts as a <strong>SSL/TLS terminator</strong> - it decrypts the traffic, lets you read or
+                  edit it, then re-encrypts before forwarding. This requires installing Burp's CA certificate in your
+                  browser so it trusts Burp as a valid authority.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="step-item">
-        <div class="step-num-wrap"><div class="step-num">04</div></div>
-        <div class="step-content">
-          <div class="step-title">Modify Requests</div>
-          <div class="step-tagline">CHANGE THE REQUEST BEFORE THE SERVER SEES IT</div>
-          <ul class="step-list">
-            <li>Edit any parameter - change <code>role=user</code> to <code>role=admin</code></li>
-            <li>Replay the modified request using Burp's Repeater tab</li>
-          </ul>
-          <div class="deep-dive" style="margin-top:16px">
-            <button class="deep-dive-toggle" onclick="toggleDive(this)">
-              <span>⚡ Real-world modification examples</span><span class="arrow">▼</span>
-            </button>
-            <div class="deep-dive-content">
-              <div class="deep-dive-inner">
-                <h4>Parameter tampering</h4>
-                <p>Change <code>?id=5</code> to <code>?id=1</code> to access another user's data (IDOR vulnerability). Change <code>price=99.99</code> to <code>price=0.01</code> in a shopping cart request.</p>
-                <h4>Cookie manipulation</h4>
-                <p>If a cookie contains <code>isAdmin=false</code>, change it to <code>isAdmin=true</code>. Many poorly built apps trust cookie values directly.</p>
-                <h4>Header injection</h4>
-                <p>Add <code>X-Forwarded-For: 127.0.0.1</code> to trick an app into thinking you're on localhost.</p>
-                <h4>Burp Repeater</h4>
-                <p>Right-click any request -> Send to Repeater (<code>Ctrl+R</code>). Now you can edit and resend it endlessly without re-navigating in the browser.</p>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dot r"></div>
+          <div class="code-dot y"></div>
+          <div class="code-dot g"></div>
+          <span class="code-title">Burp Suite - Proxy -> Intercept · Captured HTTP Request</span>
+        </div>
+        <div class="code-body">
+          <div class="code-line"><span class="code-ln">1</span><span><span class="kw">GET</span> / <span
+                class="val">HTTP/1.1</span></span></div>
+          <div class="code-line"><span class="code-ln">2</span><span><span class="prop">Host:</span> <span
+                class="val">example.com</span></span></div>
+          <div class="code-line"><span class="code-ln">3</span><span><span class="prop">User-Agent:</span> <span
+                class="val">Mozilla/5.0 (X11; Linux x86_64)</span></span></div>
+          <div class="code-line"><span class="code-ln">4</span><span><span class="prop">Accept:</span> <span
+                class="val">text/html,application/xhtml+xml</span></span></div>
+          <div class="code-line"><span class="code-ln">5</span><span><span class="prop">Accept-Language:</span> <span
+                class="val">en-US,en;q=0.5</span></span></div>
+          <div class="code-line"><span class="code-ln">6</span><span><span class="prop">Accept-Encoding:</span> <span
+                class="val">gzip, deflate, br</span></span></div>
+          <div class="code-line"><span class="code-ln">7</span><span><span class="prop">Connection:</span> <span
+                class="val">keep-alive</span></span></div>
+          <div class="code-line"><span class="code-ln">8</span><span><span
+                class="prop">Upgrade-Insecure-Requests:</span> <span class="val">1</span></span></div>
+          <div class="code-line"><span class="code-ln">9</span><span><span class="cm">← This is what you see and can
+                edit in Burp before forwarding</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="howitworks" class="section">
+      <div class="sec-label">SECTION 04 · HOW IT WORKS</div>
+      <h2 class="sec-title">The 5-Step Process</h2>
+      <p class="sec-sub">Every web proxy engagement follows this repeatable workflow. Master it and you'll apply it to
+        any target.</p>
+
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">01</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Perform Reconnaissance</div>
+            <div class="step-tagline">MAP THE TARGET BEFORE YOU TOUCH IT</div>
+            <ul class="step-list">
+              <li>Identify website structure - page hierarchy, navigation, forms</li>
+              <li>Discover endpoints - URLs the app exposes (APIs, admin paths)</li>
+              <li>Collect information - tech stack, server headers, cookies</li>
+            </ul>
+            <div class="deep-dive" style="margin-top:16px">
+              <button class="deep-dive-toggle" onclick="toggleDive(this)">
+                <span>⚡ Tools for Recon</span><span class="arrow">▼</span>
+              </button>
+              <div class="deep-dive-content">
+                <div class="deep-dive-inner">
+                  <h4>Browser DevTools</h4>
+                  <p>Press <code>F12</code> -> Network tab. Every request and response is logged here. Look at headers
+                    for server software (<code>Server: nginx/1.18</code>), response codes, and cookies.</p>
+                  <h4>Gobuster / FFUF</h4>
+                  <p>These tools brute-force directories using wordlists. Example:
+                    <code>gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt</code></p>
+                  <h4>Wappalyzer</h4>
+                  <p>A browser extension that fingerprints the tech stack automatically - reveals CMS, frameworks,
+                    analytics tools.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">02</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Configure Web Proxy</div>
+            <div class="step-tagline">POINT YOUR BROWSER AT BURP</div>
+            <ul class="step-list">
+              <li>Install Burp Suite Community Edition (free) from portswigger.net</li>
+              <li>Set browser proxy to <strong>127.0.0.1:8080</strong> (Manual HTTP proxy)</li>
+              <li>Enable interception - navigate to Proxy -> Intercept -> Intercept is ON</li>
+            </ul>
+            <div class="deep-dive" style="margin-top:16px">
+              <button class="deep-dive-toggle" onclick="toggleDive(this)">
+                <span>⚡ Step-by-step Burp Setup</span><span class="arrow">▼</span>
+              </button>
+              <div class="deep-dive-content">
+                <div class="deep-dive-inner">
+                  <h4>In Firefox:</h4>
+                  <ul>
+                    <li>Settings -> Network Settings -> Manual proxy configuration</li>
+                    <li>HTTP Proxy: <code>127.0.0.1</code>, Port: <code>8080</code></li>
+                    <li>Check "Use this proxy for all protocols"</li>
+                  </ul>
+                  <h4>Install Burp CA Certificate (for HTTPS):</h4>
+                  <ul>
+                    <li>With Burp running, browse to <code>http://burp</code> in Firefox</li>
+                    <li>Click "CA Certificate" to download it</li>
+                    <li>Firefox -> Settings -> View Certificates -> Import</li>
+                    <li>Check "Trust this CA to identify websites"</li>
+                  </ul>
+                  <h4>Tip: Use Burp's built-in browser</h4>
+                  <p>Burp Pro/Community ships with a Chromium browser that's pre-configured. Go to
+                    <code>Proxy -> Open Browser</code> - no manual setup needed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">03</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Intercept Requests</div>
+            <div class="step-tagline">SEE EXACTLY WHAT THE BROWSER SENDS</div>
+            <ul class="step-list">
+              <li>Capture HTTP requests as they leave the browser</li>
+              <li>View all headers - User-Agent, Cookie, Referer, Authorization</li>
+              <li>View parameters - URL query strings and POST body data</li>
+            </ul>
+            <div class="deep-dive" style="margin-top:16px">
+              <button class="deep-dive-toggle" onclick="toggleDive(this)">
+                <span>⚡ What am I looking at?</span><span class="arrow">▼</span>
+              </button>
+              <div class="deep-dive-content">
+                <div class="deep-dive-inner">
+                  <h4>HTTP Request Structure</h4>
+                  <ul>
+                    <li><strong>Request line</strong>: <code>POST /login HTTP/1.1</code> - method, path, version</li>
+                    <li><strong>Headers</strong>: Key-value pairs like <code>Cookie: session=abc123</code></li>
+                    <li><strong>Body</strong>: For POST requests, the actual form data:
+                      <code>username=admin&amp;password=1234</code></li>
+                  </ul>
+                  <h4>Key headers to watch</h4>
+                  <ul>
+                    <li><code>Cookie</code> - session tokens; tampering here can hijack sessions</li>
+                    <li><code>Authorization</code> - Bearer tokens for APIs</li>
+                    <li><code>X-Forwarded-For</code> - sometimes used for IP-based access control</li>
+                    <li><code>Referer</code> - some apps use this to verify you came from a legitimate page</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">04</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Modify Requests</div>
+            <div class="step-tagline">CHANGE THE REQUEST BEFORE THE SERVER SEES IT</div>
+            <ul class="step-list">
+              <li>Edit any parameter - change <code>role=user</code> to <code>role=admin</code></li>
+              <li>Replay the modified request using Burp's Repeater tab</li>
+            </ul>
+            <div class="deep-dive" style="margin-top:16px">
+              <button class="deep-dive-toggle" onclick="toggleDive(this)">
+                <span>⚡ Real-world modification examples</span><span class="arrow">▼</span>
+              </button>
+              <div class="deep-dive-content">
+                <div class="deep-dive-inner">
+                  <h4>Parameter tampering</h4>
+                  <p>Change <code>?id=5</code> to <code>?id=1</code> to access another user's data (IDOR vulnerability).
+                    Change <code>price=99.99</code> to <code>price=0.01</code> in a shopping cart request.</p>
+                  <h4>Cookie manipulation</h4>
+                  <p>If a cookie contains <code>isAdmin=false</code>, change it to <code>isAdmin=true</code>. Many
+                    poorly built apps trust cookie values directly.</p>
+                  <h4>Header injection</h4>
+                  <p>Add <code>X-Forwarded-For: 127.0.0.1</code> to trick an app into thinking you're on localhost.</p>
+                  <h4>Burp Repeater</h4>
+                  <p>Right-click any request -> Send to Repeater (<code>Ctrl+R</code>). Now you can edit and resend it
+                    endlessly without re-navigating in the browser.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num-wrap">
+            <div class="step-num">05</div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">Identify Weak Points</div>
+            <div class="step-tagline">LOOK FOR WHERE THE APP BREAKS</div>
+            <ul class="step-list">
+              <li>Look for error messages that reveal backend info (stack traces, SQL errors)</li>
+              <li>Test inputs with payloads and observe application behavior safely in the lab</li>
+              <li>Check if privilege escalation is possible by changing roles or IDs</li>
+            </ul>
+            <div class="deep-dive" style="margin-top:16px">
+              <button class="deep-dive-toggle" onclick="toggleDive(this)">
+                <span>⚡ Common vulnerability classes</span><span class="arrow">▼</span>
+              </button>
+              <div class="deep-dive-content">
+                <div class="deep-dive-inner">
+                  <h4>IDOR (Insecure Direct Object Reference)</h4>
+                  <p>Accessing resources you shouldn't by changing an ID. e.g., <code>/api/orders/1337</code> revealing
+                    another user's order.</p>
+                  <h4>Broken Authentication</h4>
+                  <p>Weak session tokens, no rate limiting on login, or session tokens not invalidated on logout.</p>
+                  <h4>Missing Access Controls</h4>
+                  <p>A non-admin can hit <code>/admin/deleteUser</code> just by guessing the URL. The server doesn't
+                    verify your role.</p>
+                  <h4>Information Disclosure</h4>
+                  <p>Error pages exposing server paths, internal IPs, database structure, or stack traces.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="step-item">
-        <div class="step-num-wrap"><div class="step-num">05</div></div>
-        <div class="step-content">
-          <div class="step-title">Identify Weak Points</div>
-          <div class="step-tagline">LOOK FOR WHERE THE APP BREAKS</div>
-          <ul class="step-list">
-            <li>Look for error messages that reveal backend info (stack traces, SQL errors)</li>
-            <li>Test inputs with payloads and observe application behavior safely in the lab</li>
-            <li>Check if privilege escalation is possible by changing roles or IDs</li>
-          </ul>
-          <div class="deep-dive" style="margin-top:16px">
-            <button class="deep-dive-toggle" onclick="toggleDive(this)">
-              <span>⚡ Common vulnerability classes</span><span class="arrow">▼</span>
-            </button>
-            <div class="deep-dive-content">
-              <div class="deep-dive-inner">
-                <h4>IDOR (Insecure Direct Object Reference)</h4>
-                <p>Accessing resources you shouldn't by changing an ID. e.g., <code>/api/orders/1337</code> revealing another user's order.</p>
-                <h4>Broken Authentication</h4>
-                <p>Weak session tokens, no rate limiting on login, or session tokens not invalidated on logout.</p>
-                <h4>Missing Access Controls</h4>
-                <p>A non-admin can hit <code>/admin/deleteUser</code> just by guessing the URL. The server doesn't verify your role.</p>
-                <h4>Information Disclosure</h4>
-                <p>Error pages exposing server paths, internal IPs, database structure, or stack traces.</p>
-              </div>
-            </div>
+    <div class="divider"></div>
+
+    <section id="demo" class="section">
+      <div class="sec-label">SECTION 05 · LIVE DEMO</div>
+      <div class="demo-card">
+        <div class="demo-big">DEMO.</div>
+        <div class="demo-sub">Intercept and modify a request to example.com</div>
+        <div class="prereq-grid">
+          <div class="prereq-item">
+            <div class="prereq-key">TOOL</div>
+            <div class="prereq-val">Burp Suite</div>
+          </div>
+          <div class="prereq-item">
+            <div class="prereq-key">BROWSER</div>
+            <div class="prereq-val">Chrome / Firefox</div>
+          </div>
+          <div class="prereq-item">
+            <div class="prereq-key">TARGET</div>
+            <div class="prereq-val">http://example.com</div>
+          </div>
+        </div>
+        <div class="demo-video-wrap">
+          <video controls preload="metadata" poster="recon-demo-poster.svg">
+            <source src="https://pub-1ae2691df7364eea93afb4e67996d97c.r2.dev/%20recon-and-web-proxies-demo.mp4"
+              type="video/mp4">
+          </video>
+          <div class="demo-video-caption">Follow along on your laptop. We will run through this together.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="pitfalls" class="section">
+      <div class="sec-label">SECTION 06 · TROUBLESHOOTING</div>
+      <h2 class="sec-title">Common Pitfalls</h2>
+      <p class="sec-sub">When something doesn't work, check these first - in order.</p>
+      <div class="pitfall-grid">
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">No traffic in Burp Suite</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">Browser proxy is not configured correctly</span>
+          </div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Set proxy to 127.0.0.1:8080 in browser network
+              settings</span></div>
+        </div>
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">HTTPS websites do not load</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">Burp CA certificate is not installed in the
+              browser</span></div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Browse to http://burp, download and trust the
+              CA cert</span></div>
+        </div>
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">Requests not being intercepted</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">Intercept option is toggled off in Burp</span>
+          </div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Click "Intercept is OFF" to toggle it ON in
+              Proxy tab</span></div>
+        </div>
+        <div class="pitfall-card">
+          <div class="pitfall-symptom">SYMPTOM</div>
+          <div class="pitfall-title">Modified request has no effect</div>
+          <div class="pitfall-row"><span>CAUSE</span><span class="val">Incorrect parameter name or value format</span>
+          </div>
+          <div class="pitfall-row fix"><span>FIX</span><span class="val">Double-check parameter names and re-examine the
+              original request</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="quiz" class="section">
+      <div class="sec-label">SECTION 07 · POP QUIZ</div>
+      <h2 class="sec-title">Test Your Knowledge</h2>
+      <p class="sec-sub">Answer these questions to confirm you've grasped the core concepts before tackling the
+        challenge.</p>
+
+      <div class="quiz-score-bar">
+        <div>
+          <div class="score-label">YOUR SCORE</div>
+          <div class="score-val" id="scoreVal">0 / 5</div>
+        </div>
+        <div class="score-track">
+          <div class="score-fill" id="scoreFill"></div>
+        </div>
+      </div>
+
+      <div class="quiz-section" id="quizContainer">
+        <div class="quiz-card" id="q1">
+          <div class="quiz-num">QUESTION 01 / 05</div>
+          <div class="quiz-q">What is the primary purpose of reconnaissance in web security?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">A</span> To launch an
+              immediate attack on a target system</button>
+            <button class="quiz-opt" onclick="answer(this,'q1',true)"><span class="opt-letter">B</span> To gather
+              information about a target before launching an attack</button>
+            <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">C</span> To install
+              malware on the target machine</button>
+            <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">D</span> To patch
+              vulnerabilities in a web application</button>
+          </div>
+          <div class="quiz-feedback" id="q1-fb"></div>
+        </div>
+
+        <div class="quiz-card" id="q2">
+          <div class="quiz-num">QUESTION 02 / 05</div>
+          <div class="quiz-q">Which default address and port does Burp Suite listen on when acting as a proxy?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">A</span>
+              0.0.0.0:443</button>
+            <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">B</span>
+              localhost:3000</button>
+            <button class="quiz-opt" onclick="answer(this,'q2',true)"><span class="opt-letter">C</span>
+              127.0.0.1:8080</button>
+            <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">D</span>
+              192.168.1.1:80</button>
+          </div>
+          <div class="quiz-feedback" id="q2-fb"></div>
+        </div>
+
+        <div class="quiz-card" id="q3">
+          <div class="quiz-num">QUESTION 03 / 05</div>
+          <div class="quiz-q">Why do HTTPS sites fail to load when Burp Suite is configured as a proxy but the CA
+            certificate has not been installed?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">A</span> Burp Suite does
+              not support HTTPS</button>
+            <button class="quiz-opt" onclick="answer(this,'q3',true)"><span class="opt-letter">B</span> The browser does
+              not trust Burp's self-signed certificate, causing a TLS handshake failure</button>
+            <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">C</span> HTTPS traffic
+              is automatically dropped by the proxy</button>
+            <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">D</span> The firewall
+              blocks port 443 when a proxy is active</button>
+          </div>
+          <div class="quiz-feedback" id="q3-fb"></div>
+        </div>
+
+        <div class="quiz-card" id="q4">
+          <div class="quiz-num">QUESTION 04 / 05</div>
+          <div class="quiz-q">You intercept a login POST request and see the body: <code
+              style="font-size:0.8rem">username=alice&amp;password=hunter2</code>. What Burp Suite feature would you use
+            to replay this request repeatedly with different password values?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">A</span> Burp
+              Scanner</button>
+            <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">B</span> Burp
+              Decoder</button>
+            <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">C</span> Burp
+              Comparer</button>
+            <button class="quiz-opt" onclick="answer(this,'q4',true)"><span class="opt-letter">D</span> Burp Intruder or
+              Repeater</button>
+          </div>
+          <div class="quiz-feedback" id="q4-fb"></div>
+        </div>
+
+        <div class="quiz-card" id="q5">
+          <div class="quiz-num">QUESTION 05 / 05</div>
+          <div class="quiz-q">Which of the following best describes an IDOR (Insecure Direct Object Reference)
+            vulnerability?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">A</span> Injecting SQL
+              into a database query through a form field</button>
+            <button class="quiz-opt" onclick="answer(this,'q5',true)"><span class="opt-letter">B</span> Accessing
+              another user's data by modifying a predictable ID in a request</button>
+            <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">C</span> Executing
+              JavaScript in another user's browser via stored input</button>
+            <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">D</span> Performing a
+              man-in-the-middle attack on an encrypted connection</button>
+          </div>
+          <div class="quiz-feedback" id="q5-fb"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="challenge" class="section">
+      <div class="sec-label">SECTION 08 · YOUR CHALLENGE</div>
+      <h2 class="sec-title">Now Do It Yourself</h2>
+      <p class="sec-sub">Apply everything you've learned. This is the hands-on task you need to complete to finish the
+        workshop.</p>
+
+      <div class="challenge-card">
+        <div class="challenge-badges">
+          <span class="badge badge-time">⏱ 15 - 20 MIN</span>
+          <span class="badge badge-level">◉ BEGINNER</span>
+        </div>
+        <div class="challenge-task-label">THE TASK</div>
+        <div class="challenge-task">Use Burp Suite to intercept a login request from a website and modify the username
+          or a parameter before sending it to the server.</div>
+        <div class="success-box">
+          <div class="success-label">SUCCESS CRITERION</div>
+          <div class="success-text">Submit a screenshot showing the intercepted request alongside the modified response
+            from the server. The screenshot should clearly show the parameter you changed and how the server responded
+            differently.</div>
+        </div>
+        <div
+          style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:16px">
+          HINTS</div>
+        <div class="hints-grid">
+          <div class="hint-card">
+            <div class="hint-num">01</div>
+            <div class="hint-text">Make sure "Intercept is ON" in the Proxy tab before you attempt to log in.</div>
+          </div>
+          <div class="hint-card">
+            <div class="hint-num">02</div>
+            <div class="hint-text">Look for POST requests when submitting login forms - GET requests put parameters in
+              the URL.</div>
+          </div>
+          <div class="hint-card">
+            <div class="hint-num">03</div>
+            <div class="hint-text">Modify a parameter in the body before clicking Forward. Try changing the username
+              value.</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <section id="demo" class="section">
-    <div class="sec-label">SECTION 05 · LIVE DEMO</div>
-    <div class="demo-card">
-      <div class="demo-big">DEMO.</div>
-      <div class="demo-sub">Intercept and modify a request to example.com</div>
-      <div class="prereq-grid">
-        <div class="prereq-item">
-          <div class="prereq-key">TOOL</div>
-          <div class="prereq-val">Burp Suite</div>
+    <section id="resources" class="section">
+      <div class="sec-label">SECTION 09 · GO DEEPER</div>
+      <h2 class="sec-title">Further Resources</h2>
+      <p class="sec-sub">You've completed the workshop. Here's where to go next to level up your skills.</p>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="resource-num">01</div>
+          <div class="resource-info">
+            <h4>OWASP Web Security Testing Guide</h4>
+            <p>Official, detailed methodologies for testing web application security, including reconnaissance
+              techniques and proxy usage. The definitive reference for professional web pentesters.</p>
+          </div>
         </div>
-        <div class="prereq-item">
-          <div class="prereq-key">BROWSER</div>
-          <div class="prereq-val">Chrome / Firefox</div>
+        <div class="resource-item">
+          <div class="resource-num">02</div>
+          <div class="resource-info">
+            <h4>Burp Suite Documentation</h4>
+            <p>Official guide covering all Burp Suite features: proxy, intercept, repeater, intruder, scanner, and
+              request analysis. Start here for any Burp-specific questions.</p>
+          </div>
         </div>
-        <div class="prereq-item">
-          <div class="prereq-key">TARGET</div>
-          <div class="prereq-val">http://example.com</div>
-        </div>
-      </div>
-      <div class="demo-video-wrap">
-        <video controls preload="metadata" poster="recon-demo-poster.svg">
-          <source src="https://pub-1ae2691df7364eea93afb4e67996d97c.r2.dev/%20recon-and-web-proxies-demo.mp4" type="video/mp4">
-        </video>
-        <div class="demo-video-caption">Follow along on your laptop. We will run through this together.</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="pitfalls" class="section">
-    <div class="sec-label">SECTION 06 · TROUBLESHOOTING</div>
-    <h2 class="sec-title">Common Pitfalls</h2>
-    <p class="sec-sub">When something doesn't work, check these first - in order.</p>
-    <div class="pitfall-grid">
-      <div class="pitfall-card">
-        <div class="pitfall-symptom">SYMPTOM</div>
-        <div class="pitfall-title">No traffic in Burp Suite</div>
-        <div class="pitfall-row"><span>CAUSE</span><span class="val">Browser proxy is not configured correctly</span></div>
-        <div class="pitfall-row fix"><span>FIX</span><span class="val">Set proxy to 127.0.0.1:8080 in browser network settings</span></div>
-      </div>
-      <div class="pitfall-card">
-        <div class="pitfall-symptom">SYMPTOM</div>
-        <div class="pitfall-title">HTTPS websites do not load</div>
-        <div class="pitfall-row"><span>CAUSE</span><span class="val">Burp CA certificate is not installed in the browser</span></div>
-        <div class="pitfall-row fix"><span>FIX</span><span class="val">Browse to http://burp, download and trust the CA cert</span></div>
-      </div>
-      <div class="pitfall-card">
-        <div class="pitfall-symptom">SYMPTOM</div>
-        <div class="pitfall-title">Requests not being intercepted</div>
-        <div class="pitfall-row"><span>CAUSE</span><span class="val">Intercept option is toggled off in Burp</span></div>
-        <div class="pitfall-row fix"><span>FIX</span><span class="val">Click "Intercept is OFF" to toggle it ON in Proxy tab</span></div>
-      </div>
-      <div class="pitfall-card">
-        <div class="pitfall-symptom">SYMPTOM</div>
-        <div class="pitfall-title">Modified request has no effect</div>
-        <div class="pitfall-row"><span>CAUSE</span><span class="val">Incorrect parameter name or value format</span></div>
-        <div class="pitfall-row fix"><span>FIX</span><span class="val">Double-check parameter names and re-examine the original request</span></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="quiz" class="section">
-    <div class="sec-label">SECTION 07 · POP QUIZ</div>
-    <h2 class="sec-title">Test Your Knowledge</h2>
-    <p class="sec-sub">Answer these questions to confirm you've grasped the core concepts before tackling the challenge.</p>
-
-    <div class="quiz-score-bar">
-      <div>
-        <div class="score-label">YOUR SCORE</div>
-        <div class="score-val" id="scoreVal">0 / 5</div>
-      </div>
-      <div class="score-track"><div class="score-fill" id="scoreFill"></div></div>
-    </div>
-
-    <div class="quiz-section" id="quizContainer">
-      <div class="quiz-card" id="q1">
-        <div class="quiz-num">QUESTION 01 / 05</div>
-        <div class="quiz-q">What is the primary purpose of reconnaissance in web security?</div>
-        <div class="quiz-opts">
-          <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">A</span> To launch an immediate attack on a target system</button>
-          <button class="quiz-opt" onclick="answer(this,'q1',true)"><span class="opt-letter">B</span> To gather information about a target before launching an attack</button>
-          <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">C</span> To install malware on the target machine</button>
-          <button class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">D</span> To patch vulnerabilities in a web application</button>
-        </div>
-        <div class="quiz-feedback" id="q1-fb"></div>
-      </div>
-
-      <div class="quiz-card" id="q2">
-        <div class="quiz-num">QUESTION 02 / 05</div>
-        <div class="quiz-q">Which default address and port does Burp Suite listen on when acting as a proxy?</div>
-        <div class="quiz-opts">
-          <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">A</span> 0.0.0.0:443</button>
-          <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">B</span> localhost:3000</button>
-          <button class="quiz-opt" onclick="answer(this,'q2',true)"><span class="opt-letter">C</span> 127.0.0.1:8080</button>
-          <button class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">D</span> 192.168.1.1:80</button>
-        </div>
-        <div class="quiz-feedback" id="q2-fb"></div>
-      </div>
-
-      <div class="quiz-card" id="q3">
-        <div class="quiz-num">QUESTION 03 / 05</div>
-        <div class="quiz-q">Why do HTTPS sites fail to load when Burp Suite is configured as a proxy but the CA certificate has not been installed?</div>
-        <div class="quiz-opts">
-          <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">A</span> Burp Suite does not support HTTPS</button>
-          <button class="quiz-opt" onclick="answer(this,'q3',true)"><span class="opt-letter">B</span> The browser does not trust Burp's self-signed certificate, causing a TLS handshake failure</button>
-          <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">C</span> HTTPS traffic is automatically dropped by the proxy</button>
-          <button class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">D</span> The firewall blocks port 443 when a proxy is active</button>
-        </div>
-        <div class="quiz-feedback" id="q3-fb"></div>
-      </div>
-
-      <div class="quiz-card" id="q4">
-        <div class="quiz-num">QUESTION 04 / 05</div>
-        <div class="quiz-q">You intercept a login POST request and see the body: <code style="font-size:0.8rem">username=alice&amp;password=hunter2</code>. What Burp Suite feature would you use to replay this request repeatedly with different password values?</div>
-        <div class="quiz-opts">
-          <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">A</span> Burp Scanner</button>
-          <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">B</span> Burp Decoder</button>
-          <button class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">C</span> Burp Comparer</button>
-          <button class="quiz-opt" onclick="answer(this,'q4',true)"><span class="opt-letter">D</span> Burp Intruder or Repeater</button>
-        </div>
-        <div class="quiz-feedback" id="q4-fb"></div>
-      </div>
-
-      <div class="quiz-card" id="q5">
-        <div class="quiz-num">QUESTION 05 / 05</div>
-        <div class="quiz-q">Which of the following best describes an IDOR (Insecure Direct Object Reference) vulnerability?</div>
-        <div class="quiz-opts">
-          <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">A</span> Injecting SQL into a database query through a form field</button>
-          <button class="quiz-opt" onclick="answer(this,'q5',true)"><span class="opt-letter">B</span> Accessing another user's data by modifying a predictable ID in a request</button>
-          <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">C</span> Executing JavaScript in another user's browser via stored input</button>
-          <button class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">D</span> Performing a man-in-the-middle attack on an encrypted connection</button>
-        </div>
-        <div class="quiz-feedback" id="q5-fb"></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section id="challenge" class="section">
-    <div class="sec-label">SECTION 08 · YOUR CHALLENGE</div>
-    <h2 class="sec-title">Now Do It Yourself</h2>
-    <p class="sec-sub">Apply everything you've learned. This is the hands-on task you need to complete to finish the workshop.</p>
-
-    <div class="challenge-card">
-      <div class="challenge-badges">
-        <span class="badge badge-time">⏱ 15 - 20 MIN</span>
-        <span class="badge badge-level">◉ BEGINNER</span>
-      </div>
-      <div class="challenge-task-label">THE TASK</div>
-      <div class="challenge-task">Use Burp Suite to intercept a login request from a website and modify the username or a parameter before sending it to the server.</div>
-      <div class="success-box">
-        <div class="success-label">SUCCESS CRITERION</div>
-        <div class="success-text">Submit a screenshot showing the intercepted request alongside the modified response from the server. The screenshot should clearly show the parameter you changed and how the server responded differently.</div>
-      </div>
-      <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:16px">HINTS</div>
-      <div class="hints-grid">
-        <div class="hint-card">
-          <div class="hint-num">01</div>
-          <div class="hint-text">Make sure "Intercept is ON" in the Proxy tab before you attempt to log in.</div>
-        </div>
-        <div class="hint-card">
-          <div class="hint-num">02</div>
-          <div class="hint-text">Look for POST requests when submitting login forms - GET requests put parameters in the URL.</div>
-        </div>
-        <div class="hint-card">
-          <div class="hint-num">03</div>
-          <div class="hint-text">Modify a parameter in the body before clicking Forward. Try changing the username value.</div>
+        <div class="resource-item">
+          <div class="resource-num">03</div>
+          <div class="resource-info">
+            <h4>PortSwigger Web Security Academy</h4>
+            <p>Free, interactive labs with real-world vulnerability scenarios - SQL injection, XSS, CSRF, IDOR, and
+              more. Hands-down the best free platform to practice web security skills.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <div class="divider"></div>
-
-  <section id="resources" class="section">
-    <div class="sec-label">SECTION 09 · GO DEEPER</div>
-    <h2 class="sec-title">Further Resources</h2>
-    <p class="sec-sub">You've completed the workshop. Here's where to go next to level up your skills.</p>
-    <div class="resource-list">
-      <div class="resource-item">
-        <div class="resource-num">01</div>
-        <div class="resource-info">
-          <h4>OWASP Web Security Testing Guide</h4>
-          <p>Official, detailed methodologies for testing web application security, including reconnaissance techniques and proxy usage. The definitive reference for professional web pentesters.</p>
-        </div>
+      <div
+        style="margin-top:60px; text-align:center; padding: 40px; background: var(--card); border: 1px solid var(--border); border-radius:20px;">
+        <div style="font-family:var(--head);font-weight:800;font-size:2rem;color:var(--text);margin-bottom:8px">
+          Questions?</div>
+        <div style="font-size:0.9rem;color:var(--text2);margin-bottom:24px">If you have questions, contact the PSU CTF
+          2026 WhatsApp group.</div>
+        <span
+          style="font-family:var(--mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.15em;padding:8px 20px;border:1px solid var(--border2);border-radius:20px">ACM/CYBERTECH
+          @ PSU · SPRING 2026</span>
       </div>
-      <div class="resource-item">
-        <div class="resource-num">02</div>
-        <div class="resource-info">
-          <h4>Burp Suite Documentation</h4>
-          <p>Official guide covering all Burp Suite features: proxy, intercept, repeater, intruder, scanner, and request analysis. Start here for any Burp-specific questions.</p>
-        </div>
-      </div>
-      <div class="resource-item">
-        <div class="resource-num">03</div>
-        <div class="resource-info">
-          <h4>PortSwigger Web Security Academy</h4>
-          <p>Free, interactive labs with real-world vulnerability scenarios - SQL injection, XSS, CSRF, IDOR, and more. Hands-down the best free platform to practice web security skills.</p>
-        </div>
-      </div>
-    </div>
+    </section>
+  </main>
 
-    <div style="margin-top:60px; text-align:center; padding: 40px; background: var(--card); border: 1px solid var(--border); border-radius:20px;">
-      <div style="font-family:var(--head);font-weight:800;font-size:2rem;color:var(--text);margin-bottom:8px">Questions?</div>
-      <div style="font-size:0.9rem;color:var(--text2);margin-bottom:24px">If you have questions, contact the PSU CTF 2026 WhatsApp group.</div>
-      <span style="font-family:var(--mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.15em;padding:8px 20px;border:1px solid var(--border2);border-radius:20px">ACM/CYBERTECH @ PSU · SPRING 2026</span>
-    </div>
-  </section>
-</main>
-
-<script>
-  const html = document.documentElement;
-  const themeBtn = document.getElementById('themeBtn');
-  themeBtn.addEventListener('click', () => {
-    const isDark = html.dataset.theme === 'dark';
-    html.dataset.theme = isDark ? 'light' : 'dark';
-    themeBtn.textContent = isDark ? '🌙' : '☀️';
-  });
-
-  const progressFill = document.getElementById('progressFill');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.body.scrollHeight - window.innerHeight;
-    progressFill.style.width = (scrolled / total * 100) + '%';
-    updateNavDots();
-  });
-
-  const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  sections.forEach(s => observer.observe(s));
-
-  const allSections = ['hero','objectives','concepts','howitworks','demo','pitfalls','quiz','challenge','resources'];
-  const dots = document.querySelectorAll('.nav-dot');
-
-  function updateNavDots() {
-    let current = 'hero';
-    allSections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top < window.innerHeight * 0.5) current = id;
-    });
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', allSections[i] === current);
-    });
-  }
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      document.getElementById(allSections[i])?.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  function toggleDive(btn) {
-    btn.classList.toggle('open');
-    const content = btn.nextElementSibling;
-    content.classList.toggle('open');
-  }
-
-  const feedbacks = {
-    q1: { correct: "✓ Correct! Recon is always the first phase - gather info before making a move. The more you know about a target, the more targeted and effective your strategy becomes.", wrong: "✗ Not quite. Recon is about information gathering before any attack begins. Rushing without recon is like entering a building without knowing the floor plan." },
-    q2: { correct: "✓ Correct! 127.0.0.1:8080 is Burp's default. Your browser's proxy settings must point here for traffic to flow through Burp.", wrong: "✗ Incorrect. Burp Suite listens on 127.0.0.1 (localhost) port 8080 by default." },
-    q3: { correct: "✓ Correct! Burp generates its own TLS certificates signed by its own CA. Browsers do not trust unknown CAs by default, so you must manually install Burp's CA cert.", wrong: "✗ Not quite. Burp fully supports HTTPS - the issue is that browsers won't trust Burp's generated certificates until you install and trust the Burp CA certificate." },
-    q4: { correct: "✓ Correct! Repeater lets you manually edit and resend a single request. Intruder lets you automate it with a wordlist.", wrong: "✗ Not the right tool. For replaying and fuzzing requests, you want Repeater (manual) or Intruder (automated)." },
-    q5: { correct: "✓ Correct! IDOR occurs when an app uses user-controllable input to directly access objects without verifying the user is authorized.", wrong: "✗ That's a different vulnerability. IDOR specifically means accessing data by guessing or modifying an ID or reference in the request." }
-  };
-
-  let scores = {};
-
-  function answer(btn, qId, isCorrect) {
-    const card = document.getElementById(qId);
-    const opts = card.querySelectorAll('.quiz-opt');
-    if (card.dataset.answered) return;
-    card.dataset.answered = '1';
-
-    opts.forEach(o => {
-      o.classList.add('disabled');
-      o.style.pointerEvents = 'none';
+  <script>
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      const isDark = html.dataset.theme === 'dark';
+      html.dataset.theme = isDark ? 'light' : 'dark';
+      themeBtn.textContent = isDark ? '🌙' : '☀️';
     });
 
-    btn.classList.add(isCorrect ? 'correct' : 'wrong');
-    if (!isCorrect) {
-      opts.forEach(o => {
-        if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+    const progressFill = document.getElementById('progressFill');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.body.scrollHeight - window.innerHeight;
+      progressFill.style.width = (scrolled / total * 100) + '%';
+      updateNavDots();
+    });
+
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(s => observer.observe(s));
+
+    const allSections = ['hero', 'objectives', 'concepts', 'howitworks', 'demo', 'pitfalls', 'quiz', 'challenge', 'resources'];
+    const dots = document.querySelectorAll('.nav-dot');
+
+    function updateNavDots() {
+      let current = 'hero';
+      allSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.5) current = id;
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', allSections[i] === current);
       });
     }
 
-    const fb = document.getElementById(qId + '-fb');
-    fb.textContent = isCorrect ? feedbacks[qId].correct : feedbacks[qId].wrong;
-    fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
-
-    if (isCorrect) scores[qId] = 1;
-    updateScore();
-  }
-
-  function updateScore() {
-    const total = Object.values(scores).reduce((a,b) => a+b, 0);
-    const max = 5;
-    document.getElementById('scoreVal').textContent = total + ' / ' + max;
-    document.getElementById('scoreFill').style.width = (total / max * 100) + '%';
-  }
-
-  const objCards = document.querySelectorAll('.obj-card, .concept-card, .pitfall-card, .resource-item');
-  const cardObs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.style.transitionDelay = (Array.from(e.target.parentNode.children).indexOf(e.target) * 0.1) + 's';
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        document.getElementById(allSections[i])?.scrollIntoView({ behavior: 'smooth' });
+      });
     });
-  }, { threshold: 0.15 });
 
-  objCards.forEach(c => {
-    c.style.opacity = '0';
-    c.style.transform = 'translateY(24px)';
-    c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    cardObs.observe(c);
-  });
-</script>
+    function toggleDive(btn) {
+      btn.classList.toggle('open');
+      const content = btn.nextElementSibling;
+      content.classList.toggle('open');
+    }
+
+    const feedbacks = {
+      q1: { correct: "✓ Correct! Recon is always the first phase - gather info before making a move. The more you know about a target, the more targeted and effective your strategy becomes.", wrong: "✗ Not quite. Recon is about information gathering before any attack begins. Rushing without recon is like entering a building without knowing the floor plan." },
+      q2: { correct: "✓ Correct! 127.0.0.1:8080 is Burp's default. Your browser's proxy settings must point here for traffic to flow through Burp.", wrong: "✗ Incorrect. Burp Suite listens on 127.0.0.1 (localhost) port 8080 by default." },
+      q3: { correct: "✓ Correct! Burp generates its own TLS certificates signed by its own CA. Browsers do not trust unknown CAs by default, so you must manually install Burp's CA cert.", wrong: "✗ Not quite. Burp fully supports HTTPS - the issue is that browsers won't trust Burp's generated certificates until you install and trust the Burp CA certificate." },
+      q4: { correct: "✓ Correct! Repeater lets you manually edit and resend a single request. Intruder lets you automate it with a wordlist.", wrong: "✗ Not the right tool. For replaying and fuzzing requests, you want Repeater (manual) or Intruder (automated)." },
+      q5: { correct: "✓ Correct! IDOR occurs when an app uses user-controllable input to directly access objects without verifying the user is authorized.", wrong: "✗ That's a different vulnerability. IDOR specifically means accessing data by guessing or modifying an ID or reference in the request." }
+    };
+
+    let scores = {};
+
+    function answer(btn, qId, isCorrect) {
+      const card = document.getElementById(qId);
+      const opts = card.querySelectorAll('.quiz-opt');
+      if (card.dataset.answered) return;
+      card.dataset.answered = '1';
+
+      opts.forEach(o => {
+        o.classList.add('disabled');
+        o.style.pointerEvents = 'none';
+      });
+
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      if (!isCorrect) {
+        opts.forEach(o => {
+          if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+        });
+      }
+
+      const fb = document.getElementById(qId + '-fb');
+      fb.textContent = isCorrect ? feedbacks[qId].correct : feedbacks[qId].wrong;
+      fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+
+      if (isCorrect) scores[qId] = 1;
+      updateScore();
+    }
+
+    function updateScore() {
+      const total = Object.values(scores).reduce((a, b) => a + b, 0);
+      const max = 5;
+      document.getElementById('scoreVal').textContent = total + ' / ' + max;
+      document.getElementById('scoreFill').style.width = (total / max * 100) + '%';
+    }
+
+    const objCards = document.querySelectorAll('.obj-card, .concept-card, .pitfall-card, .resource-item');
+    const cardObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (Array.from(e.target.parentNode.children).indexOf(e.target) * 0.1) + 's';
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    objCards.forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(24px)';
+      c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      cardObs.observe(c);
+    });
+  </script>
 </body>
+
 </html>

@@ -35,8 +35,51 @@
   </section>
 
   <section class="tutorial-open-card">
-    <h2><span class="locale-en">Workshop Content</span><span class="locale-ar" lang="ar">محتوى الورشة</span></h2>
-    <p class="locale-en">The full Day 5 workshop content will be posted soon.</p>
-    <p class="locale-ar" lang="ar">سيتم نشر محتوى ورشة اليوم الخامس كاملًا قريبًا.</p>
+    <h2><span class="locale-en">Topics</span><span class="locale-ar" lang="ar">الموضوعات</span></h2>
+    <ul>
+      <li class="locale-en">File Upload Vulnerabilities</li>
+      <li class="locale-en">API Exploitation</li>
+      <li class="locale-en">File Inclusion (LFI/RFI)</li>
+      <li class="locale-ar" lang="ar">ثغرات رفع الملفات</li>
+      <li class="locale-ar" lang="ar">استغلال واجهات البرمجة</li>
+      <li class="locale-ar" lang="ar">تضمين الملفات LFI/RFI</li>
+    </ul>
+
+    <h2><span class="locale-en">Objectives</span><span class="locale-ar" lang="ar">الأهداف</span></h2>
+    <ul>
+      <li class="locale-en">Enumerate and fuzz API endpoints.</li>
+      <li class="locale-en">Exploit LFI/RFI to access sensitive files or achieve RCE.</li>
+      <li class="locale-ar" lang="ar">تعداد واختبار نقاط نهاية API باستخدام fuzzing.</li>
+      <li class="locale-ar" lang="ar">استغلال LFI/RFI للوصول إلى ملفات حساسة أو تحقيق تنفيذ أوامر عن بعد.</li>
+    </ul>
+
+    <h2><span class="locale-en">Workshop Activity</span><span class="locale-ar" lang="ar">نشاط الورشة</span></h2>
+    <ul>
+      <li class="locale-en">Find and exploit an API vulnerability in a challenge.</li>
+      <li class="locale-en">Perform an LFI exploit to read a local file.</li>
+      <li class="locale-ar" lang="ar">العثور على ثغرة API داخل تحدٍّ واستغلالها.</li>
+      <li class="locale-ar" lang="ar">تنفيذ استغلال LFI لقراءة ملف محلي.</li>
+    </ul>
   </section>
+</div>
+
+<div class="tutorial-shell">
+  <section class="tutorial-open-card">
+    <h2><span class="locale-en">Workshop HTML Content</span><span class="locale-ar" lang="ar">محتوى الورشة HTML</span></h2>
+    <p class="locale-en">Open the Day 5 HTML workshop content or preview it below.</p>
+    <p class="locale-ar" lang="ar">يمكنك فتح محتوى ورشة اليوم الخامس بصيغة HTML أو معاينته بالأسفل.</p>
+    <a href="../assets/tutorials/api.html" target="_blank" rel="noopener noreferrer">
+      <span class="locale-en">Open the Day 5 HTML content</span>
+      <span class="locale-ar" lang="ar">فتح محتوى HTML لليوم الخامس</span>
+    </a>
+  </section>
+</div>
+
+<div class="iframe-wrap">
+  <iframe
+    src="../assets/tutorials/api.html"
+    title="API Exploitation and File Attacks workshop HTML content"
+    loading="lazy"
+    referrerpolicy="no-referrer"
+  ></iframe>
 </div>
