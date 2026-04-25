@@ -1,7 +1,7 @@
 (() => {
   const THEME_KEY = "acm-theme";
   const LANG_KEY = "acm-lang";
-  const TARGET = new Date("2026-04-25T10:00:00");
+  const TARGET = new Date("2026-05-04T16:00:00");
   const VALID_PAGES = new Set(["home", "schedule", "workshops", "resources", "challenges", "rules", "faq", "about"]);
   const SUBMISSION_ENDPOINT = window.ACM_SUBMISSION_ENDPOINT || "https://ctf-email-worker.shoug-alomran.workers.dev";
 

@@ -19,7 +19,7 @@
 <div class="page active" id="page-home">
   <div class="announcement">
     <span class="ann-badge" data-en="LATEST" data-ar="آخر الأخبار">LATEST</span>
-    <span class="ann-text" data-en="Registration is now closed. Participation is limited to confirmed Prince Sultan University students." data-ar="تم إغلاق التسجيل الآن. المشاركة مقتصرة على طلاب جامعة الأمير سلطان المؤكدين.">Registration is now closed. Participation is limited to confirmed Prince Sultan University students.</span>
+    <span class="ann-text" data-en="Winners ceremony will be held on Monday, May 4 at 4:00 PM in Building 105." data-ar="سيقام حفل تكريم الفائزين يوم الاثنين 4 مايو الساعة 4:00 مساءً في المبنى 105.">Winners ceremony will be held on Monday, May 4 at 4:00 PM in Building 105.</span>
   </div>
   <div class="hero">
     <h1 class="hero-title">
@@ -36,9 +36,9 @@
       <div class="countdown-unit"><span id="cd-secs">41</span><span class="countdown-label" data-en="SECS" data-ar="ثواني">SECS</span></div>
     </div>
     <div class="event-meta">
-      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2.5" x2="16" y2="6"></line><line x1="8" y1="2.5" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span> <span data-en="April 25, 2026" data-ar="25 أبريل 2026">April 25, 2026</span></span>
-      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="10:00 AM – 1:00 PM" data-ar="10:00 صباحاً – 1:00 مساءً">10:00 AM – 1:00 PM</span></span>
-      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Auditorium B105, 2nd Floor" data-ar="المدرج B105، الدور الثاني">Auditorium B105, 2nd Floor</span></span>
+      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2.5" x2="16" y2="6"></line><line x1="8" y1="2.5" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span> <span data-en="Monday, May 4, 2026" data-ar="الاثنين 4 مايو 2026">Monday, May 4, 2026</span></span>
+      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></span> <span data-en="4:00 PM" data-ar="4:00 مساءً">4:00 PM</span></span>
+      <span><span class="meta-icon icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> <span data-en="Building 105" data-ar="المبنى 105">Building 105</span></span>
     </div>
     <span class="register-btn register-btn-disabled" aria-disabled="true" data-en="REGISTRATION CLOSED" data-ar="تم إغلاق التسجيل">REGISTRATION CLOSED</span>
   </div>
