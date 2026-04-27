@@ -1035,6 +1035,11 @@
             overflow: hidden;
         }
 
+        .s-close>*:not(.bg-word) {
+            position: relative;
+            z-index: 1;
+        }
+
         .s-close .bg-word {
             position: absolute;
             font-family: 'Bebas Neue', sans-serif;
@@ -1173,10 +1178,69 @@
         }
 
         @media (max-width: 640px) {
+            .s-close {
+                padding: 28px 24px 120px;
+                justify-content: flex-start;
+            }
+
             .s-close .bg-word {
-                font-size: clamp(104px, 34vw, 180px);
-                right: 10px;
-                bottom: 28px;
+                font-size: clamp(86px, 22vw, 112px);
+                right: 8px;
+                bottom: 44px;
+                opacity: .6;
+            }
+
+            .close-heading {
+                font-size: clamp(42px, 15vw, 62px);
+                line-height: .92;
+                max-width: 280px;
+            }
+
+            .close-sub {
+                font-size: 15px;
+                letter-spacing: .12em;
+                margin: 12px 0 26px;
+                max-width: 240px;
+            }
+
+            .close-nums {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px 20px;
+                margin-bottom: 28px;
+                width: min(100%, 272px);
+                max-width: 272px;
+            }
+
+            .close-n {
+                font-size: 32px;
+            }
+
+            .close-num {
+                gap: 2px;
+            }
+
+            .close-l,
+            .close-org {
+                font-size: 10px;
+                letter-spacing: .11em;
+            }
+
+            .close-badge {
+                display: block;
+                width: min(100%, 272px);
+                font-size: 11px;
+                line-height: 1.5;
+                letter-spacing: .08em;
+                text-align: center;
+                padding: 10px 16px;
+                max-width: 272px;
+            }
+
+            .close-org {
+                margin-top: 16px;
+                max-width: 272px;
+                line-height: 1.5;
             }
         }
     </style>
