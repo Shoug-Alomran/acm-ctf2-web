@@ -4,6 +4,7 @@
     <a class="active" onclick="showPage('home'); return false;" data-en="HOME" data-ar="الرئيسية">HOME</a>
     <a onclick="showPage('schedule'); return false;" data-en="AGENDA" data-ar="الأجندة">AGENDA</a>
     <a onclick="showPage('workshops'); return false;" data-en="WORKSHOPS" data-ar="ورش العمل">WORKSHOPS</a>
+    <a href="presentation/presentation/" data-en="PRESENTATION" data-ar="العرض">PRESENTATION</a>
     <a onclick="showPage('resources'); return false;" data-en="RESOURCES" data-ar="المصادر">RESOURCES</a>
     <a onclick="showPage('challenges'); return false;" data-en="CHALLENGES" data-ar="التحديات">CHALLENGES</a>
     <a onclick="showPage('rules'); return false;" data-en="RULES" data-ar="القوانين">RULES</a>

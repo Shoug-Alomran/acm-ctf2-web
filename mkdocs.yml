@@ -27,6 +27,7 @@ nav:
   - Home: index.md
   - Agenda: agenda.md
   - Workshop: workshop.md
+  - Presentation: presentation/presentation.md
   - Resources: resources.md
   - Challenges: challenges.md
   - Rules: rules.md
@@ -46,7 +47,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Shoug-Alomran/acm-ctf2-web
+      link: https://github.com/Shoug-Alomran/psu-ctf2-web
   event:
     date: "April 25, 2026"
     time: "10:00 AM - 1:00 PM"
