@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://psu-ctf.shoug-tech.com/sitemap.xml
